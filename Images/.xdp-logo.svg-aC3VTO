@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg2"
+   sodipodi:docname="lummie-Mobius-Strip.svg"
+   viewBox="0 0 227099.52 73299.5"
+   sodipodi:version="0.32"
+   version="1.0"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:version="0.46"
+   inkscape:export-filename="../91212814/logo.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   width="227099.52"
+   height="73299.5"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs4">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1352">
+      <stop
+         style="stop-color:#535353;stop-opacity:1;"
+         offset="0"
+         id="stop1348" />
+      <stop
+         style="stop-color:#adadad;stop-opacity:0;"
+         offset="1"
+         id="stop1350" />
+    </linearGradient>
+    <rect
+       x="77.955833"
+       y="94.18396"
+       width="358.82291"
+       height="149.08961"
+       id="rect1210" />
+    <rect
+       x="71.371452"
+       y="95.70536"
+       width="288.61911"
+       height="95.658272"
+       id="rect256" />
+    <linearGradient
+       id="linearGradient3296"
+       y2="0.16483"
+       gradientUnits="userSpaceOnUse"
+       x2="-190.92999"
+       y1="320.16"
+       x1="462.35999"
+       inkscape:collect="always">
+      <stop
+         id="stop3277"
+         style="stop-color:#909090;stop-opacity:0;"
+         offset="0" />
+      <stop
+         id="stop3279"
+         style="stop-color:#eca3b1;stop-opacity:0.73678607;"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3298"
+       y2="555.46002"
+       gradientUnits="userSpaceOnUse"
+       x2="1011.9"
+       y1="1118.3"
+       x1="-240.5"
+       inkscape:collect="always">
+      <stop
+         id="stop3261"
+         style="stop-color:#212178;stop-opacity:0;"
+         offset="0" />
+      <stop
+         id="stop3263"
+         style="stop-color:#f1a9b9;stop-opacity:1;"
+         offset="1" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1352"
+       id="radialGradient1356"
+       cx="-997.46167"
+       cy="444.74585"
+       fx="-997.46167"
+       fy="444.74585"
+       r="339.02863"
+       gradientTransform="matrix(1,0,0,1.4275993,0,-190.17303)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     guidetolerance="10"
+     pagecolor="#ffffff"
+     gridtolerance="10000"
+     inkscape:window-height="996"
+     inkscape:zoom="0.35"
+     objecttolerance="10"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="layer1"
+     inkscape:cx="-226.42857"
+     inkscape:cy="520"
+     inkscape:window-y="0"
+     inkscape:window-x="0"
+     inkscape:window-width="1680"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showguides="false" />
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     transform="translate(114.10242,-462.02605)">
+    <text
+       xml:space="preserve"
+       transform="matrix(4.1894083,0,0,4.1894083,-190.20421,-331.36422)"
+       id="text254"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect256);fill:#000000;fill-opacity:0.938427"><tspan
+         x="71.371094"
+         y="106.32227"
+         id="tspan1847"><tspan
+           style="font-size:12px;line-height:1.25"
+           id="tspan1845">Chesseboeuf</tspan></tspan></text>
+    <g
+       id="g3289"
+       style="stroke:#000000;stroke-width:9.9372"
+       transform="matrix(-0.1965,0,0,0.1965,248.43298,59.057458)"
+       inkscape:highlight-color="#868686">
+      <path
+         id="path2481"
+         sodipodi:nodetypes="cccc"
+         style="fill:url(#radialGradient1356);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:9.9372"
+         d="M -674.29,-21.924 C -909.52,99.026 -1125.1028,554.8168 -848.89279,915.7668 -1049.8028,871.0068 -1420.5754,789.27112 -1322.9,369.506 c 67.7,-347.62 329.57,-440.96 648.61,-391.43 z"
+         inkscape:highlight-color="#868686" />
+      <path
+         id="path2485"
+         sodipodi:nodetypes="cccccccc"
+         style="fill:url(#linearGradient3296);fill-rule:evenodd;stroke:#000000;stroke-width:9.9372"
+         d="m -891.43,-33.352 c 189.53,-24.762 376.19,-60.952 568.57,-74.288 177.15,-14.28 297.15,74.288 462.86,128.57 210.48,35.242 426.67,41.908 640,62.861 70.48,10.476 160.95,32.379 177.14,134.29 -83.81,148.57 -190.47,274.28 -380,377.14 -232.38,-48.57 -473.33,-171.43 -680,-334.29 -188.57,-129.52 -462.85,-324.76 -788.57,-294.28 z" />
+      <path
+         id="path2483"
+         sodipodi:nodetypes="ccccccc"
+         style="fill:url(#linearGradient3298);fill-rule:evenodd;stroke:#000000;stroke-width:9.9372"
+         d="m -1117.1,832.36 c 169.48,103.81 436.15,287.64 514.24,322.84 332.38,155.3 924.76,130.5 1314.3,-40 C 868.57,1043.8 1071.4,952.36 1080,772.36 1039,588.55 989.52,373.31 948.57,189.51 867.62,374.27 709.52,521.89 480,643.79 -11.43,869.51 -591.4,1066.6 -1117.1,832.36 Z" />
+    </g>
+    <text
+       xml:space="preserve"
+       transform="translate(35.546,35.05)"
+       id="text1208"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect1210);fill:#000000;fill-opacity:0.938427"><tspan
+         x="77.955078"
+         y="138.66333"
+         id="tspan1851"><tspan
+           style="font-size:50.2729px;line-height:1.25"
+           id="tspan1849">  </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:0.938427;stroke-width:0.693553"
+       x="237.82469"
+       y="195.69356"
+       id="text1216"><tspan
+         sodipodi:role="line"
+         id="tspan1214"
+         x="237.82469"
+         y="195.69356"
+         style="font-size:34.8669px;line-height:1.25;stroke-width:0.693553">Cours</tspan><tspan
+         sodipodi:role="line"
+         x="237.82469"
+         y="239.27719"
+         id="tspan1218"
+         style="font-size:34.8669px;line-height:1.25;stroke-width:0.693553">   de</tspan><tspan
+         sodipodi:role="line"
+         x="237.82469"
+         y="282.86081"
+         id="tspan1220"
+         style="font-size:34.8669px;line-height:1.25;stroke-width:0.693553">Maths</tspan></text>
+    <g
+       id="g1344"
+       transform="matrix(1.2095472,0,0,-7.5913442,-68.554383,1225.0789)"
+       style="stroke:#000000;stroke-width:0.564511;stroke-dasharray:none;stroke-opacity:1">
+      <path
+         style="fill:#000000;fill-opacity:0.938427;stroke:#000000;stroke-width:0.564511;stroke-dasharray:none;stroke-opacity:1"
+         d="m 208.42255,142.08825 c 178.71894,-0.14197 178.71894,-0.14197 178.71894,-0.14197"
+         id="path1341" />
+    </g>
+  </g>
+  <metadata
+     id="metadata41">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Mobius Strip</dc:title>
+        <dc:date>2008-08-26T15:46:56</dc:date>
+        <dc:description>A Mobius Strip</dc:description>
+        <dc:source>https://openclipart.org/detail/18684/mobius-strip-by-lummie</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>lummie</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>mobius</rdf:li>
+            <rdf:li>mobius strip</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

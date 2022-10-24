@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css" />
+	<title>Jeu de Hex</title>
+</head>
+
+
+
+<body>
+	<div class="svg-container">
+		<!--  transform="rotate(-30)" -->
+		<svg viewBox="0 0 570 370" class="svg-content" id="svg">
+
+
+			<g id="layer1" style="display:inline">
+				<path
+					d="M 36.25,39.25 L 28.9375,51.84375 L 262.5625,186.125 L 347.6875,39.28125 L 36.25,39.25 z M 262.5625,186.125 L 177.89062,332.27778 L 489.40625,332.8125 L 496.38281,320.65234 L 262.5625,186.125 z"
+					id="rect11920"
+					style="fill:red ;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.20900001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+
+				<path
+					d="M 347.67661,39.279517 L 262.53125,186.09375 L 496.375,320.65625 L 503.46875,308.28125 L 347.67661,39.279517 z M 262.53125,186.09375 L 28.926451,51.863951 L 21.8125,64.15625 L 177.875,332.28125 L 262.53125,186.09375 z"
+					id="path11937"
+					style="fill:blue;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.20900001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+			</g>
+
+			<g id="layer3">
+
+				<g id="LettresHaut"
+					style="font-size:10px;font-style:normal;font-weight:bold;text-align:start;text-anchor:start">
+
+					<text x="34.186443" y="50.380791" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> A </text>
+					<text x="61.521885" y="50.380791" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial">B</text>
+					<text x="88.85733" y="50.380791" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial">C</text>
+					<text x="116.19277" y="50.380791" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> D </text>
+					<text x="143.52821" y="50.380791" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> E </text>
+					<text x="170.86365" y="50.380791" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> F </text>
+					<text x="198.1991" y="50.380791" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> G </text>
+					<text x="225.53453" y="50.380791" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> H </text>
+					<text x="252.86998" y="50.380791" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> I </text>
+					<text x="280.20541" y="50.380791" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> J </text>
+					<text x="307.54086" y="50.380791" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> K </text>
+				</g>
+
+				<g id="ChiffresGauche"
+					style="font-size:10px;font-style:normal;font-weight:bold;text-align:start;text-anchor:start">
+
+					<text x="34.491379" y="71.869995" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 1 </text>
+					<text x="47.104977" y="95.537361" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 2 </text>
+					<text x="60.768379" y="119.14368" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 3 </text>
+					<text x="74.304825" y="142.8721" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 4 </text>
+					<text x="88.114716" y="166.41495" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 5 </text>
+					<text x="101.19796" y="190.1458" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 6 </text>
+					<text x="114.31538" y="213.81073" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 7 </text>
+					<text x="127.47113" y="237.47809" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 8 </text>
+					<text x="141.22241" y="261.14545" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 9 </text>
+					<text x="151.62906" y="284.81528" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 10 </text>
+					<text x="165.49852" y="308.54367" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 11 </text>
+				</g>
+
+				<g id="ChiffresDroit"
+					style="font-size:10px;font-style:normal;font-weight:bold;text-align:start;text-anchor:start">
+
+					<text x="349.78427" y="71.869995" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 1 </text>
+					<text x="363.69769" y="95.537361" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 2 </text>
+					<text x="376.94217" y="119.20473" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 3 </text>
+					<text x="390.504" y="142.8721" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 4 </text>
+					<text x="403.61664" y="166.53946" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 5 </text>
+					<text x="417.0076" y="190.20683" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 6 </text>
+					<text x="432.37903" y="213.87421" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 7 </text>
+					<text x="443.76999" y="237.54156" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 8 </text>
+					<text x="459.22931" y="261.20892" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 9 </text>
+					<text x="470.12708" y="284.87631" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 10 </text>
+					<text x="483.4985" y="308.54367" style="fill:#ffffff;fill-opacity:1; font-family:Arial"> 11 </text>
+				</g>
+
+				<g id="LettresBas"
+					style="font-size:10px;font-style:normal;font-weight:bold;text-align:start;text-anchor:start">
+					<text x="131.10265" y="327.8808" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> A </text>
+					<text x="158.4381" y="327.8808" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> B </text>
+					<text x="185.77353" y="327.8808" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> C </text>
+					<text x="213.10896" y="327.8808" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> D </text>
+					<text x="240.44441" y="327.8808" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> E </text>
+					<text x="267.77985" y="327.8808" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> F </text>
+					<text x="295.1153" y="327.8808" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> G </text>
+					<text x="322.45074" y="327.8808" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> H </text>
+					<text x="349.78616" y="327.8808" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> I </text>
+					<text x="377.12161" y="327.8808" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> J </text>
+					<text x="404.45706" y="327.8808" transform="matrix(1,0,0.2129146,1,0,0)"
+						style="fill:#ffffff;fill-opacity:1; font-family:Arial"> K </text>
+				</g>
+
+			</g>
+
+			<g id="layer2" style="display:inline">
+				<g transform="matrix(1.3860616,0,0,1.3860616,-139.22105,-125.75914)" id="HexSet">
+					<path
+						d="M 169.02394,183.60496 C 168.84009,183.92377 137.529,202.0218 137.16098,202.02198 C 136.79295,202.02216 105.46405,183.95498 105.27988,183.63635 C 105.09571,183.31772 105.07791,147.15251 105.26176,146.8337 C 105.44562,146.51489 136.7567,128.41686 137.12473,128.41668 C 137.49276,128.4165 168.82165,146.48368 169.00582,146.80231 C 169.18999,147.12094 169.2078,183.28615 169.02394,183.60496 z"
+						transform="matrix(0.3083456,0,0,0.3083456,99.274874,88.887324)" id="model"
+						style="stroke:#000000;stroke-width:2.6236794;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+					<use id="A1" x="0" y="0" width="744.09448" height="1052.3622" xlink:href="#model" />
+					<use transform="translate(9.8702559,17.021901)" id="A2" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(19.740512,34.043801)" id="A3" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(29.610768,51.065711)" id="A4" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(39.481024,68.087611)" id="A5" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(49.35128,85.109511)" id="A6" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(59.221533,102.13142)" id="A7" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(69.091793,119.15332)" id="A8" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(78.962053,136.17522)" id="A9" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(88.832303,153.19712)" id="A10" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(98.702563,170.21902)" id="A11" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(19.740512,-8.1654534e-8)" id="B1" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(29.610768,17.021901)" id="B2" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(39.481024,34.043801)" id="B3" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(49.35128,51.065711)" id="B4" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(59.221533,68.087611)" id="B5" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(69.091793,85.109511)" id="B6" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(78.962053,102.13142)" id="B7" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(88.832303,119.15332)" id="B8" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(98.702563,136.17522)" id="B9" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(108.57282,153.19712)" id="B10" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(118.44307,170.21902)" id="B11" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(39.481024,-8.1654534e-8)" id="C1" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(49.35128,17.021901)" id="C2" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(59.221533,34.043801)" id="C3" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(69.091793,51.065711)" id="C4" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(78.962053,68.087611)" id="C5" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(88.832303,85.109511)" id="C6" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(98.702563,102.13142)" id="C7" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(108.57282,119.15332)" id="C8" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(118.44307,136.17522)" id="C9" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(128.31333,153.19712)" id="C10" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(138.18358,170.21902)" id="C11" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(59.221533,-8.1654534e-8)" id="D1" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(69.091793,17.021901)" id="D2" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(78.962053,34.043801)" id="D3" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(88.832303,51.065711)" id="D4" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(98.702563,68.087611)" id="D5" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(108.57282,85.109511)" id="D6" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(118.44307,102.13142)" id="D7" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(128.31333,119.15332)" id="D8" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(138.18358,136.17522)" id="D9" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(148.05384,153.19712)" id="D10" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(157.9241,170.21902)" id="D11" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(78.962053,-8.1654534e-8)" id="E1" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(88.832303,17.021901)" id="E2" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(98.702563,34.043801)" id="E3" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(108.57282,51.065711)" id="E4" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(118.44307,68.087611)" id="E5" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(128.31333,85.109511)" id="E6" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(138.18358,102.13142)" id="E7" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(148.05384,119.15332)" id="E8" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(157.9241,136.17522)" id="E9" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(167.79435,153.19712)" id="E10" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(177.66461,170.21902)" id="E11" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(98.702563,-8.1654534e-8)" id="F1" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(108.57282,17.021901)" id="F2" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(118.44307,34.043801)" id="F3" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(128.31333,51.065711)" id="F4" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(138.18358,68.087611)" id="F5" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(148.05384,85.109511)" id="F6" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(157.9241,102.13142)" id="F7" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(167.79435,119.15332)" id="F8" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(177.66461,136.17522)" id="F9" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(187.53486,153.19712)" id="F10" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(197.40512,170.21902)" id="F11" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(118.44307,-8.1654534e-8)" id="G1" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(128.31333,17.021901)" id="G2" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(138.18358,34.043801)" id="G3" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(148.05384,51.065711)" id="G4" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(157.9241,68.087611)" id="G5" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(167.79435,85.109511)" id="G6" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(177.66461,102.13142)" id="G7" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(187.53486,119.15332)" id="G8" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(197.40512,136.17522)" id="G9" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(207.27538,153.19712)" id="G10" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(217.14563,170.21902)" id="G11" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(138.18358,-8.1654534e-8)" id="H1" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(148.05384,17.021901)" id="H2" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(157.9241,34.043801)" id="H3" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(167.79435,51.065711)" id="H4" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(177.66461,68.087611)" id="H5" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(187.53486,85.109511)" id="H6" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(197.40512,102.13142)" id="H7" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(207.27538,119.15332)" id="H8" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(217.14563,136.17522)" id="H9" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(227.01589,153.19712)" id="H10" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(236.88614,170.21902)" id="H11" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(157.9241,-8.1654534e-8)" id="I1" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(167.79435,17.021901)" id="I2" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(177.66461,34.043801)" id="I3" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(187.53486,51.065711)" id="I4" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(197.40512,68.087611)" id="I5" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(207.27538,85.109511)" id="I6" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(217.14563,102.13142)" id="I7" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(227.01589,119.15332)" id="I8" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(236.88614,136.17522)" id="I9" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(246.7564,153.19712)" id="I10" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(256.62666,170.21902)" id="I11" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(177.66461,-8.1654534e-8)" id="J1" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(187.53486,17.021901)" id="J2" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(197.40512,34.043801)" id="J3" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(207.27538,51.065711)" id="J4" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(217.14563,68.087611)" id="J5" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(227.01589,85.109511)" id="J6" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(236.88614,102.13142)" id="J7" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(246.7564,119.15332)" id="J8" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(256.62666,136.17522)" id="J9" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(266.49691,153.19712)" id="J10" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(276.36717,170.21902)" id="J11" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(197.40512,-8.1654534e-8)" id="K1" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(207.27538,17.021901)" id="K2" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(217.14563,34.043801)" id="K3" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(227.01589,51.065711)" id="K4" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(236.88614,68.087611)" id="K5" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(246.7564,85.109511)" id="K6" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(256.62666,102.13142)" id="K7" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(266.49691,119.15332)" id="K8" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(276.36717,136.17522)" id="K9" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(286.23742,153.19712)" id="K10" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+					<use transform="translate(296.10768,170.21902)" id="K11" x="0" y="0" width="744.09448"
+						height="1052.3622" xlink:href="#model" />
+
+				</g>
+			</g>
+
+			<g id="layer4" style="display:inline">
+
+				<path id="blueHexButton"
+					d="M 169.02394,183.60496 C 168.84009,183.92377 137.529,202.0218 137.16098,202.02198 C 136.79295,202.02216 105.46405,183.95498 105.27988,183.63635 C 105.09571,183.31772 105.07791,147.15251 105.26176,146.8337 C 105.44562,146.51489 136.7567,128.41686 137.12473,128.41668 C 137.49276,128.4165 168.82165,146.48368 169.00582,146.80231 C 169.18999,147.12094 169.2078,183.28615 169.02394,183.60496 z"
+					class="blueButtonOn"
+					transform="translate(350,0) matrix(1.3860616,0,0,1.3860616,-139.22105,-125.75914)  matrix(0.3083456,0,0,0.3083456,99.274874,88.887324) " />
+
+				<path id="redHexButton"
+					d="M 169.02394,183.60496 C 168.84009,183.92377 137.529,202.0218 137.16098,202.02198 C 136.79295,202.02216 105.46405,183.95498 105.27988,183.63635 C 105.09571,183.31772 105.07791,147.15251 105.26176,146.8337 C 105.44562,146.51489 136.7567,128.41686 137.12473,128.41668 C 137.49276,128.4165 168.82165,146.48368 169.00582,146.80231 C 169.18999,147.12094 169.2078,183.28615 169.02394,183.60496 z"
+					class="redButtonOff"
+					transform="translate(385,0) matrix(1.3860616,0,0,1.3860616,-139.22105,-125.75914)  matrix(0.3083456,0,0,0.3083456,99.274874,88.887324) " />
+
+			</g>
+
+
+
+			<g transform="translate(230,-150) scale(1.9,1.9)" id="freeBoardButton">
+				<path
+					style="fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.06500006;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+					d="m 110,137 -10,10 10,10 h 40 l 10,-10 -10,-10 z" id="freeBoardButtonPath"
+					class="freeBoardButtonOn" />
+
+				<text
+					style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+					x="106.41447" y="149.93996" id="text1">
+					<tspan sodipodi:role="line" id="tspan819" x="107" y="149.93996"
+						style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8px;font-family:'Latin Modern Roman Slanted';-inkscape-font-specification:'Latin Modern Roman Slanted, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332px">
+						Free Board </tspan>
+				</text>
+			</g>
+
+			<g transform="translate(260,-95) scale(1.9,1.9)" id="twoPlayerButton">
+				<path
+					style=" fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.06500006;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+					d="m 110,137 -10,10 10,10 h 40 l 10,-10 -10,-10 z" id="twoPlayerButtonPath"
+					class="twoPlayerButtonOff" />
+
+				<text
+					style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+					x="106.41447" y="149.93996" id="text2">
+					<tspan sodipodi:role="line" id="tspan819" x="105" y="149.93996"
+						style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8px;font-family:'Latin Modern Roman Slanted';-inkscape-font-specification:'Latin Modern Roman Slanted, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332px">
+						Two players </tspan>
+				</text>
+			</g>
+
+
+
+		</svg>
+
+	</div>
+
+
+	<script type="text/javascript" src="script.js"></script>
+
+
+</body>
+
+
+</html>

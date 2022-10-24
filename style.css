@@ -1,0 +1,649 @@
+/***************************************************************************************************/
+/******************************** RESET des propriétés du navigateur (ALL PAGES) *******************************/
+/***************************************************************************************************/
+*:not(p){
+margin: 0;
+padding: 0;
+text-decoration: none;
+list-style: none;
+}
+
+
+
+
+/***************************************************************************************************/
+/********************************************* BODY (ALL PAGES) **********************************************/
+/***************************************************************************************************/
+
+
+body{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
+    height: 100vh;
+    background: url("Images/background2.jpg") no-repeat fixed center/cover;
+
+}
+
+
+/***************************************************************************************************/
+/************************************** FOOTER (ALL PAGES) *******************************************/
+/***************************************************************************************************/
+
+
+footer{
+    font-size: 0.8em;
+    margin: 20px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/***************************************************************************************************/
+/*************************************** MAIN (ALL PAGES) ********************************************/
+/***************************************************************************************************/
+
+main{
+    width:90%;
+    height: auto;
+    margin-left:auto;
+    margin-right:auto; 
+    padding: 15px;
+}
+
+
+/***************************************************************************************************/
+/************************************ PDF ICON (ALL PAGES) ******************************************/
+/***************************************************************************************************/
+
+.pdf_icon{
+    width: 1.5em;
+}
+
+/***************************************************************************************************/
+/********************************************* NAVBAR (ALL PAGES) **********************************************/
+/***************************************************************************************************/
+
+.navbar{
+    width: 100%;
+    padding: 30px; 
+    min-height: 15vh; 
+    font-size: 1.3rem; 
+    background: #2326cf1e;
+    display: flex;
+    justify-content:left;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+
+.navbar a{
+    color: black;
+}
+
+
+
+.logo{ 
+    max-width: 15%;
+    margin-top:10px;
+     margin-left: 3%;
+    color:rgb(0, 0, 0);
+    transition: all 1s ease;
+
+}
+
+.navbar .navlinks{
+    width:60%;
+    margin-left: 15%;
+}
+
+.navbar .navlinks ul{
+    margin-left: 20px;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.navbar .navlinks ul li a::before{
+    content: "";
+    display: block;
+    /* position: absolute; */
+    width: 100%;
+    height: 2px;
+    margin: 0 auto;
+    background: rgba(224, 6, 6, 0.733);
+    transform: scale(0);
+    transition: transform 0.2s ease-in-out;
+}
+
+.navbar .navlinks ul li a::after{
+    content: "";
+    display: block;
+    /* position: absolute; */
+    width: 100%;
+    height: 2px;
+    margin: 0 auto;
+    background: rgba(224, 6, 6, 0.733);
+    transform: scale(0);
+    transition: transform 0.2s ease-in-out;
+}
+
+.navbar .navlinks ul li a:hover::before{
+    transform: scale(1);
+}
+
+.navbar .navlinks ul li a:hover::after{
+    transform: scale(1);
+}
+
+
+.navbar .navlinks .is-active{
+    background-color: red;
+}
+
+
+
+/*************************************************************************/
+/*********************RESPONSIVE DE LA NAVBAR ****************************/
+
+
+.navbar .menu-hamburger{
+    display: none;
+    width: 8%;
+    margin-top: 10px; 
+    margin-right: 30px;
+    transition: all 1s ease;
+}
+
+
+
+@media screen and (max-width: 850px) {
+
+    .navbar{
+        min-height: 15vh;
+        padding:0;
+        font-size: 1rem;    
+    }
+
+    .navbar .logo{
+        max-width: 25%;
+        margin-left: 5%;
+    }
+
+    .navbar .navlinks{
+        margin-left:0%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin-top: -200%; 
+        transition: all 0.5s ease-out;
+      
+      
+    }
+
+    .navbar .navlinks ul{
+        flex-direction: column; 
+        justify-content: space-around;
+        align-items: center;
+        margin-left: 0; 
+        margin-top : 20px;
+
+    }
+
+    .navbar .navlinks ul li{
+        text-align: center;
+        margin: 20% 0; 
+        font-size: 1.5em;
+    }
+
+
+    .navlinks.mobile-menu{
+        margin-top: 0;
+    }
+
+    .logo.mobile-menu{
+        transform: translateY(-40vh);
+    }
+
+    .menu-hamburger.mobile-menu{
+        transform: translateY(-40vh);
+    }
+
+    
+
+
+    .navbar .menu-hamburger{
+        display: block;
+    }    
+
+}
+
+
+/***************************************************************************************************/
+/*****************************************************************************************************/
+/***************************************************************************************************/
+/*************************************** FIN ALL PAGES ***********************************************/
+/***************************************************************************************************/
+/***************************************************************************************************/
+/***************************************************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+/***************************************************************************************************/
+/******************************************** PAGE INDEX *************************************************/
+/***************************************************************************************************/
+
+
+
+
+
+.index_haut{
+    width:100%;
+     display: flex;
+    /*justify-content: space-around; */
+}
+
+
+.index_box{
+    width : 50%;
+    margin: 1%;
+    background: whitesmoke;
+    padding: 10px;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.205);
+}
+
+
+
+.hexa_svg{
+width: 100%;
+height: 100%; 
+}
+
+
+.Mobius{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    vertical-align: middle;
+}
+
+
+.img_mobius{
+    width: 25%;
+	height: auto;
+    margin-right: 20px;
+}
+
+
+
+/*************************** RESPONSIVE DE LA PAGE INDEX *******************************/
+/*****************************************************************************************/
+
+
+@media screen and (max-width: 850px) {
+
+    .index_haut{
+        display: block;
+    
+    }
+
+    .index_box{
+        width:90%;
+        margin-bottom: 2%;
+
+    }
+
+}
+
+
+
+
+
+/***************************************************************************************************/
+/***************************************** PAGE COLLEGE **********************************************/
+/***************************************************************************************************/
+
+
+.selecteur_niveaux{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+.selecteur_niveaux ul{
+    display:flex;
+}
+
+
+.selecteur_niveaux li{ 
+    width: 25%; /* car il y a 4 niveaux */
+    text-align: center;
+    border-color: black;
+    border: solid;
+    border-width: 1px;
+}
+
+
+
+.selecteur_niveaux li:hover{ 
+    background: #cacce9;
+
+}
+
+
+
+.selecteur.is-active{
+background: #cacce9;
+    color: rgb(255, 2, 2);
+    transform : translate(-5px, -5px);
+    box-shadow:  5px 5px 5px 2px rgba(0, 0, 0, 0.205);
+    border-color: black;
+}
+
+
+
+/*****************************************************/
+
+
+
+.college_pages{
+    position: relative;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;  
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+}
+
+
+.les_chapitres_viewbox{
+    position:relative;
+    width: 80%;
+    height: 65vh;  /* a adapter avec la partie droite */
+    padding-top: 0.5%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: rgba(148, 191, 247, 0.233);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 10px;
+/* Scrollbar sous Firefox */
+    scrollbar-width: 10px;
+    scrollbar-color: #003580 #FFFFFF;
+}
+
+
+
+
+/*********************************************************/
+/****************** SCROLLBAR WEBKIT **********************/
+/*********************************************************/
+/* scrollbar pour les navigateur webkit */
+.les_chapitres_viewbox::-webkit-scrollbar{
+    width: 10px;
+}
+
+.les_chapitres_viewbox::-webkit-scrollbar-track{
+    background-color: rgb(184, 184, 184);
+    border-radius:15px;
+}
+
+.les_chapitres_viewbox::-webkit-scrollbar-thumb{
+    background-color: rgba(42, 13, 77, 0.322);
+    border-radius: 15px;
+}
+/*****************************************/
+
+.college_informations_viewbox::-webkit-scrollbar{
+    width: 10px;
+}
+
+.college_informations_viewbox::-webkit-scrollbar-track{
+    background-color: rgb(184, 184, 184);
+    border-radius:15px;
+}
+
+.college_informations_viewbox::-webkit-scrollbar-thumb{
+    background-color: rgba(42, 13, 77, 0.322);
+    border-radius: 15px;
+}
+
+
+
+/*****************************************************/
+/****************************************************/
+
+
+.niveau{
+    position: absolute;
+    width:98%;
+    top: 1%;
+    left: 1%;
+}
+
+.niveau.sixieme{
+    margin-left:0%;
+}
+.niveau.cinquieme{
+    margin-left:100%;
+}
+.niveau.quatrieme{
+    margin-left:200%;
+}
+.niveau.troisieme{
+    margin-left: 300%;
+}
+
+
+
+.college_slider{
+    position: relative;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+}
+
+.six{
+    transform: translateX(0%);
+}
+.five{
+    transform: translateX(-100%);
+}
+.four{
+    transform: translateX(-200%);
+}
+.three{
+    transform: translateX(-300%);
+}
+
+
+
+.un_chapitre{
+    background-color: whitesmoke;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    width: 100;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+    align-items: center;
+
+}
+
+.un_chapitre:hover{
+    transform: translate(-5px,-5px);
+    box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.205);
+    
+}
+
+.nom_chapitre{
+    margin: 2%;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    text-align: center;
+
+}
+
+
+.chap_rule{
+    width: 20%;
+    height: 2px;
+    border: none;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: black;
+}
+
+
+
+.doc_chapitre{
+    width: 100%;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+}
+
+
+
+.doc_chapitre li span::before{
+    content: "";
+    display: block;
+    /* position: absolute; */
+    width: 100%;
+    height: 2px;
+    margin: 0 auto;
+    background: rgba(224, 6, 6, 0.733);
+    transform: scale(0);
+    transition: transform 0.2s ease-in-out;
+}
+
+
+
+.doc_chapitre li span::after{
+    content: "";
+    display: block;
+    /* position: absolute; */
+    width: 100%;
+    height: 2px;
+    margin: 0 auto;
+    background: rgba(224, 6, 6, 0.733);
+    transform: scale(0);
+    transition: transform 0.2s ease-in-out;
+}
+
+.doc_chapitre li span:hover::before{
+    transform: scale(1);
+}
+
+.doc_chapitre li span:hover::after{
+    transform: scale(1);
+}
+
+
+
+.doc_chapitre li span:hover{
+    font-weight: 900;
+}
+
+
+
+
+.partie_droite{
+    width:100%;
+    margin-left: 3%;
+}
+
+
+.college_informations_viewbox{
+    position: relative;
+    /* padding: 1vh; */
+    width: 100%;
+    min-height: 30vh;
+    background-color: rgba(148, 191, 248, 0.185);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+}
+
+.college_programme{
+    margin-top: 2vh;
+    min-height: 20vh;
+    width: auto;
+    padding: 1%;
+    background-color: rgba(148, 191, 248, 0.185);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 10px;
+
+}
+
+
+
+
+/*************************** RESPONSIVE DE LA PAGE COLLEGE *******************************/
+/*****************************************************************************************/
+
+
+@media screen and (max-width: 850px) {
+
+
+    .selecteur_niveaux{
+        width: 70%;
+
+    }
+
+    .college_pages{
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;  
+    }
+
+    .les_chapitres_viewbox{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;  
+        margin-bottom: 20px;
+
+    }
+
+    .partie_droite{
+        width:85%;
+        margin-left: auto;
+        margin-right: auto;  
+    }
+
+    .college_informations_viewbox{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;  
+        margin-bottom: 20px;
+    }
+}
+
+

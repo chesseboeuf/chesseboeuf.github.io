@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> 
+		<link rel="stylesheet" href="style.css" />
+        <title>Cours de maths</title>
+    </head>
+
+
+
+    <body>
+
+        <!---------------------------- NAVBAR --------------------------------->
+        <nav class="navbar">
+
+			<img src="Images/logo.png" alt="burger menu" class="logo mobile-menu">  
+            
+			<div class="navlinks mobile-menu">
+				<ul>
+					<li> <a href="index.html" class="nav_accueil"> Accueil </a>   </li>
+					<li> <a href="page_college.html" class="nav_college"> Collège </a>  </li>
+					<li> <a href="page_lycee.html" class="nav_lycee"> Lycée </a>  </li>
+					<li> <a href="page_enigmes.html" class="nav_enigmes"> Énigmes</a>  </li>
+					<li> <a href="page_applications.html" class="nav_applications"> Applications</a>  </li>
+					<li> <a href="page_liens.html" class="nav_liens"> Liens</a>  </li>
+					<li> <a href="page_infos.html"class="nav_infos"> Infos</a>  </li>
+				</ul>
+			</div>
+			<img src="Images/burger_black.png" alt="burger menu" class="menu-hamburger mobile-menu">  
+		</nav>
+        <!---------------------------- NAVBAR --------------------------------->
+
+
+
+
+		<main>
+
+                <!------------------------------------------------------------------------------------------------->                
+                <!------------------------------------------------------------------------------------------------->                
+                                            <!-- CORPS DE LA PAGE ICI -->               
+                <!------------------------------------------------------------------------------------------------->                
+                <!------------------------------------------------------------------------------------------------->                
+
+
+        </main>
+
+
+
+
+    </main>
+
+
+
+
+
+    <footer>
+        <p>© C.Chesseboeuf</p>           
+        <SCRIPT LANGUAGE="JavaScript">
+            var maintenant=new Date();
+            var jour=maintenant.getDate();
+            var mois=maintenant.getMonth()+1;
+            var an=maintenant.getFullYear();
+            document.write("le ",jour,"/",mois,"/",an,".");
+        </SCRIPT>
+    </footer>
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+ <!------------------------------------------------------------------------------------------------->                
+ <!------------------------------------------------------------------------------------------------->                
+                             <!-- SCRIPT -->               
+ <!------------------------------------------------------------------------------------------------->                
+ <!------------------------------------------------------------------------------------------------->   
+
+
+<script>
+    // Au chargement de la page : mettre en evidence la section
+
+    //  const Nav_College = document.querySelector(".nav_college")
+    // document.addEventListener('DOMContentLoaded', ()=>{Nav_College.classList.add('is-active')})
+
+
+    // chargement des pages en mode smartphone 
+	const mmenuHamburger = document.querySelector(".menu-hamburger")
+	const nnavLinks = document.querySelector(".navlinks")
+	const lllogo = document.querySelector(".logo")
+	document.addEventListener('DOMContentLoaded',()=>{nnavLinks.classList.toggle('mobile-menu')})
+	document.addEventListener('DOMContentLoaded',()=>{lllogo.classList.toggle('mobile-menu')})
+	document.addEventListener('DOMContentLoaded',()=>{mmenuHamburger.classList.toggle('mobile-menu')})
+</script>
+
+
+
+
+<script>
+
+// fonction du bouton hamburger en mode smartphone
+    const menuHamburger = document.querySelector(".menu-hamburger")
+    const navLinks = document.querySelector(".navlinks")
+    const llogo = document.querySelector(".logo")
+
+    menuHamburger.addEventListener('click',()=>{navLinks.classList.toggle('mobile-menu')})
+    menuHamburger.addEventListener('click',()=>{llogo.classList.toggle('mobile-menu')})
+    menuHamburger.addEventListener('click',()=>{menuHamburger.classList.toggle('mobile-menu')})
+
+
+</script>
+
+</html>
