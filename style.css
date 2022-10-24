@@ -49,6 +49,7 @@ main{
     margin-left:auto;
     margin-right:auto; 
     padding: 15px;
+    font-size: 1.2rem;
 }
 
 
@@ -66,9 +67,9 @@ main{
 
 .navbar{
     width: 100%;
-    padding: 30px; 
+    padding: 20px; 
     min-height: 15vh; 
-    font-size: 1.3rem; 
+    font-size: 1.4rem; 
     background: #2326cf1e;
     display: flex;
     justify-content:left;
@@ -84,7 +85,7 @@ main{
 
 
 .logo{ 
-    max-width: 15%;
+    max-width: 12%;
     margin-top:10px;
      margin-left: 3%;
     color:rgb(0, 0, 0);
