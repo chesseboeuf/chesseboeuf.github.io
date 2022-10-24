@@ -526,8 +526,12 @@ background: #cacce9;
 }
 
 
+.doc_chapitre li a{
+    color : black;
+}
 
-.doc_chapitre li span::before{
+
+.doc_chapitre li a::before{
     content: "";
     display: block;
     /* position: absolute; */
@@ -541,7 +545,7 @@ background: #cacce9;
 
 
 
-.doc_chapitre li span::after{
+.doc_chapitre li a::after{
     content: "";
     display: block;
     /* position: absolute; */
@@ -553,17 +557,17 @@ background: #cacce9;
     transition: transform 0.2s ease-in-out;
 }
 
-.doc_chapitre li span:hover::before{
+.doc_chapitre li a:hover::before{
     transform: scale(1);
 }
 
-.doc_chapitre li span:hover::after{
+.doc_chapitre li a:hover::after{
     transform: scale(1);
 }
 
 
 
-.doc_chapitre li span:hover{
+.doc_chapitre li a:hover{
     font-weight: 900;
 }
 
