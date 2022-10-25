@@ -637,7 +637,8 @@ background: #cacce9;
     }
 
     .les_chapitres_viewbox{
-        width: 80%;
+        width: 85%;
+        height: 70vh;
         margin-left: auto;
         margin-right: auto;  
         margin-bottom: 20px;
@@ -645,20 +646,21 @@ background: #cacce9;
     }
 
     .partie_droite{
-        width:80%;
+        display:none;
+        /* width:80%;
         margin-left: auto;
-        margin-right: auto;  
+        margin-right: auto;   */
     }
 
-    .college_informations_viewbox{
+    /* .college_informations_viewbox{
         width: 100%;
         margin-left: auto;
         margin-right: auto;  
         margin-bottom: 20px;
-    }
+    } */
 
     span.nom_chapitre{
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .doc_chapitre li a{
