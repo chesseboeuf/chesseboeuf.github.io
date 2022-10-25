@@ -617,8 +617,13 @@ background: #cacce9;
 @media screen and (max-width: 850px) {
 
 
-    .un_chapitre:hover{
-        display:none;
+    /* supprimer correctement le hover */
+    .un_chapitre{
+    pointer-events: none;
+    }
+
+    .doc_chapitre li{
+        pointer-events: auto;
     }
 
 
@@ -662,6 +667,8 @@ background: #cacce9;
     span.nom_chapitre{
         font-size: 1rem;
     }
+
+
 
     .doc_chapitre li a{
         color : white;
