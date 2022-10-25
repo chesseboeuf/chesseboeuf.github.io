@@ -9,6 +9,11 @@ list-style: none;
 }
 
 
+:root {
+    --mypink: hsl(358, 76%, 65%);
+  }
+  
+
 
 
 /***************************************************************************************************/
@@ -115,7 +120,7 @@ main{
     width: 100%;
     height: 2px;
     margin: 0 auto;
-    background: rgba(224, 6, 6, 0.733);
+    background: var(--mypink);
     transform: scale(0);
     transition: transform 0.2s ease-in-out;
 }
@@ -127,7 +132,7 @@ main{
     width: 100%;
     height: 2px;
     margin: 0 auto;
-    background: rgba(224, 6, 6, 0.733);
+    background: var(--mypink);
     transform: scale(0);
     transition: transform 0.2s ease-in-out;
 }
@@ -142,7 +147,8 @@ main{
 
 
 .navbar .navlinks .is-active{
-    background-color: red;
+    color: var(--mypink);
+    font-weight: bold;
 }
 
 
@@ -347,15 +353,15 @@ height: 100%;
 
 
 .selecteur_niveaux li:hover{ 
-    background: #cacce9;
+    background: #bec1e6;
 
 }
 
 
 
 .selecteur.is-active{
-background: #cacce9;
-    color: rgb(255, 2, 2);
+background:#bec1e6;
+    color:  var(--mypink);
     transform : translate(-5px, -5px);
     box-shadow:  5px 5px 5px 2px rgba(0, 0, 0, 0.205);
     border-color: black;
@@ -396,44 +402,6 @@ background: #cacce9;
 
 
 
-/*********************************************************/
-/****************** SCROLLBAR WEBKIT **********************/
-/*********************************************************/
-/* scrollbar pour les navigateur webkit */
-
- /*
-.les_chapitres_viewbox::-webkit-scrollbar{ 
-    width: 10px;
-}
-
-.les_chapitres_viewbox::-webkit-scrollbar-track{
-    background-color: rgb(184, 184, 184);
-    border-radius:15px;
-}
-
-.les_chapitres_viewbox::-webkit-scrollbar-thumb{
-    background-color: rgba(42, 13, 77, 0.322);
-    border-radius: 15px;
-}
-
-.college_informations_viewbox::-webkit-scrollbar{
-    width: 10px;
-}
-
-.college_informations_viewbox::-webkit-scrollbar-track{
-    background-color: rgb(184, 184, 184);
-    border-radius:15px;
-}
-
-.college_informations_viewbox::-webkit-scrollbar-thumb{
-    background-color: rgba(42, 13, 77, 0.322);
-    border-radius: 15px;
-}
-*/
-
-
-
-
 .niveau{
     position: absolute;
     width:98%;
@@ -464,6 +432,7 @@ background: #cacce9;
 
 .six{
     transform: translateX(0%);
+
 }
 .five{
     transform: translateX(-100%);
@@ -471,6 +440,7 @@ background: #cacce9;
 .four{
     transform: translateX(-200%);
 }
+
 .three{
     transform: translateX(-300%);
 }
@@ -539,7 +509,7 @@ background: #cacce9;
     width: 100%;
     height: 2px;
     margin: 0 auto;
-    background: rgba(224, 6, 6, 0.733);
+    background:  rgb(221, 28, 173);
     transform: scale(0);
     transition: transform 0.2s ease-in-out;
 }
@@ -553,7 +523,7 @@ background: #cacce9;
     width: 100%;
     height: 2px;
     margin: 0 auto;
-    background: rgba(224, 6, 6, 0.733);
+    background:  rgb(221, 28, 173);
     transform: scale(0);
     transition: transform 0.2s ease-in-out;
 }
@@ -622,6 +592,7 @@ background: #cacce9;
     pointer-events: none;
     }
 
+
     .doc_chapitre li{
         pointer-events: auto;
     }
@@ -672,12 +643,13 @@ background: #cacce9;
 
     .doc_chapitre li a{
         color : white;
-        animation: animate 1s linear infinite
+        animation: animate 1.5s linear infinite
     }
 
     @keyframes animate{
         0%{
-            color: rgb(134, 134, 134);
+            /* color: rgb(134, 134, 134); */
+            color: var(--mypink);
         }
         
         100%{

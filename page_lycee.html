@@ -66,6 +66,9 @@
     </footer>
 
 
+    <script src="script.js"></script>
+
+
 </body>
 
 
@@ -88,37 +91,11 @@
 
  <script>
     // Au chargement de la page : mettre en evidence la section
-    const Nav_College = document.querySelector(".nav_lycee")
-    document.addEventListener('DOMContentLoaded', ()=>{Nav_College.classList.add('is-active')})
+    const Nav_lycee = document.querySelector(".nav_lycee")
+    window.addEventListener('load', ()=>{Nav_lycee.classList.add('is-active')})
 
 </script>
 
 
-
-
-<script>
-
-    // chargement des pages en mode smartphone 
-	const mmenuHamburger = document.querySelector(".menu-hamburger")
-	const nnavLinks = document.querySelector(".navlinks")
-	const lllogo = document.querySelector(".logo")
-
-	document.addEventListener('DOMContentLoaded',()=>{nnavLinks.classList.toggle('mobile-menu')})
-	document.addEventListener('DOMContentLoaded',()=>{lllogo.classList.toggle('mobile-menu')})
-	document.addEventListener('DOMContentLoaded',()=>{mmenuHamburger.classList.toggle('mobile-menu')})
-
-// fonction du bouton hamburger en mode smartphone
-    const menuHamburger = document.querySelector(".menu-hamburger")
-    const navLinks = document.querySelector(".navlinks")
-    const llogo = document.querySelector(".logo")
-	const bbody = document.querySelector("body")
-
-	menuHamburger.addEventListener('click',()=>{navLinks.classList.toggle('mobile-menu')})
-	menuHamburger.addEventListener('click',()=>{llogo.classList.toggle('mobile-menu')})
-	menuHamburger.addEventListener('click',()=>{menuHamburger.classList.toggle('mobile-menu')})
-	menuHamburger.addEventListener('click',()=>{bbody.classList.toggle('mobile-menu')})
-
-
-</script>
 
 </html>

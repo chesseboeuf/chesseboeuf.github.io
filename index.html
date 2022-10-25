@@ -106,6 +106,9 @@
 
 
 
+	<!-- on ne lie pas le fichier script.js pour la page index car elle a un comportement différent
+		(au niveau de la navbar) en tant que premiere page d'entrée dans le site -->
+
 
     </body>
 
@@ -115,7 +118,7 @@
 
 <!------------------------------------------------------------------------------------------------->                
  <!------------------------------------------------------------------------------------------------->                
-                             <!-- SCRIPT -->               
+                             <!-- SCRIPT DE LA PAGE -->               
  <!------------------------------------------------------------------------------------------------->                
  <!------------------------------------------------------------------------------------------------->   
 
@@ -123,7 +126,7 @@
  <script>
 	// Au chargement de la page : mettre en evidence la section
 	const Nav_Accueil = document.querySelector(".nav_accueil")
-	document.addEventListener('DOMContentLoaded', ()=>{Nav_Accueil.classList.add('is-active')})
+	window.addEventListener('load', ()=>{Nav_Accueil.classList.add('is-active')})
 </script>
 
 
