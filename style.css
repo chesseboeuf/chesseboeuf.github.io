@@ -87,7 +87,7 @@ main{
 .logo{ 
     max-width: 12%;
     margin-top:10px;
-     margin-left: 3%;
+    margin-left: 3%;
     color:rgb(0, 0, 0);
     transition: all 1s ease;
 
@@ -96,6 +96,7 @@ main{
 .navbar .navlinks{
     width:60%;
     margin-left: 15%;
+    transition: all 1s ease-out;
 }
 
 .navbar .navlinks ul{
@@ -169,7 +170,7 @@ main{
     }
 
     .navbar .logo{
-        max-width: 25%;
+        max-width: 30%;
         margin-left: 5%;
     }
 
@@ -180,7 +181,7 @@ main{
         align-items: center;
         height: 100vh;
         margin-top: -200%; 
-        transition: all 0.5s ease-out;
+        /* transition: all 0.5s ease-out; */
       
       
     }
@@ -196,7 +197,7 @@ main{
 
     .navbar .navlinks ul li{
         text-align: center;
-        margin: 20% 0; 
+        margin: 15% 0;  
         font-size: 1.5em;
     }
 
@@ -213,9 +214,11 @@ main{
         transform: translateY(-40vh);
     }
 
-    
 
-
+    body.mobile-menu{
+        overflow-y:hidden;
+    }
+   
     .navbar .menu-hamburger{
         display: block;
     }    
@@ -386,7 +389,6 @@ background: #cacce9;
     border-width: 3px;
     border-style: solid;
     border-radius: 10px;
-/* Scrollbar sous Firefox */
     scrollbar-width: 10px;
     scrollbar-color: #003580 #FFFFFF;
 }
@@ -398,7 +400,9 @@ background: #cacce9;
 /****************** SCROLLBAR WEBKIT **********************/
 /*********************************************************/
 /* scrollbar pour les navigateur webkit */
-.les_chapitres_viewbox::-webkit-scrollbar{
+
+ /*
+.les_chapitres_viewbox::-webkit-scrollbar{ 
     width: 10px;
 }
 
@@ -411,7 +415,6 @@ background: #cacce9;
     background-color: rgba(42, 13, 77, 0.322);
     border-radius: 15px;
 }
-/*****************************************/
 
 .college_informations_viewbox::-webkit-scrollbar{
     width: 10px;
@@ -426,11 +429,9 @@ background: #cacce9;
     background-color: rgba(42, 13, 77, 0.322);
     border-radius: 15px;
 }
+*/
 
 
-
-/*****************************************************/
-/****************************************************/
 
 
 .niveau{
@@ -616,8 +617,14 @@ background: #cacce9;
 @media screen and (max-width: 850px) {
 
 
+    .un_chapitre:hover{
+        display:none;
+    }
+
+
     .selecteur_niveaux{
         width: 70%;
+        font-size: 1.2rem;
 
     }
 
@@ -638,7 +645,7 @@ background: #cacce9;
     }
 
     .partie_droite{
-        width:85%;
+        width:80%;
         margin-left: auto;
         margin-right: auto;  
     }
@@ -649,6 +656,36 @@ background: #cacce9;
         margin-right: auto;  
         margin-bottom: 20px;
     }
+
+    span.nom_chapitre{
+        font-size: 1.1rem;
+    }
+
+    .doc_chapitre li a{
+        color : white;
+        animation: animate 1s linear infinite
+    }
+
+    @keyframes animate{
+        0%{
+            color: rgb(134, 134, 134);
+        }
+        
+        100%{
+            color:  rgb(0, 0, 0);
+            /* text-shadow: 0 0 20px rgb(255, 195, 85); */      
+        }
+    }
+
+
+    .doc_chapitre li a::before{
+        display: none; 
+    }
+    
+    .doc_chapitre li a::after{
+        display: none;
+    }
+
 }
 
 

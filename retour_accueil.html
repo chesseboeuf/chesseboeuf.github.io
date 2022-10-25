@@ -14,9 +14,9 @@
         <nav class="navbar">
 
 
-			<img src="Images/logo.png" alt="burger menu" class="logo">  
+			<img src="Images/logo.png" alt="burger menu" class="logo mobile-menu">  
 
-			<div class="navlinks">
+			<div class="navlinks mobile-menu">
 				<ul>
 					<li> <a href="retour_accueil.html" class="nav_accueil"> Accueil </a>   </li>
 					<li> <a href="page_college.html" class="nav_college"> Collège </a>  </li>
@@ -27,7 +27,7 @@
 					<li> <a href="page_infos.html"class="nav_infos"> Infos</a>  </li>
 				</ul>
 			</div>
-			<img src="Images/burger_black.png" alt="burger menu" class="menu-hamburger">  
+			<img src="Images/burger_black.png" alt="burger menu" class="menu-hamburger mobile-menu">  
 		</nav>
         <!---------------------------- NAVBAR --------------------------------->
 
@@ -35,6 +35,11 @@
 	
 
 		<main>	
+            <!---------------------------------------------------------------------------------------------------------------------------------------------->
+			<!---------------------------------------------------------------------------------------------------------------------------------------------->
+			<!-------------------------------------- RECOPIER EXACTEMENT LE MAIN DE INDEX.HTML ------------------------------------------------------------->
+			<!---------------------------------------------------------------------------------------------------------------------------------------------->
+			<!---------------------------------------------------------------------------------------------------------------------------------------------->
 		
 			<div class="index_haut">
 
@@ -129,6 +134,17 @@
 
 
  <script>
+	// chargement des pages en mode smartphone 
+	const mmenuHamburger = document.querySelector(".menu-hamburger")
+	const nnavLinks = document.querySelector(".navlinks")
+	const lllogo = document.querySelector(".logo")
+
+	document.addEventListener('DOMContentLoaded',()=>{nnavLinks.classList.toggle('mobile-menu')})
+	document.addEventListener('DOMContentLoaded',()=>{lllogo.classList.toggle('mobile-menu')})
+	document.addEventListener('DOMContentLoaded',()=>{mmenuHamburger.classList.toggle('mobile-menu')})
+
+
+
 	// fonction du bouton hamburger en mode smartphone
 	const menuHamburger = document.querySelector(".menu-hamburger")
 	const navLinks = document.querySelector(".navlinks")
