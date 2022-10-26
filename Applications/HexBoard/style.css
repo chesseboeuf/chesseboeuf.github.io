@@ -159,6 +159,13 @@ use.eyedByBlue:hover {
   fill: #5f88ff;
 }
 
+@media screen and (max-width: 850px) {
+  use.eyedByRed:hover {
+    fill: none;
+  }
+}
+
+
 use.blueVictory {
   fill: blue;
   animation: colorblink 0.3s infinite;
@@ -187,6 +194,12 @@ use.eyedByRed {
 
 use.eyedByRed:hover {
   fill: #fa7c91;
+}
+
+@media screen and (max-width: 850px) {
+  use.eyedByRed:hover {
+    fill: none;
+  }
 }
 
 

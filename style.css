@@ -28,6 +28,7 @@ list-style: none;
 /***************************************************************************************************/
 
 
+
 body{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1rem;
@@ -57,7 +58,7 @@ footer{
 
 main{
     width:90%;
-    height: auto;
+    min-height: 70vh;
     margin-left:auto;
     margin-right:auto; 
     padding: 15px;
@@ -126,7 +127,7 @@ main{
 }
 
 
-.navbar .navlinks li .is-active{
+.navbar .navlinks .is-active{
     color: var(--mypink);
     font-weight: bold;
 }
@@ -222,32 +223,21 @@ main{
 
 
 
-
-
-
-
-
-
-
-
 /***************************************************************************************************/
-/******************************************** PAGE INDEX *************************************************/
+/******************************************** PAGE ACCUEIL *************************************************/
 /***************************************************************************************************/
 
-
-
-
-
-.index_haut{
-    width:100%;
-     display: flex;
-    /*justify-content: space-around; */
+.accueil_infos{
+    width:100%; 
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
 }
 
 
-.index_box{
-    width : 50%;
-    margin: 1%;
+.accueil_box{
+    width :100%;
+    margin: 1%; 
     background: whitesmoke;
     padding: 10px;
     border: 3px solid rgb(0, 0, 0);
@@ -255,42 +245,27 @@ main{
     box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.205);
 }
 
+.accueil_box.applications{
+    width:80%; 
+    margin-left: auto;
+    margin-right: auto;
 
 
-.hexa_svg{
-width: 100%;
-height: 100%; 
 }
 
 
-.Mobius{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    vertical-align: middle;
-}
-
-
-.img_mobius{
-    width: 25%;
-	height: auto;
-    margin-right: 20px;
-}
-
-
-
-/*************************** RESPONSIVE DE LA PAGE INDEX *******************************/
+/*************************** RESPONSIVE DE LA PAGE ACCUEIL *******************************/
 /*****************************************************************************************/
 
 
 @media screen and (max-width: 850px) {
 
-    .index_haut{
+    .accueil_infos{
         display: block;
     
     }
 
-    .index_box{
+    .accueil_box{
         width:90%;
         margin-bottom: 2%;
 

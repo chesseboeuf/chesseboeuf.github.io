@@ -19,7 +19,7 @@
 			<div class="navlinks">
 				<ul>
 					<li> <a href="retour_accueil.html" class="nav_accueil"> Accueil </a>   </li>
-					<li> <a href="page_college.html" class="nav_college"> Collège </a>  </li>
+					<li> <a href="page_college.html" class="nav_college "> Collège </a>  </li>
 					<li> <a href="page_lycee.html" class="nav_lycee"> Lycée </a>  </li>
 					<li> <a href="page_applications.html" class="nav_applications"> Applications</a>  </li>
 					<li> <a href="page_enigmes.html" class="nav_enigmes"> Énigmes</a>  </li>
@@ -36,26 +36,26 @@
 
 		<main>	
 		
-			<div class="index_haut">
+			<div class="accueil_infos">
 
-				<div class="index_box eleve">
+				<div class="accueil_box eleves">
+					<h3>
+						Élèves
+					</h3>
+
+
 					<p>
-						Bienvenue sur ce site dont l'objectif principal est de permettre à mes élèves de suivre le cours en toute circonstance. 
+						Bienvenue sur ce site dont la fonction principale est de permettre à mes élèves de suivre le cours en toute circonstance. 
 						Pour cela, rendez-vous dans la section <a href="page_college.html">collège</a>
-						ou dans la section <a href="page_lycee.html">lycée</a>, choisissez votre niveau et choisissez le chapitre sur lequel vous voulez (ou devez) travailler. 
+						ou dans la section <a href="page_lycee.html">lycée</a> et choisissez le chapitre sur lequel vous voulez (ou devez) travailler. 
 					</p>
 
-			
-					<p>
-						Des jeux : <a href="Applications/HexBoard/index.html">(un échantillon) </a>
-					</p>
-			
-		
+
 				</div>
 
-				<div class="index_box prof">
+				<div class="accueil_box profs">
 					<h3>
-						Message aux profs de maths.
+						Enseignants
 					</h3>
 
 					<p>
@@ -76,15 +76,19 @@
 			</div>
 
 
-			<div class="index_box">
-				<div class="Mobius">
-					<img src="Images/lummie-Mobius-Strip.svg" class="img_mobius" alt="Image flottante"  title="Représentation du ruban de Mobius" /> 
-					<p>
-					Ceci est un texte normal de paragraphe, écrit à la suite de l'image et qui l'habillera car l'image est flottante.
-					L'image en question représente un ruban de Mobius, l'exemple le plus connu de surface non orientable. 
-					Contrairement aux autres rubans, le ruban de Mobiu n' a qu'une face!
-					</p>
-				</div>
+			<div class="accueil_box applications">	
+				
+				<p>
+					Applications pour le cours de maths (Javascript, Python, Geogebra)
+				</p>
+				
+				<p>
+					Exemple avec le jeux de <a href="Applications/HexBoard/index.html"> Hex </a>
+				</p>
+
+				<p>
+					Exemple avec le jeux de d'<a href="Applications/Echec/chessboardjs-1.0.0/index.html"> Echec </a>
+				</p>
 			</div>
 
 
@@ -121,14 +125,6 @@
                              <!-- SCRIPT DE LA PAGE -->               
  <!------------------------------------------------------------------------------------------------->                
  <!------------------------------------------------------------------------------------------------->   
-
-
- <script>
-	// Au chargement de la page : mettre en evidence la section
-	const Nav_Accueil = document.querySelector(".nav_accueil")
-	window.addEventListener('load', ()=>{Nav_Accueil.classList.add('is-active')})
-</script>
-
 
 
  <script>
