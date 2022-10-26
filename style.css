@@ -15,6 +15,13 @@ list-style: none;
   
 
 
+/***************************************************************************************************/
+/********************************************* HTML (ALL PAGES) **********************************************/
+/***************************************************************************************************/
+
+  html {height:100.1%;} /* Aindi la scrollbar apparait tout le temps et cela évite le décalage
+
+
 
 /***************************************************************************************************/
 /********************************************* BODY (ALL PAGES) **********************************************/
@@ -94,14 +101,11 @@ main{
     margin-top:10px;
     margin-left: 3%;
     color:rgb(0, 0, 0);
-    transition: all 1s ease;
-
 }
 
 .navbar .navlinks{
     width:60%;
     margin-left: 15%;
-    transition: all 1s ease-out;
 }
 
 .navbar .navlinks ul{
@@ -112,41 +116,17 @@ main{
 }
 
 
-
-.navbar .navlinks ul li a::before{
-    content: "";
-    display: block;
-    /* position: absolute; */
-    width: 100%;
-    height: 2px;
-    margin: 0 auto;
-    background: var(--mypink);
-    transform: scale(0);
-    transition: transform 0.2s ease-in-out;
-}
-
-.navbar .navlinks ul li a::after{
-    content: "";
-    display: block;
-    /* position: absolute; */
-    width: 100%;
-    height: 2px;
-    margin: 0 auto;
-    background: var(--mypink);
-    transform: scale(0);
-    transition: transform 0.2s ease-in-out;
-}
-
-.navbar .navlinks ul li a:hover::before{
-    transform: scale(1);
-}
-
-.navbar .navlinks ul li a:hover::after{
-    transform: scale(1);
+.navlinks li a {
+    transition: all 0.2s ease-in-out;
 }
 
 
-.navbar .navlinks .is-active{
+.navlinks li a:hover{
+    color: var(--mypink);
+}
+
+
+.navbar .navlinks li .is-active{
     color: var(--mypink);
     font-weight: bold;
 }
@@ -163,6 +143,7 @@ main{
     margin-top: 10px; 
     margin-right: 30px;
     transition: all 1s ease;
+    cursor: pointer;
 }
 
 
@@ -178,6 +159,7 @@ main{
     .navbar .logo{
         max-width: 30%;
         margin-left: 5%;
+        transition: all 1s ease;
     }
 
     .navbar .navlinks{
@@ -187,9 +169,7 @@ main{
         align-items: center;
         height: 100vh;
         margin-top: -200%; 
-        /* transition: all 0.5s ease-out; */
-      
-      
+        transition: all 1s ease-out;      
     }
 
     .navbar .navlinks ul{
@@ -233,7 +213,7 @@ main{
 
 
 /***************************************************************************************************/
-/*****************************************************************************************************/
+/****************************************************************************************************/
 /***************************************************************************************************/
 /*************************************** FIN ALL PAGES ***********************************************/
 /***************************************************************************************************/
@@ -344,23 +324,27 @@ height: 100%;
 
 .selecteur_niveaux li{ 
     width: 25%; /* car il y a 4 niveaux */
-    text-align: center;
+    height: 7vh;
     border-color: black;
     border: solid;
     border-width: 1px;
+
+    /* aligner verticalement et horizontalement le contenu*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+
 }
-
-
 
 .selecteur_niveaux li:hover{ 
     background: #bec1e6;
-
+    cursor: pointer;
 }
 
 
-
 .selecteur.is-active{
-background:#bec1e6;
+    background:#bec1e6;
     color:  var(--mypink);
     transform : translate(-5px, -5px);
     box-shadow:  5px 5px 5px 2px rgba(0, 0, 0, 0.205);
@@ -387,7 +371,7 @@ background:#bec1e6;
 .les_chapitres_viewbox{
     position:relative;
     width: 80%;
-    height: 65vh;  /* a adapter avec la partie droite */
+    height: 65vh;  /*a adapter avec la partie droite */
     padding-top: 0.5%;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -601,8 +585,9 @@ background:#bec1e6;
     .selecteur_niveaux{
         width: 70%;
         font-size: 1.2rem;
-
+        
     }
+
 
     .college_pages{
         flex-direction: column;
@@ -621,19 +606,6 @@ background:#bec1e6;
 
     }
 
-    .partie_droite{
-        display:none;
-        /* width:80%;
-        margin-left: auto;
-        margin-right: auto;   */
-    }
-
-    /* .college_informations_viewbox{
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;  
-        margin-bottom: 20px;
-    } */
 
     span.nom_chapitre{
         font-size: 1rem;
@@ -648,13 +620,11 @@ background:#bec1e6;
 
     @keyframes animate{
         0%{
-            /* color: rgb(134, 134, 134); */
             color: var(--mypink);
         }
         
         100%{
-            color:  rgb(0, 0, 0);
-            /* text-shadow: 0 0 20px rgb(255, 195, 85); */      
+            color:  rgb(0, 0, 0);  
         }
     }
 
@@ -667,6 +637,59 @@ background:#bec1e6;
         display: none;
     }
 
+
+
+
+    .college_slider{
+        position: relative;
+        transform: none;
+    }
+
+
+    .niveau{
+        position: relative;
+        width:98%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .niveau.sixieme, .niveau.cinquieme, .niveau.quatrieme, .niveau.troisieme{
+        margin-left:0%; 
+        display: none; 
+    }
+
+
+    .six .niveau.sixieme, .five .niveau.cinquieme, .four .niveau.quatrieme, .three .niveau.troisieme {
+        display: block;
+
+    }
+   
+    .niveau {   
+        animation: fadein 1s;
+    }
+
+
+    @keyframes fadein {
+        from {
+            opacity:0;
+            margin-left: -100%;
+        }
+        to {
+            opacity:1;
+            margin-left: 0%;
+        }
+    }
+
+
+
+    .partie_droite{
+        display:none;
+    }
+
+  
+
 }
+
+
 
 

@@ -38,10 +38,10 @@
 
     	    <div class="selecteur_niveaux">
     	        <ul>
-    	            <li class="selecteur bouton_sixieme">   <p>6ième</p>  </li>
-    	            <li class="selecteur bouton_cinquieme"> <p>5ième</p>  </li>
-    	            <li class="selecteur bouton_quatrieme"> <p>4ième</p>  </li>
-    	            <li class="selecteur bouton_troisieme"> <p>3ième</p>  </li>
+    	            <li class="selecteur bouton_sixieme">    <div>6ième</div>  </li>
+    	            <li class="selecteur bouton_cinquieme">  <div>5ième</div>  </li>
+    	            <li class="selecteur bouton_quatrieme">  <div>4ième</div>  </li>
+    	            <li class="selecteur bouton_troisieme">  <div>3ième</div>  </li>
 				</ul>
     	    </div>
 
@@ -54,6 +54,9 @@
 <!-----------------------------------------LES CHAPITRES------------------------------------------------------------>
 
 				<div class="les_chapitres_viewbox">
+
+					<!-- une ancre permettant de retrourner en haut de la viewbox -->
+					<div id="top"></div>
 
 					<div class="college_slider slider_gauche">
 
@@ -678,25 +681,31 @@
 		const Troisieme = document.querySelector(".bouton_troisieme")
 		const Slider_gauche= document.querySelector(".slider_gauche")
 		const Slider_droite= document.querySelector(".slider_droite")
+		const Viewbox= document.querySelector(".les_chapitres_viewbox")
+
+
 
 	
 
 		Sixieme.addEventListener('click',()=>{Sixieme.classList.add('is-active'),
 											 Cinquieme.classList.remove('is-active'),
 											 Quatrieme.classList.remove('is-active'),
-											 Troisieme.classList.remove('is-active')
+											 Troisieme.classList.remove('is-active'),
+											 Viewbox.scrollTo(0,0)   // on revient en haut de la viewbox à chaque clique
 	                                         })
 
 		Cinquieme.addEventListener('click',()=>{Cinquieme.classList.add('is-active'),
 											 Sixieme.classList.remove('is-active'),
 											 Quatrieme.classList.remove('is-active'),
 											 Troisieme.classList.remove('is-active')
+											 Viewbox.scrollTo(0,0) // on revient en haut de la viewbox à chaque clique
 	                                         })	
 											 
 	   Quatrieme.addEventListener('click',()=>{Quatrieme.classList.add('is-active'),
 											 Sixieme.classList.remove('is-active'),
 											 Cinquieme.classList.remove('is-active'),
 											 Troisieme.classList.remove('is-active')
+											 Viewbox.scrollTo(0,0) // on revient en haut de la viewbox à chaque clique
 	                                         })	
 
 
@@ -704,12 +713,10 @@
 											 Sixieme.classList.remove('is-active'),
 											 Cinquieme.classList.remove('is-active'),
 											 Quatrieme.classList.remove('is-active')
+											 Viewbox.scrollTo(0,0) // on revient en haut de la viewbox à chaque clique
 	                                         })	
 
 
-		// Cinquieme.addEventListener('click',()=>{Slider_gauche.classList.add('five')})
-		// Quatrieme.addEventListener('click',()=>{Slider_gauche.classList.add('four'), Slider_gauche.classList.remove('six', 'five', 'three')})
-		// Troisieme.addEventListener('click',()=>{Slider_gauche.classList.add('three'), Slider_gauche.classList.remove('six', 'five', 'four')})
 
 
 		document.addEventListener('DOMContentLoaded', ()=>{Slider_gauche.classList.remove('six','five', 'four', 'three')})
