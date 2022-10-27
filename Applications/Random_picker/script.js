@@ -553,7 +553,7 @@ function pushBlueCircleButton(){
     cpt=0;
 
 
-	for (var i = 0; i < 5; i++){
+	for (var i = 0; i < 20; i++){
 
 
 	   var to =   setTimeout(change,200*i);        
