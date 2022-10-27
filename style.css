@@ -2,10 +2,10 @@
 /******************************** RESET des propriétés du navigateur (ALL PAGES) *******************************/
 /***************************************************************************************************/
 *:not(p){
-margin: 0;
-padding: 0;
-text-decoration: none;
-list-style: none;
+    margin: 0;
+    padding: 0; 
+    text-decoration: none;
+    list-style: none;
 }
 
 
@@ -14,12 +14,11 @@ list-style: none;
   }
   
 
-
 /***************************************************************************************************/
 /********************************************* HTML (ALL PAGES) **********************************************/
 /***************************************************************************************************/
 
-  html {height:100.1%;} /* Aindi la scrollbar apparait tout le temps et cela évite le décalage
+  html {min-height:100.1%;} /*Aindi la scrollbar apparait tout le temps et cela évite le décalage */
 
 
 
@@ -34,21 +33,7 @@ body{
     font-size: 1rem;
     height: 100vh;
     background: url("Images/background2.jpg") no-repeat fixed center/cover;
-
-}
-
-
-/***************************************************************************************************/
-/************************************** FOOTER (ALL PAGES) ******************************************/
-/***************************************************************************************************/
-
-
-footer{
-    font-size: 0.8em;
-    margin: 20px;
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
+    overflow:hidden;
 }
 
 
@@ -58,20 +43,12 @@ footer{
 
 main{
     width:90%;
-    min-height: 70vh;
+    height: 80vh; 
+    overflow: scroll; 
     margin-left:auto;
     margin-right:auto; 
     padding: 15px;
     font-size: 1.2rem;
-}
-
-
-/***************************************************************************************************/
-/************************************ PDF ICON (ALL PAGES) ******************************************/
-/***************************************************************************************************/
-
-.pdf_icon{
-    width: 1.5em;
 }
 
 /***************************************************************************************************/
@@ -131,8 +108,6 @@ main{
     color: var(--mypink);
     font-weight: bold;
 }
-
-
 
 /*************************************************************************/
 /*********************RESPONSIVE DE LA NAVBAR ****************************/
@@ -213,6 +188,31 @@ main{
 }
 
 
+
+/***************************************************************************************************/
+/************************************** FOOTER (ALL PAGES) ******************************************/
+/***************************************************************************************************/
+
+
+footer{
+    font-size: 0.8em;
+    margin: 10px 10%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/***************************************************************************************************/
+/************************************ PDF ICON (ALL PAGES) ******************************************/
+/***************************************************************************************************/
+
+.pdf_icon{
+    width: 1.5em;
+}
+
+
+
 /***************************************************************************************************/
 /****************************************************************************************************/
 /***************************************************************************************************/
@@ -227,17 +227,24 @@ main{
 /******************************************** PAGE ACCUEIL *************************************************/
 /***************************************************************************************************/
 
+.accueil_box li{
+    list-style:disc;
+    margin-left: 5%;
+    margin-bottom: 1%;
+}
+
+
 .accueil_infos{
-    width:100%; 
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
+    margin-top:2%;
+    display: flex; 
 }
 
 
 .accueil_box{
-    width :100%;
-    margin: 1%; 
+    max-width: 50%; 
+    margin-left:1%;
+    margin-right: 1%;
+    margin-bottom:2%;
     background: whitesmoke;
     padding: 10px;
     border: 3px solid rgb(0, 0, 0);
@@ -245,12 +252,25 @@ main{
     box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.205);
 }
 
+ .accueil_box.hex{
+     max-width:100%;  
+} 
+
+.hex_board{
+    max-width:25%;
+    max-height: 200px;
+    float: right;
+}
+
 .accueil_box.applications{
-    width:80%; 
-    margin-left: auto;
-    margin-right: auto;
+    max-width:100%;  
+} 
 
 
+.logo_js, .logo_py, .logo_geo, .logo_scra{
+    max-width:7%;
+    max-height: 50px;
+    float : right;
 }
 
 
@@ -265,11 +285,13 @@ main{
     
     }
 
-    .accueil_box{
-        width:90%;
-        margin-bottom: 2%;
+    .accueil_box, .accueil_box.hex, .accueil_box.accueil_box.applications{
+        max-width:90%;
+        margin-left: auto;
+        margin-right: auto;
 
     }
+
 
 }
 
