@@ -270,7 +270,7 @@ footer{
     max-width: 50%; 
     margin-left:1%;
     margin-right: 1%;
-    margin-bottom:2%;
+    margin-bottom:2vh;
     background: whitesmoke;
     padding: 10px;
     border: 3px solid rgb(0, 0, 0);
@@ -327,6 +327,9 @@ footer{
         float: right;
     }
     
+    .accueil_box.applications{
+        margin-bottom:7vh; /* On augmente la marge inférieure de la dernière boite*/
+    } 
 
 
 }
@@ -404,7 +407,7 @@ footer{
 .les_chapitres_viewbox{
     position:relative;
     width: 80%;
-    height: 65vh;  /*a adapter avec la partie droite */
+    height: 65vh;  /* a adapter avec la partie droite */
     padding-top: 1%;
     margin-left:2vw;
     overflow-x: hidden;
@@ -635,7 +638,7 @@ footer{
 
     .les_chapitres_viewbox{
         width: 85%;
-        height: 67vh;
+        height: 65vh;
         margin-left: auto;
         margin-right: auto;  
         margin-bottom: 0%;
