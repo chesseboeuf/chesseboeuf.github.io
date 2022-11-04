@@ -1,220 +1,3 @@
-
-
-/* /////////////////////////////////////////////////////////////////////////////// */
-/* //////////////////////////////BOUTONS //////////////////////////////////////// */
-/* ///////////////////////////////////////////////////////////////////////////// */
-
-body{
-  background: url("./background2.jpg") no-repeat fixed center/cover;
-}
-
-.blueButtonOff{
-  fill: blue;
-  cursor: pointer;
-  stroke-width: 0;
-}
-
-
-.blueButtonOn{
-  fill: blue;
-  stroke: #000000;
-  stroke-width: 7;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  stroke-miterlimit:4;
-  stroke-dasharray:none;
-  stroke-dashoffset:0;
-  stroke-opacity:1;
-  cursor: pointer;
-}
-
-.blueButtonOff:hover{
-  fill: blue;
-  stroke: #AAAAAA;
-  stroke-width: 7;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  stroke-miterlimit:4;
-  stroke-dasharray:none;
-  stroke-dashoffset:0;
-  stroke-opacity:1;
-  cursor: pointer;
-}
-
-
-.redButtonOff{
-  fill: red;
-  cursor: pointer;
-  stroke-width: 0;
-}
-
-
-.redButtonOn{
-  fill: red;
-  stroke: #000000;
-  stroke-width: 7;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  stroke-miterlimit:4;
-  stroke-dasharray:none;
-  stroke-dashoffset:0;
-  stroke-opacity:1;
-  cursor: pointer;
-}
-
-
-.redButtonOff:hover{
-  fill: red;
-  stroke: #AAAAAA;
-  stroke-width: 7;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  stroke-miterlimit:4;
-  stroke-dasharray:none;
-  stroke-dashoffset:0;
-  stroke-opacity:1;
-  cursor: pointer;
-}
-
-
-
-#freeBoardButton{
-  cursor: pointer;
-}
-
-#twoPlayerButton{
-  cursor: pointer;
-}
-
-.freeBoardButtonOff{
-  fill: white;
-  stroke: #AAAAAA;
-  stroke-width: 7;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  stroke-miterlimit:4;
-  stroke-dasharray:none;
-  stroke-dashoffset:0;
-  stroke-opacity:1;
-  cursor: pointer;
-
-}
-
-.freeBoardButtonOn{
-  fill: yellow;
-  stroke: #AAAAAA;
-  stroke-width: 7;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  stroke-miterlimit:4;
-  stroke-dasharray:none;
-  stroke-dashoffset:0;
-  stroke-opacity:1;
-  cursor: pointer;
-
-}
-
-.twoPlayerButtonOff{
-  fill: white;
-  stroke: #AAAAAA;
-  stroke-width: 7;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  stroke-miterlimit:4;
-  stroke-dasharray:none;
-  stroke-dashoffset:0;
-  stroke-opacity:1;
-  cursor: pointer;
-
-}
-
-.twoPlayerButtonOn{
-  fill: yellow;
-  stroke: #AAAAAA;
-  stroke-width: 7;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  stroke-miterlimit:4;
-  stroke-dasharray:none;
-  stroke-dashoffset:0;
-  stroke-opacity:1;
-  cursor: pointer;
-
-}
-
-
-
-/* //////////////////////////////////////////////////////////////////////////////////// */
-/* //////////////////////////////// HEXAGONES //////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////////////////// */
-
-
-use.eyedByBlue {
-  transition: 0.2s;
-  cursor: pointer;
-  fill: white;
-}
-
-use.eyedByBlue:hover {
-  fill: #5f88ff;
-}
-
-@media screen and (max-width: 850px) {
-  use.eyedByRed:hover {
-    fill: none;
-  }
-}
-
-
-use.blueVictory {
-  fill: blue;
-  animation: colorblink 0.3s infinite;
-}
-
-
-use.redVictory {
-  fill: red;
-  animation: colorblink 0.3s infinite;
-}
-
-@keyframes colorblink { 
-0% { }
-50% { fill: yellow; } 
-}
-
-
-
-
-use.eyedByRed {
-  transition: 0.2s;
-  cursor: pointer;
-  fill: white;
-}
-
-
-use.eyedByRed:hover {
-  fill: #fa7c91;
-}
-
-@media screen and (max-width: 850px) {
-  use.eyedByRed:hover {
-    fill: none;
-  }
-}
-
-
-use.heldByBlue{
-    cursor: pointer;
-	fill: blue;
-}
-
-use.heldByRed{
-    cursor: pointer;
-	fill: red;
-}
-
-
-
 /* /////////////////////////////////////////////////////////////////////////////////////////// */
 /* //////////////////////////// POSTIONNEMENT DE L'IMAGE //////////////////////////////////// */
 /* ///////////////////////////////////////////////////////////////////////////////////////// */
@@ -222,6 +5,7 @@ use.heldByRed{
 
 body {
   /*border: 1px solid darkblue;*/
+  background: url("../../Images/background2.jpg") no-repeat fixed center/cover;
   justify-content: center;
   display: flex;
   height: 95vh;
@@ -254,9 +38,186 @@ margin-top: 2vh;
 
 
 
+/* /////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* /////////////////////////////////////////////// BOUTONS //////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+#blueHexButton, #redHexButton, #freeBoardButton, #twoPlayerButton{
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+
+#blueHexButton{
+  fill: blue;
+}
+
+.blueButtonOn{
+  stroke: #000000;
+  stroke-width: 7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:4;
+  stroke-dasharray:none;
+  stroke-dashoffset:0;
+  stroke-opacity:1;
+
+}
+
+.blueButtonOff:hover{
+  fill: blue;
+  stroke: #AAAAAA;
+  stroke-width: 7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:4;
+  stroke-dasharray:none;
+  stroke-dashoffset:0;
+  stroke-opacity:1;
+}
 
 
 
+#redHexButton{
+  fill: red;
+}
+
+.redButtonOn{
+  stroke: #000000;
+  stroke-width: 7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:4;
+  stroke-dasharray:none;
+  stroke-dashoffset:0;
+  stroke-opacity:1;
+  cursor: pointer;
+}
+
+
+.redButtonOff:hover{
+  fill: red;
+  stroke: #AAAAAA;
+  stroke-width: 7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:4;
+  stroke-dasharray:none;
+  stroke-dashoffset:0;
+  stroke-opacity:1;
+  cursor: pointer;
+}
+
+
+
+
+#freeBoardButton, #twoPlayerButton{
+  stroke: #AAAAAA;
+  stroke-width: 7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:4;
+  stroke-dasharray:none;
+  stroke-dashoffset:0;
+  stroke-opacity:1;
+}
+
+
+.freeBoardButtonOff{
+  fill: white;
+}
+
+.freeBoardButtonOn{
+  fill: yellow;
+
+}
+
+.twoPlayerButtonOff{
+  fill: white;
+}
+
+.twoPlayerButtonOn{
+  fill: yellow;
+}
+
+
+
+#boutonRetour{
+  cursor: pointer;
+  fill: white; 
+  transform: translate(85%,58%) scale(1.8) ;
+}
+
+#boutonRetour.unavailable{
+  cursor : none;
+  opacity : 0.2;
+}
+
+
+
+
+/* //////////////////////////////////////////////////////////////////////////////////// */
+/* //////////////////////////////// HEXAGONES //////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////// */
+
+
+use.free {
+  transition: 0.2s;
+  cursor: pointer;
+  fill: white;
+  opacity:1;
+}
+
+use.eyedByBlue:hover {
+  fill: #5f88ff;
+}
+
+@media screen and (max-width: 850px) {
+  use.eyedByBlue:hover {
+    fill: white;
+  }
+}
+
+
+.victory{
+  animation: colorblink 0.3s infinite;
+}
+
+
+
+@keyframes colorblink { 
+0% { }
+50% { fill: yellow; } 
+}
+
+
+
+use.eyedByRed:hover {
+  fill: #fa7c91;
+}
+
+
+
+@media screen and (max-width: 850px) {
+  use.eyedByRed:hover {
+    fill:white;
+  }
+} 
+
+
+
+use.heldByBlue{
+  cursor: pointer;
+	fill: blue;
+}
+
+
+
+use.heldByRed{
+    cursor: pointer;
+	fill: red;
+}
 
 
 
