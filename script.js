@@ -7,6 +7,13 @@ $( "#nav_accueil" ).click(function() {
 	if ( windowWidth > 1000 ){
 		if (!accueil.classList.contains('active-section')) {
 
+			$("#nav_accueil").addClass("is-active");
+			$("#nav_college").removeClass("is-active");
+			$("#nav_lycee").removeClass("is-active");
+			$("#nav_applications").removeClass("is-active");
+			$("#nav_enigmes").removeClass("is-active");
+			$("#nav_infos").removeClass("is-active");
+
 			$(".active-section").slideUp(700,function(){
 				$("#accueil").slideDown(700);
 				$("#accueil").addClass("active-section");
@@ -15,12 +22,6 @@ $( "#nav_accueil" ).click(function() {
 				$("#applications").removeClass("active-section");
 				$("#infos").removeClass("active-section");
 				
-				$("#nav_accueil").addClass("is-active");
-				$("#nav_college").removeClass("is-active");
-				$("#nav_lycee").removeClass("is-active");
-				$("#nav_applications").removeClass("is-active");
-				$("#nav_enigmes").removeClass("is-active");
-				$("#nav_infos").removeClass("is-active");
 			});
 
 		}
@@ -58,13 +59,20 @@ $( "#nav_accueil" ).click(function() {
 
 
 
-$( "#nav_college" ).click(function() {
+$( "#nav_college, #accueil_link_college" ).click(function() {
 
 
 	windowWidth = $(window).width();
 
 	if ( windowWidth > 1000 ){
 		if (!college.classList.contains('active-section')) {
+
+			$("#nav_accueil").removeClass("is-active");
+			$("#nav_college").addClass("is-active");
+			$("#nav_lycee").removeClass("is-active");
+			$("#nav_applications").removeClass("is-active");
+			$("#nav_enigmes").removeClass("is-active");
+			$("#nav_infos").removeClass("is-active");
 
 			$(".active-section").slideUp(700,function(){
 				$("#college").slideDown(700);
@@ -75,12 +83,6 @@ $( "#nav_college" ).click(function() {
 				$("#enigmes").removeClass("active-section");
 				$("#infos").removeClass("active-section");
 
-				$("#nav_accueil").removeClass("is-active");
-				$("#nav_college").addClass("is-active");
-				$("#nav_lycee").removeClass("is-active");
-				$("#nav_applications").removeClass("is-active");
-				$("#nav_enigmes").removeClass("is-active");
-				$("#nav_infos").removeClass("is-active");
 			});
 
 		}
@@ -123,12 +125,20 @@ $( "#nav_college" ).click(function() {
 
 
 
-$( "#nav_lycee" ).click(function() {
+$( "#nav_lycee, #accueil_link_lycee" ).click(function() {
 
 	windowWidth = $(window).width();
 
 	if ( windowWidth > 1000 ){
 		if (!infos.classList.contains('active-section')) {
+
+
+			$("#nav_accueil").removeClass("is-active");
+			$("#nav_college").removeClass("is-active");
+			$("#nav_lycee").addClass("is-active");
+			$("#nav_applications").removeClass("is-active");
+			$("#nav_enigmes").removeClass("is-active");
+			$("#nav_infos").removeClass("is-active");
 
 			$(".active-section").slideUp(700,function(){
 				$("#lycee").slideDown(700);
@@ -139,12 +149,6 @@ $( "#nav_lycee" ).click(function() {
 				$("#enigmes").removeClass("active-section");
 				$("#infos").removeClass("active-section");
 
-				$("#nav_accueil").removeClass("is-active");
-				$("#nav_college").removeClass("is-active");
-				$("#nav_lycee").addClass("is-active");
-				$("#nav_applications").removeClass("is-active");
-				$("#nav_enigmes").removeClass("is-active");
-				$("#nav_infos").removeClass("is-active");
 			});
 
 		}
@@ -194,6 +198,13 @@ $( "#nav_applications" ).click(function() {
 	if ( windowWidth > 1000 ){
 		if (!infos.classList.contains('active-section')) {
 
+			$("#nav_accueil").removeClass("is-active");
+			$("#nav_college").removeClass("is-active");
+			$("#nav_lycee").removeClass("is-active");
+			$("#nav_applications").addClass("is-active");
+			$("#nav_enigmes").removeClass("is-active");
+			$("#nav_infos").removeClass("is-active");
+
 			$(".active-section").slideUp(700,function(){
 				$("#applications").slideDown(700);
 				$("#accueil").removeClass("active-section");
@@ -203,12 +214,6 @@ $( "#nav_applications" ).click(function() {
 				$("#enigmes").removeClass("active-section");
 				$("#infos").removeClass("active-section");
 
-				$("#nav_accueil").removeClass("is-active");
-				$("#nav_college").removeClass("is-active");
-				$("#nav_lycee").removeClass("is-active");
-				$("#nav_applications").addClass("is-active");
-				$("#nav_enigmes").removeClass("is-active");
-				$("#nav_infos").removeClass("is-active");
 			});
 
 		}
@@ -256,6 +261,14 @@ $( "#nav_enigmes" ).click(function() {
 	if ( windowWidth > 1000 ){
 		if (!infos.classList.contains('active-section')) {
 
+
+			$("#nav_accueil").removeClass("is-active");
+			$("#nav_college").removeClass("is-active");
+			$("#nav_lycee").removeClass("is-active");
+			$("#nav_applications").removeClass("is-active");
+			$("#nav_enigmes").addClass("is-active");
+			$("#nav_infos").removeClass("is-active");
+
 			$(".active-section").slideUp(700,function(){
 				$("#enigmes").slideDown(700);
 				$("#accueil").removeClass("active-section");
@@ -265,12 +278,6 @@ $( "#nav_enigmes" ).click(function() {
 				$("#enigmes").addClass("active-section");
 				$("#infos").removeClass("active-section");
 
-				$("#nav_accueil").removeClass("is-active");
-				$("#nav_college").removeClass("is-active");
-				$("#nav_lycee").removeClass("is-active");
-				$("#nav_applications").removeClass("is-active");
-				$("#nav_enigmes").addClass("is-active");
-				$("#nav_infos").removeClass("is-active");
 			});
 
 		}
@@ -321,6 +328,13 @@ $( "#nav_infos" ).click(function() {
 	if ( windowWidth > 1000 ){
 		if (!infos.classList.contains('active-section')) {
 
+			$("#nav_accueil").removeClass("is-active");
+			$("#nav_college").removeClass("is-active");
+			$("#nav_lycee").removeClass("is-active");
+			$("#nav_applications").removeClass("is-active");
+			$("#nav_enigmes").removeClass("is-active");
+			$("#nav_infos").addClass("is-active");
+
 			$(".active-section").slideUp(700,function(){
 				$("#infos").slideDown(700);
 				$("#accueil").removeClass("active-section");
@@ -329,13 +343,6 @@ $( "#nav_infos" ).click(function() {
 				$("#applications").removeClass("active-section");
 				$("#enigmes").removeClass("active-section");
 				$("#infos").addClass("active-section");
-
-				$("#nav_accueil").removeClass("is-active");
-				$("#nav_college").removeClass("is-active");
-				$("#nav_lycee").removeClass("is-active");
-				$("#nav_applications").removeClass("is-active");
-				$("#nav_enigmes").removeClass("is-active");
-				$("#nav_infos").addClass("is-active");
 			});
 
 		}

@@ -57,13 +57,13 @@ main{
 
 .navbar{
     width: 100%;
-    height: 15vh; 
+    height: 12vh; 
     /* 1 */
     /* background: #2326cf1e;  */
     /* 2 */
     /* background-image: linear-gradient(120deg, #fccb9079 0%, #d57eeb79 100%); */
      /* 2 */
-     background-image: linear-gradient(120deg, #2326f579 0%, #c4000079 100%);
+    background-image: linear-gradient(120deg, #2326f579 0%, #c4000079 100%);
     backdrop-filter: blur(3px);
     display: flex;
     justify-content:left;
@@ -79,8 +79,10 @@ main{
 
 
 .logo{ 
-    max-width: 25%;
-    max-height: 14vh;
+    width: auto;
+    max-height: 90%;
+    /* max-width: 25%; */
+    /* max-height: 14vh; */
     margin-top:10px;
     margin-bottom: 10px;
     margin-left: 5%;
@@ -125,11 +127,8 @@ main{
 
 .navbar .menu-hamburger{
     display: none;
-    max-width: 10vw;
-    max-height: 7vh;
-    /* margin-top: 10px; 
-    margin-right: 30px;
-    transition: all 1s ease; */
+    max-width: 10vw; 
+    max-height:40%;
     cursor: pointer;
 }
 
@@ -142,7 +141,7 @@ main{
         position: relative;
         display: block;
         font-size: 1.5em;  
-        min-height: 15vh;
+        min-height: 13vh;
         height: auto;  
     }
 
@@ -283,6 +282,12 @@ h1{
     border: 3px solid rgb(0, 0, 0);
     border-radius: 10px;
     box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.205);
+}
+
+
+#accueil_link_college, #accueil_link_lycee{
+    cursor: pointer;
+    color:rgb(109, 42, 216);
 }
 
 
@@ -430,8 +435,8 @@ h1{
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 2vh; 
-    margin-top: 2vh;
+    margin-bottom: 3vh; 
+    margin-top: 3vh;
     font-size: 1.2em;
     font-weight: bold;
 }
@@ -491,7 +496,7 @@ h1{
 .les_chapitres_viewbox{
     position:relative;
     width: 80%;
-    height: 65vh;  /* a adapter avec la partie droite */
+    height: 70vh;  /* a adapter avec la partie droite */
     padding-top: 1%;
     margin-left:2vw;
     overflow-x: hidden;
@@ -617,50 +622,24 @@ h1{
 
 
 .doc_chapitre li a{
-    color : black;
+    color : white;
+    animation: animate 1.5s linear infinite
 }
 
-
-.doc_chapitre li a::before{
-    content: "";
-    display: block;
-    /* position: absolute; */
-    width: 100%;
-    height: 2px;
-    margin: 0 auto;
-    background:  rgb(221, 28, 173);
-    transform: scale(0);
-    transition: transform 0.2s ease-in-out;
+@keyframes animate{
+    0%{
+        color: var(--mypink);
+    }
+    
+    100%{
+        color:  rgb(0, 0, 0);  
+    }
 }
-
-
-
-.doc_chapitre li a::after{
-    content: "";
-    display: block;
-    /* position: absolute; */
-    width: 100%;
-    height: 2px;
-    margin: 0 auto;
-    background:  rgb(221, 28, 173);
-    transform: scale(0);
-    transition: transform 0.2s ease-in-out;
-}
-
-.doc_chapitre li a:hover::before{
-    transform: scale(1);
-}
-
-.doc_chapitre li a:hover::after{
-    transform: scale(1);
-}
-
 
 
 .doc_chapitre li a:hover{
     font-weight: 900;
 }
-
 
 
 
@@ -676,7 +655,7 @@ h1{
     font-size:1em;
     /* padding: 1vh; */
     width: 100%;
-    min-height: 30vh;
+    min-height: 32vh;
     padding:1%;
     background-color: rgba(148, 191, 248, 0.185);
     backdrop-filter: blur(3px);
@@ -690,7 +669,7 @@ h1{
 
 .college_programme{
     margin-top: 2vh;
-    min-height: 20vh;
+    min-height: 32vh;
     width: 100%;
     padding: 1%;
     background-color: rgba(148, 191, 248, 0.185);
@@ -731,38 +710,13 @@ h1{
 
     .les_chapitres_viewbox{
         width: 85%;
-        height: 65vh;
+        height: 68vh;
         margin-left: auto;
         margin-right: auto;  
         margin-bottom: 7vh;
 
     }
 
-
-
-    .doc_chapitre li a{
-        color : white;
-        animation: animate 1.5s linear infinite
-    }
-
-    @keyframes animate{
-        0%{
-            color: var(--mypink);
-        }
-        
-        100%{
-            color:  rgb(0, 0, 0);  
-        }
-    }
-
-
-    .doc_chapitre li a::before{
-        display: none; 
-    }
-    
-    .doc_chapitre li a::after{
-        display: none;
-    }
 
 
     .college_slider{
