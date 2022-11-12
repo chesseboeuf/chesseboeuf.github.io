@@ -1,184 +1,824 @@
 <!DOCTYPE html>
+
 <html>
+
     <head>
+
         <meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> 
 		<link rel="stylesheet" href="style.css" />
-        <title>Cours de maths</title>
 		<link rel="shortcut icon" href="./Images/favicon.ico"/>
 		<link rel="apple-touch-icon" href="./Images/favicon.ico"/>
+        <script type="text/javascript" src="jquery-3.6.1.js"></script>
+				<!-- essayer de respecter un maximum de 70 caractères pour la description -->
+        <title>C.Chesseboeuf : Cours de mathématiques collège et lycée</title>
+		<!-- essayer de respecter un maximum de 155 caractères pour la description -->
+		<meta name="description" content="Des cours et des exercices de maths pour le collège et le lycée. D'autres contenus autour des maths : jeu de hex, échecs, énigmes, applications javascript, python ou geogebra.">
+
+
     </head>
 
 
     <body>
 
+
+		<!--------------------------------------------------------------------->
         <!---------------------------- NAVBAR --------------------------------->
+		<!--------------------------------------------------------------------->
         <nav class="navbar">
 
-
-			<img src="Images/logo.png" alt="logo du stite" class="logo">  
+			<img src="Images/logo2.png" alt="logo du stite" class="logo"> 
 
 			<div class="navlinks">
 				<ul>
-					<li> <a href="retour_accueil.html" class="nav_accueil"> Accueil </a>   </li>
-					<li> <a href="page_college.html" class="nav_college "> Collège </a>  </li>
-					<li> <a href="page_lycee.html" class="nav_lycee"> Lycée </a>  </li>
-					<li> <a href="page_applications.html" class="nav_applications"> Applications</a>  </li>
-					<li> <a href="page_enigmes.html" class="nav_enigmes"> Énigmes</a>  </li>
-					<li> <a href="page_liens.html" class="nav_liens"> Liens</a>  </li>
-					<li> <a href="page_infos.html"class="nav_infos"> Infos</a>  </li>
+					<li> <div id="nav_accueil" class="is-active"> Accueil </div>   </li>
+					<li> <div id="nav_college"> Collège </div>  </li>
+					<li> <div id="nav_lycee"> Lycée </div>  </li>
+					<li> <div id="nav_applications"> Applications</div>  </li>
+					<li> <div id="nav_enigmes"> Énigmes</div>  </li>
+					<li> <div id="nav_infos"> Infos </div>  </li>
 				</ul>
 			</div>
 			<img src="Images/burger_black.png" alt="burger menu" class="menu-hamburger">  
+			
 		</nav>
+        <!--------------------------------------------------------------------->
         <!---------------------------- NAVBAR --------------------------------->
+		<!--------------------------------------------------------------------->
 
 
 	
 
 		<main>	
+            
+
+
+			<!-------------------------------------------------------------------------------------->
+            <!-------------------------------------------------------------------------------------->
+            <!------------------------------------ ACCUEIL ----------------------------------------->
+	    	<!-------------------------------------------------------------------------------------->
+			<!-------------------------------------------------------------------------------------->
+			<div id="accueil" class="active-section">
+
+				<h1> Cours de maths</h1> 
 		
-			<div class="accueil_infos">
+				<div class="accueil_infos">
 
-				<div class="accueil_box eleves">
-					<h3>
-						Élèves
-					</h3>
+					<div class="accueil_box eleves">
+						<h3>
+							Élèves
+						</h3>
 
-						Bienvenue sur ce site dont la fonction principale est de permettre à mes élèves de suivre le cours en toute circonstance. 
-						Pour cela, rendez-vous dans la section <a href="page_college.html">collège</a>
-						ou dans la section <a href="page_lycee.html">lycée</a> et choisissez le chapitre sur lequel vous voulez travailler. 
+							Bienvenue sur ce site dont la fonction principale est de permettre à mes élèves de suivre le cours en toute circonstance. 
+							Pour cela, rendez-vous dans la section <a href="page_college.html">collège</a>
+							ou dans la section <a href="page_lycee.html">lycée</a> et choisissez le chapitre sur lequel vous voulez travailler. 
 
 
+					</div>
+
+					<div class="accueil_box profs">
+						<h3>
+							Enseignants
+						</h3>
+
+							Vous pouvez utiliser comme bon vous semble tous les documents que vous trouverez sur ce site.				
+
+
+						<p>
+							Attention cependant :
+							<ul>
+								<li> Le programme n'est pas encore complet, en particulier au lycée. 
+									 Bien que TZR depuis plusieurs années, je n'ai pas encore eu tous les niveaux
+								</li>
+								<li> 
+									Des erreurs sont encore présentes dans les documents.
+								</li>
+							</ul>
+						</p>
+
+
+					</div>
 				</div>
 
-				<div class="accueil_box profs">
+
+				<div class="accueil_box hex">	
+
 					<h3>
-						Enseignants
+
+						Jeu de Hex
+
+						<a href="Applications/HexBoard/index.html">
+							<img class="hex_board" src="Applications/HexBoard/Hex_board_11x11.svg" alt="plateau de Hex">
+						</a>
+
 					</h3>
 
-						Vous pouvez utiliser comme bon vous semble tous les documents que vous trouverez sur ce site.				
-
+					Je parle toujours un peu du jeu de Hex à mes élèves. Cela peut mener à l'organisation d'un tournois en classe ou dans l'établissement.
+					Vous trouverez ici quelques ressources autour de ce jeu captivant.
 
 					<p>
-						Attention cependant :
+
 						<ul>
-							<li> Le programme n'est pas encore complet, en particulier au lycée. 
-								 Bien que TZR depuis plusieurs années, je n'ai pas encore eu tous les niveaux
+							<li>
+								Un plateau interactif codé en Javascript (cliquer sur l'image). Il n'y a pas encore d'IA mais cela viendra un jour.
 							</li>
-							<li> 
-								Des erreurs sont encore présentes dans les documents.
+
+							<li>
+								Quelques énigmes du type "trouver le meilleur coup".
+							</li>
+
+							<li>
+								Des supports pour organiser un tournoi en classe.
 							</li>
 						</ul>
+
 					</p>
 
 
+
 				</div>
+
+				<div class="accueil_box applications">	
+
+					<h3>
+						Programmation
+					<img class="logo_js" src="Images/logo_js_2.png">
+					<img class="logo_py" src="Images/logo_py.png">
+					<img class="logo_geo" src="Images/logo_geo.png">
+					<img class="logo_scra" src="Images/logo_scratch.svg">
+
+					</h3>
+
+
+					J'utilise aussi ce site pour garder à disposition les applications que j'utilise parfois en cours.
+
+					<p>
+						Il y a bien sur des applications issues du trio scratch, geogebra, python mais aussi des applications Javascript
+						qui ont l'avantage de pouvoir être executées partout (il suffit d'un moteur de recherche).
+					</p>
+
+				</div>
+
+
+
+
 			</div>
 
 
-			<div class="accueil_box hex">	
 
-				<h3>
 
-					Jeu de Hex
 
-					<a href="Applications/HexBoard/index.html">
-						<img class="hex_board" src="Applications/HexBoard/Hex_board_11x11.svg" alt="plateau de Hex">
-					</a>
+			<!-------------------------------------------------------------------------------------->
+            <!-------------------------------------------------------------------------------------->
+            <!------------------------------------ COLLEGE ----------------------------------------->
+	    	<!-------------------------------------------------------------------------------------->
+			<!-------------------------------------------------------------------------------------->
+			<div id="college">
 
-				</h3>
-
-				Je parle toujours un peu du jeu de Hex à mes élèves. Cela peut mener à l'organisation d'un tournois en classe ou dans l'établissement.
-				Vous trouverez ici quelques ressources autour de ce jeu captivant.
-
-				<p>
-
+				<div class="les_niveaux">
 					<ul>
-						<li>
-							Un plateau interactif codé en Javascript (cliquer sur l'image). Il n'y a pas encore d'IA mais cela viendra un jour.
-						</li>
-
-						<li>
-							Quelques énigmes du type "trouver le meilleur coup".
-						</li>
-
-						<li>
-							Des supports pour organiser un tournoi en classe.
-						</li>
+						<li id="bouton_sixieme"   class="bouton" >  <div>6ième</div>  </li>
+						<li id="bouton_cinquieme" class="bouton" >  <div>5ième</div>  </li>
+						<li id="bouton_quatrieme" class="bouton" >  <div>4ième</div>  </li>
+						<li id="bouton_troisieme" class="bouton" >  <div>3ième</div>  </li>
 					</ul>
-
-				</p>
-
-
+				</div>
+	
+	
+	
+	
+				
+				<div class="contents">
+	
+	<!-----------------------------------------LES CHAPITRES------------------------------------------------------------>
+	
+					<div class="les_chapitres_viewbox">
+	
+						<!-- une ancre permettant de retrourner en haut de la viewbox -->
+						<div id="top"></div>
+	
+						<div class="college_slider slider_gauche">
+	
+	<!-------------------------------------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------6IEME------------------------------------------------------------>
+	<!-------------------------------------------------------------------------------------------------------------------------------->
+							<div id="sixieme_contents" class="niveau">
+	
+								<ul>	
+								 <!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 1 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="College/6ieme/Chapitre1/cours.pdf" class="pdf_cours">Cours</a> </li>
+										<li> <a class="pdf_exercice">Exercices</a> </li>
+										<li> <a class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 2 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="College/6ieme/Chapitre2/cours.pdf" class="pdf_cours">Cours</a> </li>
+										<li> <a class="pdf_exercice">Exercices</a> </li>
+										<li> <a class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								 <!---------------------------------------------------------------------------------->
+								 <li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 3 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="College/6ieme/Chapitre3/cours.pdf" class="pdf_cours">Cours</a> </li>
+										<li> <a class="pdf_exercice">Exercices</a> </li>
+										<li> <a class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								 <!---------------------------------------------------------------------------------->
+								 <li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 4 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="College/6ieme/Chapitre4/cours.pdf" class="pdf_cours">Cours</a> </li>
+										<li> <a class="pdf_exercice">Exercices</a> </li>
+										<li> <a class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								 <!---------------------------------------------------------------------------------->
+								 <li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 5 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="College/6ieme/Chapitre5/cours.pdf" class="pdf_cours">Cours</a> </li>
+										<li> <a class="pdf_exercice">Exercices</a> </li>
+										<li> <a class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+								
+								 <!---------------------------------------------------------------------------------->
+								 <li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 6 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="College/6ieme/Chapitre6/cours.pdf" class="pdf_cours">Cours</a> </li>
+										<li> <a class="pdf_exercice">Exercices</a> </li>
+										<li> <a class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								 <li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 7 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="College/6ieme/Chapitre6/cours.pdf" class="pdf_cours">Cours</a> </li>
+										<li> <a class="pdf_exercice">Exercices</a> </li>
+										<li> <a class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								 <li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 8 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="College/6ieme/Chapitre6/cours.pdf" class="pdf_cours">Cours</a> </li>
+										<li> <a class="pdf_exercice">Exercices</a> </li>
+										<li> <a class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								 <li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 9 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="College/6ieme/Chapitre6/cours.pdf" class="pdf_cours">Cours</a> </li>
+										<li> <a class="pdf_exercice">Exercices</a> </li>
+										<li> <a class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								 <!---------------------------------------------------------------------------------->
+								 <li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 10 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="College/6ieme/Chapitre6/cours.pdf" class="pdf_cours">Cours</a> </li>
+										<li> <a class="pdf_exercice">Exercices</a> </li>
+										<li> <a class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+							</ul>
+							</div>
+	
+	<!-------------------------------------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------5IEME------------------------------------------------------------>
+	<!-------------------------------------------------------------------------------------------------------------------------------->
+							<div id="cinquieme_contents" class="niveau">
+	
+								<ul>	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 1 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 2 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 3 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+	
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 4 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 5 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 6 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+	
+							</ul>
+							</div>
+	
+	<!------------------------------------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------4IEME------------------------------------------------------------>
+	<!-------------------------------------------------------------------------------------------------------------------------------->
+							<div  id="quatrieme_contents" class="niveau">
+								
+								<ul>						
+									<li class="un_chapitre"> 
+										<div class="nom_chapitre">
+											<div class="chap_rule"></div>
+											<span class="nom_chapitre">Chapitre 1 :  calcul littéral</span>
+											<div class="chap_rule"></div>
+										</div>
+										<ul class="doc_chapitre">
+											<li> <a href="#" class="pdf_cours">Cours</a> </li>
+											<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+											<li> <a href="#" class="autres_doc">Autres</a> </li>
+										</ul>
+									</li>
+	
+	
+									<li class="un_chapitre"> 
+										<div class="nom_chapitre">
+											<div class="chap_rule"></div>
+											<span class="nom_chapitre">Chapitre 2 :  calcul littéral</span>
+											<div class="chap_rule"></div>
+										</div>
+										<ul class="doc_chapitre">
+											<li> <a href="#" class="pdf_cours">Cours</a> </li>
+											<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+											<li> <a href="#" class="autres_doc">Autres</a> </li>
+										</ul>
+									</li>
+	
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 3 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 4 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 5 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+	
+	
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 6 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 7 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 8 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+	
+									
+								</ul>
+							</div>
+	
+	<!-------------------------------------------------------------------------------------------------------------------------------->
+	<!---------------------------------------------------------------3IEME------------------------------------------------------------>
+	<!-------------------------------------------------------------------------------------------------------------------------------->
+							<div id="troisieme_contents" class="niveau">
+	
+								<ul>						
+									<li class="un_chapitre"> 
+										<div class="nom_chapitre">
+											<div class="chap_rule"></div>
+											<span class="nom_chapitre">Chapitre 1 :  calcul littéral</span>
+											<div class="chap_rule"></div>
+										</div>
+										<ul class="doc_chapitre">
+											<li> <a href="#" class="pdf_cours">Cours</a> </li>
+											<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+											<li> <a href="#" class="autres_doc">Autres</a> </li>
+										</ul>
+									</li>
+	
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 2 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">s
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 3 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 4 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 5 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 6 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>
+	
+								<!---------------------------------------------------------------------------------->
+								<li class="un_chapitre"> 
+									<div class="nom_chapitre">
+										<div class="chap_rule"></div>
+										<span class="nom_chapitre">Chapitre 7 :  Les fonctions trigonométriques</span>
+										<div class="chap_rule"></div>
+									</div>
+									<ul class="doc_chapitre">
+										<li> <a href="#" class="pdf_cours">Cours</a> </li>
+										<li> <a href="#" class="pdf_exercice">Exercices</a> </li>
+										<li> <a href="#" class="autres_doc">Autres</a> </li>
+									</ul>
+								</li>						
+	
+	
+								</ul>
+							</div>
+	
+	
+						</div>
+	
+					</div>
+	
+	
+	<!-----------------------------------------COLLEGE AUTRES------------------------------------------------------------>
+	
+	
+					<div class="partie_droite">
+	
+						<div class="college_informations_viewbox">
+	
+							<div class="college_slider slider_droite">
+	
+								<div id="sixieme_infos" class="niveau">
+									<p>
+										Dernière année du cycle 3, la 6ième est une année consacrée à l'approfondissement de toutes les notions abordées en primaire.
+										Les élève ne découvriront donc rien de nouveaux cette année. 
+										Vous pouvez consulter le programme de 6ième ici :
+											<a href="College/cours_fonction_3ieme.pdf"> <img class="pdf_icon" src="Images/pdf.png" /></a>
+									</p>
+								</div>
+	
+								<div id="cinquieme_infos" class="niveau">
+									<p>
+										Infos pour les cinquièmes.
+									</p>
+								</div>
+	
+								<div id="quatrieme_infos" class="niveau">
+									<p >
+										Infos pours les quatrièmes.
+									</p>
+								</div>
+	
+	
+								<div id="troisieme_infos" class="niveau">
+									<p>
+										Infos pour les troisièmes.
+									</p>
+								</div>
+	
+							</div>
+						</div>
+	
+	
+	
+						<div class="college_programme">
+							<p class="le_programme">
+							Le programme de 6ième : <a href="College/cours_fonction_3ieme.pdf"> <img class="pdf_icon" src="Images/pdf.png" /></a>
+							</p>
+							<p class="le_programme">
+								Le programme de 5ième : <a href="College/cours_fonction_3ieme.pdf"> <img class="pdf_icon" src="Images/pdf.png" /></a>
+							</p>
+							<p class="le_programme">
+								Le programme de 4ième : <a href="College/cours_fonction_3ieme.pdf"> <img class="pdf_icon" src="Images/pdf.png" /></a>
+							</p>
+							<p class="le_programme">
+								Le programme de 3ième : <a href="College/cours_fonction_3ieme.pdf"> <img class="pdf_icon" src="Images/pdf.png" /></a>
+							</p>
+								
+						</div>
+	
+	
+					</div>
+	
+				</div>
+	
 
 			</div>
 
-			<div class="accueil_box applications">	
 
-				<h3>
-					Programmation
-				<img class="logo_js" src="Images/logo_js_2.png">
-				<img class="logo_py" src="Images/logo_py.png">
-				<img class="logo_geo" src="Images/logo_geo.png">
-				<img class="logo_scra" src="Images/logo_scratch.svg">
+			<!-------------------------------------------------------------------------------------->
+            <!-------------------------------------------------------------------------------------->
+            <!------------------------------------- LYCEE ------------------------------------------>
+	    	<!-------------------------------------------------------------------------------------->
+			<!-------------------------------------------------------------------------------------->
+			<div id="lycee">
 
-				</h3>
+				Contenu à venir
 
-				
-				J'utilise aussi ce site pour garder à disposition les applications que j'utilise parfois en cours.
+			</div>
+
+
+			<!-------------------------------------------------------------------------------------->
+            <!-------------------------------------------------------------------------------------->
+            <!-------------------------------- APPLICATIONS ---------------------------------------->
+	    	<!-------------------------------------------------------------------------------------->
+			<!-------------------------------------------------------------------------------------->
+			<div id="applications">
+
+				Contenu à venir
+
+			</div>
+
+
+			<!-------------------------------------------------------------------------------------->
+            <!-------------------------------------------------------------------------------------->
+            <!-------------------------------- ENIGMES ---------------------------------------->
+	    	<!-------------------------------------------------------------------------------------->
+			<!-------------------------------------------------------------------------------------->
+			<div id="enigmes">
+
+				Contenu à venir
+
+			</div>
+
+
+			<!-------------------------------------------------------------------------------------->
+            <!-------------------------------------------------------------------------------------->
+            <!------------------------------------- INFOS ------------------------------------------>
+	    	<!-------------------------------------------------------------------------------------->
+			<!-------------------------------------------------------------------------------------->
+		   <div id="infos">
 
 				<p>
-					Il y a bien sur des applications issues du trio scratch, geogebra, python mais aussi des applications Javascript
-					qui ont l'avantage de pouvoir être executées partout (il suffit d'un moteur de recherche).
+					Les documents du collège sont rédigés avec libre office.
+					Ceux du lycée sont rédigés avec Latex.
 				</p>
+
 
 			</div>
 
 
 
 
-		
-			<footer>
-				<p>© 2022 C.Chesseboeuf</p>
-			</footer>
+
 
 		</main>
 
 		
 
-
-
-
-	<!-- on ne lie pas le fichier script.js pour la page index car elle a un comportement différent
-		(au niveau de la navbar) en tant que premiere page d'entrée dans le site -->
-
-
     </body>
 
 
 
+	<script src="script.js"></script>
 
 
-<!------------------------------------------------------------------------------------------------->                
- <!------------------------------------------------------------------------------------------------->                
-                             <!-- SCRIPT DE LA PAGE -->               
- <!------------------------------------------------------------------------------------------------->                
- <!------------------------------------------------------------------------------------------------->   
-
-
- <script>
-	// fonction du bouton hamburger en mode smartphone
-	const menuHamburger = document.querySelector(".menu-hamburger")
-	const navLinks = document.querySelector(".navlinks")
-	const llogo = document.querySelector(".logo")
-	const bbody = document.querySelector("body")
-
-	menuHamburger.addEventListener('click',()=>{navLinks.classList.toggle('mobile-menu')})
-	menuHamburger.addEventListener('click',()=>{llogo.classList.toggle('mobile-menu')})
-	menuHamburger.addEventListener('click',()=>{menuHamburger.classList.toggle('mobile-menu')})
-	menuHamburger.addEventListener('click',()=>{bbody.classList.toggle('mobile-menu')})
-</script>
 
 
 

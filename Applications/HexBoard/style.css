@@ -5,6 +5,7 @@
 
 body {
   /*border: 1px solid darkblue;*/
+  display:none;
   background: url("../../Images/background2.jpg") no-repeat fixed center/cover;
   justify-content: center;
   display: flex;
@@ -13,6 +14,7 @@ body {
 
 
 .svg-container {
+  display : none;
   border: 5px solid darkblue;
   margin-left: auto; /*pour l'alignement horizontal*/
   margin-right: auto; /*pour l'alignement horizontal*/

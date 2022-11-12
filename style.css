@@ -10,7 +10,7 @@
 
 
 :root {
-    --mypink: hsl(358, 76%, 65%);
+    --mypink: #db3f02;
   }
   
 
@@ -26,17 +26,16 @@ html {min-height:100.1%;} /*Aindi la scrollbar apparait tout le temps et cela é
 /********************************************* BODY (ALL PAGES) **********************************************/
 /***************************************************************************************************/
 
-
-
 body{
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1rem;
-    height: 100vh;
     background: url("Images/background2.jpg") no-repeat fixed center/cover;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16pt;
+    height: 100vh;
     overflow:hidden; 
     display:flex;
     flex-direction: column;
 }
+
 
 
 /***************************************************************************************************/
@@ -50,7 +49,6 @@ main{
     margin-left:auto;
     margin-right:auto; 
     overflow-x:hidden;
-    font-size: 1rem;
 }
 
 /***************************************************************************************************/
@@ -60,14 +58,22 @@ main{
 .navbar{
     width: 100%;
     height: 15vh; 
-    font-size: 1.4rem; 
-    background: #2326cf1e;
+    /* 1 */
+    /* background: #2326cf1e;  */
+    /* 2 */
+    /* background-image: linear-gradient(120deg, #fccb9079 0%, #d57eeb79 100%); */
+     /* 2 */
+     background-image: linear-gradient(120deg, #2326f579 0%, #c4000079 100%);
+    backdrop-filter: blur(3px);
     display: flex;
     justify-content:left;
     align-items: center;
+    font-size:1.3em;
 }
 
-.navbar a{
+
+
+.navbar div{
     color: black;
 }
 
@@ -92,15 +98,17 @@ main{
     display: flex; 
     justify-content: space-between;
     align-items: center;
+
 }
 
 
-.navlinks li a {
+.navlinks li div {
+    cursor:pointer;
     transition: all 0.2s ease-in-out;
 }
 
 
-.navlinks li a:hover{
+.navlinks li div:hover{
     color: var(--mypink);
 }
 
@@ -110,14 +118,15 @@ main{
     font-weight: bold;
 }
 
+
+
 /*************************************************************************/
 /*********************RESPONSIVE DE LA NAVBAR ****************************/
 
-
 .navbar .menu-hamburger{
     display: none;
-    max-width: 8vw;
-    max-height: 8vh;
+    max-width: 10vw;
+    max-height: 7vh;
     /* margin-top: 10px; 
     margin-right: 30px;
     transition: all 1s ease; */
@@ -126,13 +135,13 @@ main{
 
 
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 1000px) {
 
 
     .navbar{
         position: relative;
         display: block;
-        font-size: 1rem;  
+        font-size: 1.5em;  
         min-height: 15vh;
         height: auto;  
     }
@@ -181,11 +190,6 @@ main{
 
 
 
-    .navbar .navlinks ul li{
-        text-align: center;
-        font-size: 1.5em;
-    }
-
 
     .navlinks.mobile-menu{
         margin-top: 0;
@@ -224,7 +228,7 @@ footer{
     width:100%;
     font-size: 0.8em;
     margin-left: 1%;
-    margin-right: auto;
+    margin-left: 4%;
 
 }
 
@@ -253,6 +257,35 @@ footer{
 /******************************************** PAGE ACCUEIL *************************************************/
 /***************************************************************************************************/
 
+#accueil{
+    display:block;
+    width:95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+h1{
+    width : 100%;
+    margin-left: auto;
+    margin-right: auto; 
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+
+
+.accueil_box{
+    margin-bottom:2vh;
+    background: rgba(245, 245, 245, 0.623);
+    padding: 10px; 
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.205);
+}
+
+
 .accueil_box li{
     list-style:disc;
     margin-left: 5%;
@@ -261,25 +294,27 @@ footer{
 
 
 .accueil_infos{
-    margin-top:2%;
+    width: 100%;
+    margin-left:auto;
+    margin-right: auto;
     display: flex; 
+    justify-content: space-between;
 }
 
 
-.accueil_box{
-    max-width: 50%; 
-    margin-left:1%;
-    margin-right: 1%;
-    margin-bottom:2vh;
-    background: whitesmoke;
-    padding: 10px;
-    border: 3px solid rgb(0, 0, 0);
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.205);
+.accueil_box.eleves{
+    width: 47%;
 }
+
+.accueil_box.profs{
+    width: 47%;
+}
+
 
  .accueil_box.hex{
     max-width:100%; 
+    margin-left:auto;
+    margin-right: auto;
     overflow: auto;  /* la box s'agrandit pour accueillir l'image (qui est plus haute que le texte) */
 } 
 
@@ -291,6 +326,8 @@ footer{
 
 .accueil_box.applications{
     max-width:100%;  
+    margin-left:auto;
+    margin-right: auto;
 } 
 
 
@@ -309,11 +346,12 @@ footer{
 
     .accueil_infos{
         display: block;
+        width: 100%;
     
     }
 
-    .accueil_box, .accueil_box.hex, .accueil_box.accueil_box.applications{
-        max-width:90%;
+    .accueil_box.eleves, .accueil_box.profs, .accueil_box.hex, .accueil_box.applications{
+        width:90%;
         margin-left: auto;
         margin-right: auto;
 
@@ -336,6 +374,50 @@ footer{
 
 
 
+/***************************************************************************************************/
+/***************************************** PAGE COLLEGE **********************************************/
+/***************************************************************************************************/
+
+#college{
+    display:none;
+}
+
+
+/***************************************************************************************************/
+/***************************************** PAGE LYCEE **********************************************/
+/***************************************************************************************************/
+
+#lycee{
+    display:none;
+}
+
+/***************************************************************************************************/
+/***************************************** PAGE APPLICATIONS **********************************************/
+/***************************************************************************************************/
+
+#applications{
+    display:none;
+}
+
+
+/***************************************************************************************************/
+/***************************************** PAGE ENIGMES **********************************************/
+/***************************************************************************************************/
+
+#enigmes{
+    display:none;
+}
+
+/***************************************************************************************************/
+/***************************************** PAGE INFOS **********************************************/
+/***************************************************************************************************/
+
+#infos{
+    display:none;
+}
+
+
+
 
 
 /***************************************************************************************************/
@@ -343,43 +425,44 @@ footer{
 /***************************************************************************************************/
 
 
-.selecteur_niveaux{
+#college .les_niveaux{
+    background: #bec1e6;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2vh; 
     margin-top: 2vh;
+    font-size: 1.2em;
     font-weight: bold;
 }
 
 
-.selecteur_niveaux ul{
+#college .les_niveaux ul{
     display:flex;
 }
 
 
-.selecteur_niveaux li{ 
+#college .les_niveaux li{ 
     width: 25%; /* car il y a 4 niveaux */
     height: 7vh;
     border-color: black;
     border: solid;
     border-width: 1px;
 
-    /* aligner verticalement et horizontalement le contenu*/
-    display: flex;
+    display: flex; /* aligner verticalement et horizontalement le contenu*/
     justify-content: center;
     align-items: center;
     transition: all 0.2s ease-in-out;
 
 }
 
-.selecteur_niveaux li:hover{ 
+#college .les_niveaux li:hover{ 
     background: #bec1e6;
     cursor: pointer;
 }
 
 
-.selecteur.is-active{
+#college .bouton.is-active{
     background:#bec1e6;
     color:  var(--mypink);
     transform : translate(-5px, -5px);
@@ -393,7 +476,7 @@ footer{
 
 
 
-.college_pages{
+#college .contents{
     position: relative;
     width: 100%;
     margin-left: auto;
@@ -413,6 +496,7 @@ footer{
     overflow-x: hidden;
     overflow-y: scroll;
     background-color: rgba(148, 191, 247, 0.233);
+    backdrop-filter: blur(3px);
     border-width: 3px;
     border-style: solid;
     border-radius: 10px;
@@ -430,16 +514,30 @@ footer{
     left: 1%;
 }
 
-.niveau.sixieme{
+#sixieme_contents{
     margin-left:0%;
 }
-.niveau.cinquieme{
+#cinquieme_contents{
     margin-left:100%;
 }
-.niveau.quatrieme{
+#quatrieme_contents{
     margin-left:200%;
 }
-.niveau.troisieme{
+#troisieme_contents{
+    margin-left: 300%;
+}
+
+
+#sixieme_infos{
+    margin-left:0%;
+}
+#cinquieme_infos{
+    margin-left:100%;
+}
+#quatrieme_infos{
+    margin-left:200%;
+}
+#troisieme_infos{
     margin-left: 300%;
 }
 
@@ -474,7 +572,6 @@ footer{
     border-style: solid;
     border-radius: 10px;
     margin-bottom: 30px;
-    width: 100;
     padding: 2%;
     display: flex;
     flex-direction: column;
@@ -575,11 +672,13 @@ footer{
 
 .college_informations_viewbox{
     position: relative;
+    font-size:1em;
     /* padding: 1vh; */
     width: 100%;
     min-height: 30vh;
     padding:1%;
     background-color: rgba(148, 191, 248, 0.185);
+    backdrop-filter: blur(3px);
     border-width: 3px;
     border-style: solid;
     border-radius: 10px;
@@ -594,6 +693,7 @@ footer{
     width: 100%;
     padding: 1%;
     background-color: rgba(148, 191, 248, 0.185);
+    backdrop-filter: blur(3px);
     border-width: 3px;
     border-style: solid;
     border-radius: 10px;
@@ -610,32 +710,22 @@ footer{
 @media screen and (max-width: 850px) {
 
 
+    #college .les_niveaux{
+        width: 70%;
+        
+    }
+
+
     /* supprimer correctement le hover */
     .un_chapitre{
     pointer-events: none;
     }
-
-
     
     .doc_chapitre li{
         pointer-events: auto;
     }
 
 
-    .selecteur_niveaux{
-        width: 70%;
-        font-size: 1.2rem;
-        
-    }
-
-
-    .college_pages{
-        flex-direction: column;
-        width: 100%;
-        height: auto;
-        margin-left: auto;
-        margin-right: auto;  
-    }
 
     .les_chapitres_viewbox{
         width: 85%;
@@ -644,11 +734,6 @@ footer{
         margin-right: auto;  
         margin-bottom: 7vh;
 
-    }
-
-
-    span.nom_chapitre{
-        font-size: 1rem;
     }
 
 
@@ -678,13 +763,10 @@ footer{
     }
 
 
-
-
     .college_slider{
         position: relative;
         transform: none;
     }
-
 
     .niveau{
         position: relative;
@@ -693,23 +775,23 @@ footer{
         margin-right: auto;
     }
     
-    .niveau.sixieme, .niveau.cinquieme, .niveau.quatrieme, .niveau.troisieme{
+    #sixieme_contents, #cinquieme_contents, #quatrieme_contents, #troisieme_contents{
         margin-left:0%; 
         display: none; 
     }
 
 
-    .six .niveau.sixieme, .five .niveau.cinquieme, .four .niveau.quatrieme, .three .niveau.troisieme {
+    .six #sixieme_contents, .five #cinquieme_contents, .four #quatrieme_contents, .three #troisieme_contents {
         display: block;
 
     }
    
     .niveau {   
-        animation: fadein 1s;
+        animation: college_myslide 1s;
     }
 
 
-    @keyframes fadein {
+    @keyframes college_myslide {
         from {
             opacity:0;
             margin-left: -100%;
@@ -720,13 +802,10 @@ footer{
         }
     }
 
-
-
     .partie_droite{
         display:none;
     }
 
-  
 
 }
 

@@ -1,3 +1,10 @@
+$( document ).ready(function() {
+    $(".svg-container").fadeIn(1000,function(){});
+
+});
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////// importation des hexagones du document svg /////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -551,6 +558,8 @@ function pushTwoPlayerButton(){
 var alphabet = ["A","B","C","D","E","F","G","H","I","J","K"];
 var nombres = ['1','2','3','4','5','6','7','8','9','10','11'];
 
+
+
 var board = new Array(11);      // tableau represantant l etat du jeu 
 for (var i = 0; i < 11; i++)
 {
@@ -578,3 +587,7 @@ document.querySelector("#twoPlayerButton").addEventListener('click',pushTwoPlaye
 
 
 document.querySelector("#boutonRetour").addEventListener('click',RETURN, false);
+
+
+
+
