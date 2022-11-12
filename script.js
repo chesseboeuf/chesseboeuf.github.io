@@ -459,6 +459,9 @@ $( "#nav_infos" ).click(function() {
 
 	const bouton_accueil = document.querySelector("#nav_accueil")
 	const bouton_college = document.querySelector("#nav_college")
+	const bouton_lycee = document.querySelector("#nav_lycee")
+	const bouton_applications = document.querySelector("#nav_applications")
+	const bouton_enigmes = document.querySelector("#nav_enigmes")
 	const bouton_infos = document.querySelector("#nav_infos")
 
 	bouton_accueil.addEventListener('click',()=>{navLinks.classList.toggle('mobile-menu')})
@@ -466,15 +469,32 @@ $( "#nav_infos" ).click(function() {
 	bouton_accueil.addEventListener('click',()=>{menuHamburger.classList.toggle('mobile-menu')})
 	bouton_accueil.addEventListener('click',()=>{bbody.classList.toggle('mobile-menu')})
 
+	bouton_college.addEventListener('click',()=>{navLinks.classList.toggle('mobile-menu')})
+	bouton_college.addEventListener('click',()=>{llogo.classList.toggle('mobile-menu')})
+	bouton_college.addEventListener('click',()=>{menuHamburger.classList.toggle('mobile-menu')})
+	bouton_college.addEventListener('click',()=>{bbody.classList.toggle('mobile-menu')})
+
+	bouton_lycee.addEventListener('click',()=>{navLinks.classList.toggle('mobile-menu')})
+	bouton_lycee.addEventListener('click',()=>{llogo.classList.toggle('mobile-menu')})
+	bouton_lycee.addEventListener('click',()=>{menuHamburger.classList.toggle('mobile-menu')})
+	bouton_lycee.addEventListener('click',()=>{bbody.classList.toggle('mobile-menu')})
+
+	bouton_applications.addEventListener('click',()=>{navLinks.classList.toggle('mobile-menu')})
+	bouton_applications.addEventListener('click',()=>{llogo.classList.toggle('mobile-menu')})
+	bouton_applications.addEventListener('click',()=>{menuHamburger.classList.toggle('mobile-menu')})
+	bouton_applications.addEventListener('click',()=>{bbody.classList.toggle('mobile-menu')})
+
+	bouton_enigmes.addEventListener('click',()=>{navLinks.classList.toggle('mobile-menu')})
+	bouton_enigmes.addEventListener('click',()=>{llogo.classList.toggle('mobile-menu')})
+	bouton_enigmes.addEventListener('click',()=>{menuHamburger.classList.toggle('mobile-menu')})
+	bouton_enigmes.addEventListener('click',()=>{bbody.classList.toggle('mobile-menu')})
+
 	bouton_infos.addEventListener('click',()=>{navLinks.classList.toggle('mobile-menu')})
 	bouton_infos.addEventListener('click',()=>{llogo.classList.toggle('mobile-menu')})
 	bouton_infos.addEventListener('click',()=>{menuHamburger.classList.toggle('mobile-menu')})
 	bouton_infos.addEventListener('click',()=>{bbody.classList.toggle('mobile-menu')})
 
-	bouton_college.addEventListener('click',()=>{navLinks.classList.toggle('mobile-menu')})
-	bouton_college.addEventListener('click',()=>{llogo.classList.toggle('mobile-menu')})
-	bouton_college.addEventListener('click',()=>{menuHamburger.classList.toggle('mobile-menu')})
-	bouton_college.addEventListener('click',()=>{bbody.classList.toggle('mobile-menu')})
+
 
 
 

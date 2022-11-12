@@ -443,6 +443,7 @@ h1{
 
 
 #college .les_niveaux li{ 
+    background: #bec1e6;
     width: 25%; /* car il y a 4 niveaux */
     height: 7vh;
     border-color: black;
@@ -711,7 +712,8 @@ h1{
 
 
     #college .les_niveaux{
-        width: 70%;
+        width: 80%;
+        font-size: 1.2em;
         
     }
 
