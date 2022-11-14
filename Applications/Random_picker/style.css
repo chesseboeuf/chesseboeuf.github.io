@@ -1,48 +1,47 @@
 html, body { margin:0; padding:0; overflow:hidden }
 
 
-
+body{
+  background-image: url("background2.jpg");  
+}
 
 
 #conteneurSVG {
-
     margin: 0%;
     padding: 0%;
-    border: 1px solid #660000;
     width: 70%;
     height: 70%;
-    background: rgba(245, 246, 255, 1.0);        /*        transparent 0.0...>>>>>...... 1.0 opaque */
     position: fixed;
     top: 50%; left: 40%; /* à 50%/50% du parent référent */
     transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
-    background-image: url("background2.jpg");
+  
 
 
 }
 
 
-
-
-
-svg { position:fixed; top:0; left:0; height:100%; width:100% }
+svg { 
+  position:fixed;
+  top:0;
+  left:0;
+  height:100%;
+  width:100% 
+}
 
 
 #curseur{
 	position: fixed;
-    left: 5%;
+  left: 5%;
 	top: 10%;
 }
 
 
-
-
 #menu{
 	position : fixed;
-    left: 80%;
-    top: 50%;
-     transform: translate(0%, -50%); /* décalage de 50% de sa propre taille */
+  left: 80%;
+  top: 50%;
+  transform: translate(0%, -50%); /* décalage de 50% de sa propre taille */
 }
-
 
 
 input[type="range"] {
@@ -63,10 +62,8 @@ rect.rectOff {
 
 
 
-
-
 rect.rectOn{
-    cursor: pointer;
+  cursor: pointer;
 	fill: blue;
 }
 

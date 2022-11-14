@@ -51,6 +51,29 @@ main{
     overflow-x:hidden;
 }
 
+
+/***************************************************************************************************/
+/*************************************** BOX (ALL PAGES) ********************************************/
+/***************************************************************************************************/
+
+
+.mybox{
+    margin-bottom:2vh;
+    background: rgba(245, 245, 245, 0.623);
+    padding: 10px; 
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.205);
+}
+
+
+.mybox li{
+    list-style:disc;
+    margin-left: 5%;
+    margin-bottom: 1%;
+}
+
+
 /***************************************************************************************************/
 /********************************************* NAVBAR (ALL PAGES) **********************************************/
 /***************************************************************************************************/
@@ -130,6 +153,15 @@ main{
     max-width: 10vw; 
     max-height:40%;
     cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 1300px) {
+    .navbar{
+        font-size: 1.2em ;
+    }
+
 }
 
 
@@ -275,27 +307,11 @@ h1{
 
 
 
-.mybox{
-    margin-bottom:2vh;
-    background: rgba(245, 245, 245, 0.623);
-    padding: 10px; 
-    border: 3px solid rgb(0, 0, 0);
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.205);
-}
-
-
 #accueil_link_college, #accueil_link_lycee{
     cursor: pointer;
     color:rgb(109, 42, 216);
 }
 
-
-.mybox li{
-    list-style:disc;
-    margin-left: 5%;
-    margin-bottom: 1%;
-}
 
 
 .accueil_infos{
@@ -307,33 +323,24 @@ h1{
 }
 
 
-.mybox.eleves{
+#accueil .mybox.eleves{
     width: 47%;
 }
 
-.mybox.profs{
+#accueil .mybox.profs{
     width: 47%;
 }
 
 
- .mybox.hex{
-    max-width:100%; 
-    margin-left:auto;
-    margin-right: auto;
+ #accueil .mybox{
     overflow: auto;  /* la box s'agrandit pour accueillir l'image (qui est plus haute que le texte) */
 } 
 
-.hex_board{
+#accueil_hex_board{
     max-width: 20%;
     height: auto;
     float: right;
 }
-
-.mybox.applications{
-    max-width:100%;  
-    margin-left:auto;
-    margin-right: auto;
-} 
 
 
 .logo_js, .logo_py, .logo_geo, .logo_scra{
@@ -355,7 +362,7 @@ h1{
     
     }
 
-    .mybox.eleves, .mybox.profs, .mybox.hex, .mybox.applications{
+    #accueil .mybox.eleves, #accueil .mybox.profs, #accueil .mybox.hex, #accueil .mybox.applications{
         width:90%;
         margin-left: auto;
         margin-right: auto;
@@ -363,7 +370,7 @@ h1{
     }
 
 
-    .hex_board{
+    #accueil_hex_board{
         max-width: 30%;
         min-height: 30%;
         height: auto;
@@ -786,10 +793,6 @@ h1{
 }
 
 
-
-/*****************************************************/
-
-
 /*************************** RESPONSIVE DE LA PAGE LYCEE *******************************/
 /*****************************************************************************************/
 
@@ -815,7 +818,74 @@ h1{
 
 #applications{
     display:none;
+    width:95%;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+
+#applications .mybox{
+    margin-top: 2vh;
+    overflow: auto;  /* la box s'agrandit pour accueillir l'image (qui est plus haute que le texte) */
+} 
+
+
+#hex_board{
+    max-width: 20%;
+    height: auto;
+    float: right;
+}
+
+#woodpecker{
+    width: 10%;
+    height: auto;
+    float: right;
+}
+
+#white_queen{
+    width: 10%;
+    height: auto;
+    float: right;
+}
+
+
+
+/*************************** RESPONSIVE DE LA PAGE APPLICATIONS *******************************/
+/*********************************************************************************************/
+
+
+@media screen and (max-width: 850px) {
+
+
+    #applications .mybox{
+        width:90%;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    #hex_board{
+        max-width: 30%;
+        min-height: 30%;
+    }
+
+
+    #woodpecker{
+        width: 20%;
+    }
+
+    #white_queen{
+        width: 20%;
+    }
+
+    
+    #applications .mybox.echec{
+        margin-bottom:7vh; /* On augmente la marge inférieure de la dernière boite*/
+    } 
+
+
+}
+
 
 
 /***************************************************************************************************/
@@ -824,6 +894,9 @@ h1{
 
 #enigmes{
     display:none;
+    width:95%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /***************************************************************************************************/
@@ -832,5 +905,8 @@ h1{
 
 #infos{
     display:none;
+    width:95%;
+    margin-left: auto;
+    margin-right: auto;
 }
 

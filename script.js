@@ -21,7 +21,6 @@ $( "#nav_accueil" ).click(function() {
 			$("#nav_enigmes").removeClass("clickable");
 			$("#nav_infos").removeClass("clickable");
 
-
 			$(".active-section").slideUp(700,function(){
 				$("#accueil").slideDown(700, function(){
 
@@ -32,16 +31,11 @@ $( "#nav_accueil" ).click(function() {
 					$("#enigmes").removeClass("active-section");
 					$("#infos").removeClass("active-section");
 
-
 					$("#nav_college").addClass("clickable");
 					$("#nav_lycee").addClass("clickable");
 					$("#nav_applications").addClass("clickable");
 					$("#nav_enigmes").addClass("clickable");
-					$("#nav_infos").addClass("clickable");
-					
-					
-
-
+					$("#nav_infos").addClass("clickable");			
 
 				});
 
@@ -84,8 +78,6 @@ $( "#nav_accueil" ).click(function() {
 	}
 
 
-
-
 });
 
 
@@ -93,6 +85,7 @@ $( "#nav_accueil" ).click(function() {
 $( "#nav_college, #accueil_link_college" ).click(function() {
 
 
+	// spécifique à la page COLLEGE
 	$('.slider_gauche').removeClass('six five four three');
 	$('.slider_droite').removeClass('six five four three');
 
@@ -101,7 +94,6 @@ $( "#nav_college, #accueil_link_college" ).click(function() {
 	$('#bouton_quatrieme').removeClass('is-active');
 	$('#bouton_troisieme').removeClass('is-active');
 
-	// spécifique à la page COLLEGE
 	$(".les_chapitres_viewbox").animate({ scrollTop: 0 }, "fast");
 
 	windowWidth = $(window).width();
@@ -664,6 +656,58 @@ $( "#nav_infos" ).click(function() {
 
 
 
+
+/////////////////////////////////////////////////////////////////////////
+// EN COURS
+////////////////////////////////////////////////////////////////////////::
+
+
+var provenance = 'elsewhere';
+
+
+$( document ).ready(function() {
+
+if(provenance === 'an-application' ){
+
+	$("#accueil").hide();
+	$("#college").hide();
+	$("#lycee").hide();
+	$("#applications").show();
+	$("#enigmes").hide();
+	$("#infos").hide();
+
+	$("#accueil").removeClass("active-section");
+	$("#college").removeClass("active-section");
+	$("#lycee").removeClass("active-section");
+	$("#applications").addClass("active-section");
+	$("#enigmes").removeClass("active-section");
+	$("#infos").removeClass("active-section");
+
+	$("#nav_accueil").addClass("is-active");
+	$("#nav_college").removeClass("is-active");
+	$("#nav_lycee").removeClass("is-active");
+	$("#nav_applications").addClass("is-active");
+	$("#nav_enigmes").removeClass("is-active");
+	$("#nav_infos").removeClass("is-active");
+
+	$("#nav_accueil").addClass("clickable");
+	$("#nav_college").addClass("clickable");
+	$("#nav_lycee").addClass("clickable");
+	$("#nav_applications").removeClass("clickable");
+	$("#nav_enigmes").addClass("clickable");
+	$("#nav_infos").addClass("clickable");
+
+
+}
+
+	provenance = 'elsewhere';
+	   
+});
+
+
+$( "#hex_board" ).click(function() {
+	provenance='an-application';
+});
 
 
 
