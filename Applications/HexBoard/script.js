@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    $(".svg-container").fadeIn(1000,function(){});
+    $("#svg-container").fadeIn(1000,function(){});
 
 });
 
