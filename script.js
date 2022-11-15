@@ -26,9 +26,11 @@ $( window ).on( "load", function() {
 		$("#navlinks").css('display', 'block');
 
 		if(windowWidth < 650){
-			$('body').css('font-size','8pt');
+			$('body').css('font-size','12pt');
+			$('#navbar').css('font-size','12pt');
 		}else{
 			$('body').css('font-size','14pt');
+			$('#navbar').css('font-size','14pt');
 
 		}
 
@@ -91,9 +93,11 @@ function workAfterResizeIsDone() {
 
 
 		if(windowWidth < 650){
-			$('body').css('font-size','8pt');
+			$('body').css('font-size','12pt');
+			$('#navbar').css('font-size','12pt');
 		}else{
 			$('body').css('font-size','14pt');
+			$('#navbar').css('font-size','14pt');
 
 		}
 	
