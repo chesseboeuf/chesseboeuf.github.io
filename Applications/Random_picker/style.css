@@ -6,6 +6,11 @@ body{
 }
 
 
+#zone_texte{
+  margin-right:5vh;
+  height: 80vh;
+}
+
 #conteneurSVG {
     margin: 0%;
     padding: 0%;

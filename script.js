@@ -8,6 +8,9 @@ $( window ).on( "load", function() {
 	
 	if( windowFormat <= 1.2 ) {
 
+		$('#navbar').css('min-height','13vh');
+		$('body').css('font-size','16pt');
+
 		$("#navbar").addClass("mobile");
 		$("#mylogo").addClass("mobile");
 		$("#hamburger").addClass("mobile");
@@ -26,12 +29,16 @@ $( window ).on( "load", function() {
 		$("#navlinks").css('display', 'block');
 
 		if(windowWidth < 650){
-			$('body').css('font-size','12pt');
-			$('#navbar').css('font-size','12pt');
-		}else{
 			$('body').css('font-size','14pt');
-			$('#navbar').css('font-size','14pt');
+		}else{
+			$('body').css('font-size','16pt');
+		}
 
+
+		if(windowHeight < 400){
+			$('#navbar').css('min-height','25vh');
+		}else{
+			$('#navbar').css('min-height','13vh');
 		}
 
 
@@ -64,6 +71,11 @@ function workAfterResizeIsDone() {
 
 	if( windowFormat <= 1.2 ) {
 
+
+		$('#navbar').css('min-height','13vh');
+		$('body').css('font-size','16pt');
+
+
 		$("#navbar").addClass("mobile");
 		$("#mylogo").addClass("mobile");
 		$("#hamburger").addClass("mobile");
@@ -71,6 +83,8 @@ function workAfterResizeIsDone() {
 		$("#navlinksUl").addClass("mobile");
 
 		$("#navlinks").hide();
+
+		
 
 		 $( "#mylogo" ).css("top", "1vh");
 		 $("#hamburger").css("top","4vh");
@@ -86,20 +100,24 @@ function workAfterResizeIsDone() {
 		$("#navlinks").removeClass("mobile");
 		$("#navlinksUl").removeClass("mobile");
 
-		$("#navlinks").show();
+		$("#navlinks").show(1000);
 
 
 		mobileMenu=false;
 
 
 		if(windowWidth < 650){
-			$('body').css('font-size','12pt');
-			$('#navbar').css('font-size','12pt');
-		}else{
 			$('body').css('font-size','14pt');
-			$('#navbar').css('font-size','14pt');
-
+		}else{
+			$('body').css('font-size','16pt');
 		}
+
+		if(windowHeight < 400){
+			$('#navbar').css('min-height','20vh');
+		}else{
+			$('#navbar').css('min-height','13vh');
+		}
+
 	
 	}
 
@@ -119,7 +137,7 @@ window.addEventListener("resize", function() {
    
     // setTimeout returns the numeric ID which is used by
     // clearTimeOut to reset the timer
-    timeOutFunctionId = setTimeout(workAfterResizeIsDone, 500);
+    timeOutFunctionId = setTimeout(workAfterResizeIsDone, 300);
 });
 
 
@@ -213,6 +231,8 @@ $( "#nav_accueil" ).click(function() {
 		$("#enigmes").hide();
 		$("#infos").hide();
 
+		$("main").scrollTop(0);
+
 		$("#accueil").addClass("active-section");
 		$("#college").removeClass("active-section");
 		$("#lycee").removeClass("active-section");
@@ -234,6 +254,7 @@ $( "#nav_accueil" ).click(function() {
 		$("#nav_enigmes").addClass("clickable");
 		$("#nav_infos").addClass("clickable");
 
+		
 
 
 		$("#navlinks").slideUp(1000,function(){});
@@ -321,6 +342,8 @@ $( "#nav_college, #accueil_link_college" ).click(function() {
 		$("#applications").hide();
 		$("#enigmes").hide();
 		$("#infos").hide();
+
+		$("main").scrollTop(0);
 
 		$("#accueil").removeClass("active-section");
 		$("#college").addClass("active-section");
@@ -421,6 +444,8 @@ $( "#nav_lycee, #accueil_link_lycee" ).click(function() {
 		$("#enigmes").hide();
 		$("#infos").hide();
 
+		$("main").scrollTop(0);
+
 		$("#accueil").removeClass("active-section");
 		$("#college").removeClass("active-section");
 		$("#lycee").addClass("active-section");
@@ -519,6 +544,8 @@ $( "#nav_applications" ).click(function() {
 		$("#applications").show();
 		$("#enigmes").hide();
 		$("#infos").hide();
+
+		$("main").scrollTop(0);
 
 		$("#accueil").removeClass("active-section");
 		$("#college").removeClass("active-section");
@@ -620,6 +647,8 @@ $( "#nav_enigmes" ).click(function() {
 		$("#enigmes").show();
 		$("#infos").hide();
 
+		$("main").scrollTop(0);
+
 		$("#accueil").removeClass("active-section");
 		$("#college").removeClass("active-section");
 		$("#lycee").removeClass("active-section");
@@ -711,6 +740,8 @@ $( "#nav_infos" ).click(function() {
 		$("#applications").hide();
 		$("#enigmes").hide();
 		$("#infos").show();
+
+		$("main").scrollTop(0);
 
 		$("#accueil").removeClass("active-section");
 		$("#college").removeClass("active-section");
