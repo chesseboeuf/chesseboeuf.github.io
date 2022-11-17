@@ -327,8 +327,8 @@ $( "#nav_college, #accueil_link_college" ).click(function() {
 
 
 	// spécifique à la page COLLEGE
-	$('.slider_gauche').removeClass('six five four three');
-	$('.slider_droite').removeClass('six five four three');
+	$('#college_slider_gauche').removeClass('six five four three');
+	$('#college_slider_droite').removeClass('six five four three');
 
 	$('#bouton_sixieme').removeClass('is-active');
 	$('#bouton_cinquieme').removeClass('is-active');
@@ -436,11 +436,17 @@ $( "#nav_college, #accueil_link_college" ).click(function() {
 
 
 
-
-
-
-
 $( "#nav_lycee, #accueil_link_lycee" ).click(function() {
+
+		// spécifique à la page LYCEE
+		$('#lycee_slider_gauche').removeClass('one two zero');
+		$('#lycee_slider_droite').removeClass('one two zero');
+	
+		$('#bouton_seconde').removeClass('is-active');
+		$('#bouton_premiere').removeClass('is-active');
+		$('#bouton_terminale').removeClass('is-active');
+	
+		$(".les_chapitres_viewbox").animate({ scrollTop: 0 }, "fast");
 
 
 	if ( windowFormat > 1.2 ){
@@ -832,17 +838,13 @@ $( "#nav_infos" ).click(function() {
 ///////////////////////////////////PAGE COLLEGE//////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
-
 	// fonction des bouton 6ieme 5ieme ect ... 
 	const Sixieme = document.querySelector("#bouton_sixieme")
 	const Cinquieme = document.querySelector("#bouton_cinquieme")
 	const Quatrieme = document.querySelector("#bouton_quatrieme")
 	const Troisieme = document.querySelector("#bouton_troisieme")
-	const Slider_gauche= document.querySelector(".slider_gauche")
-	const Slider_droite= document.querySelector(".slider_droite")
-	const Viewbox= document.querySelector(".les_chapitres_viewbox")
-
-
+	const College_slider_gauche= document.querySelector("#college_slider_gauche")
+	const College_slider_droite= document.querySelector("#college_slider_droite")
 
 
 
@@ -878,20 +880,75 @@ $( "#nav_infos" ).click(function() {
 
 
 
-	document.addEventListener('DOMContentLoaded', ()=>{Slider_gauche.classList.remove('six','five', 'four', 'three')})
+	document.addEventListener('DOMContentLoaded', ()=>{College_slider_gauche.classList.remove('six','five', 'four', 'three')})
 
-	Sixieme.addEventListener('click',()=>{Slider_gauche.classList.add('six'), Slider_gauche.classList.remove('five', 'four', 'three')})
-	Cinquieme.addEventListener('click',()=>{Slider_gauche.classList.add('five'), Slider_gauche.classList.remove('six', 'four', 'three')})
-	Quatrieme.addEventListener('click',()=>{Slider_gauche.classList.add('four'), Slider_gauche.classList.remove('six', 'five', 'three')})
-	Troisieme.addEventListener('click',()=>{Slider_gauche.classList.add('three'), Slider_gauche.classList.remove('six', 'five', 'four')})
+	Sixieme.addEventListener('click',()=>{College_slider_gauche.classList.add('six'),    College_slider_gauche.classList.remove('five', 'four', 'three')})
+	Cinquieme.addEventListener('click',()=>{College_slider_gauche.classList.add('five'), College_slider_gauche.classList.remove('six', 'four', 'three')})
+	Quatrieme.addEventListener('click',()=>{College_slider_gauche.classList.add('four'), College_slider_gauche.classList.remove('six', 'five', 'three')})
+	Troisieme.addEventListener('click',()=>{College_slider_gauche.classList.add('three'),College_slider_gauche.classList.remove('six', 'five', 'four')})
 
 
-	document.addEventListener('DOMContentLoaded', ()=>{Slider_droite.classList.remove('six','five', 'four', 'three')})
+	document.addEventListener('DOMContentLoaded', ()=>{College_slider_droite.classList.remove('six','five', 'four', 'three')})
 
-	Sixieme.addEventListener('click',()=>{Slider_droite.classList.add('six'), Slider_droite.classList.remove('five', 'four', 'three')})
-	Cinquieme.addEventListener('click',()=>{Slider_droite.classList.add('five'), Slider_droite.classList.remove('six', 'four', 'three')})
-	Quatrieme.addEventListener('click',()=>{Slider_droite.classList.add('four'), Slider_droite.classList.remove('six', 'five', 'three')})
-	Troisieme.addEventListener('click',()=>{Slider_droite.classList.add('three'), Slider_droite.classList.remove('six', 'five', 'four')})
+	Sixieme.addEventListener('click',()=>{  College_slider_droite.classList.add('six'),  College_slider_droite.classList.remove('five', 'four', 'three')})
+	Cinquieme.addEventListener('click',()=>{College_slider_droite.classList.add('five'), College_slider_droite.classList.remove('six', 'four', 'three')})
+	Quatrieme.addEventListener('click',()=>{College_slider_droite.classList.add('four'), College_slider_droite.classList.remove('six', 'five', 'three')})
+	Troisieme.addEventListener('click',()=>{College_slider_droite.classList.add('three'),College_slider_droite.classList.remove('six', 'five', 'four')})
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////PAGE LYCEE//////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+	// fonction des bouton 6ieme 5ieme ect ... 
+	const Seconde = document.querySelector("#bouton_seconde")
+	const Premiere = document.querySelector("#bouton_premiere")
+	const Terminale = document.querySelector("#bouton_terminale")
+	const Lycee_slider_gauche= document.querySelector("#lycee_slider_gauche")
+	const Lycee_slider_droite= document.querySelector("#lycee_slider_droite")
+
+
+
+	Seconde.addEventListener('click',()=>{Seconde.classList.add('is-active'),
+										 Premiere.classList.remove('is-active'),
+										 Terminale.classList.remove('is-active')
+					                     $(".les_chapitres_viewbox").animate({ scrollTop: 0 }, "slow");
+										 })
+
+	Premiere.addEventListener('click',()=>{Premiere.classList.add('is-active'),
+										 Seconde.classList.remove('is-active'),
+										 Terminale.classList.remove('is-active')
+										 $(".les_chapitres_viewbox").animate({ scrollTop: 0 }, "slow");
+										 })	
+										 
+   Terminale.addEventListener('click',()=>{Terminale.classList.add('is-active'),
+										 Premiere.classList.remove('is-active'),
+										 Seconde.classList.remove('is-active'),
+										 $(".les_chapitres_viewbox").animate({ scrollTop: 0 }, "slow");
+										 })	
+
+
+
+
+
+
+	document.addEventListener('DOMContentLoaded', ()=>{Lycee_slider_gauche.classList.remove('two','one', 'zero')})
+
+	Seconde.addEventListener('click',()=>{  Lycee_slider_gauche.classList.add('two'),  Lycee_slider_gauche.classList.remove('one', 'zero')})
+	Premiere.addEventListener('click',()=>{Lycee_slider_gauche.classList.add('one'), Lycee_slider_gauche.classList.remove('two', 'zero')})
+	Terminale.addEventListener('click',()=>{Lycee_slider_gauche.classList.add('zero'), Lycee_slider_gauche.classList.remove('two', 'one')})
+
+
+	document.addEventListener('DOMContentLoaded', ()=>{Lycee_slider_droite.classList.remove('two','one', 'zero')})
+
+	Seconde.addEventListener('click',()=>{  Lycee_slider_droite.classList.add('two'),  Lycee_slider_droite.classList.remove('one', 'zero')})
+	Premiere.addEventListener('click',()=>{Lycee_slider_droite.classList.add('one'), Lycee_slider_droite.classList.remove('two', 'zero')})
+	Terminale.addEventListener('click',()=>{Lycee_slider_droite.classList.add('zero'), Lycee_slider_droite.classList.remove('two', 'one')})
 
 
 
