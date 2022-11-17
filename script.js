@@ -1,4 +1,8 @@
 
+var limitFormat = 1.25; //fromat a partir du quel on change de mode
+var timeToResize = 300; // temps a partir du quel le resize est pris en compte pour changer le style
+
+
 var windowWidth = $(window).width();
 var windowHeight = $(window).height();
 var windowFormat = windowWidth / windowHeight;
@@ -6,15 +10,12 @@ var windowFormat = windowWidth / windowHeight;
 $( window ).on( "load", function() { 
 
 	
-	if( windowFormat <= 1.25 ) {
+	if( windowFormat <= limitFormat ) {
 
 		$('#navbar').css('min-height','13vh');
 		$('body').css('font-size','16pt');
 		$('#navlinks').css('margin-left','10%');
 		$('#navlinks').css('margin-right','10%');
-
-
-		
 
 
 		$("#navbar").addClass("mobile");
@@ -32,10 +33,7 @@ $( window ).on( "load", function() {
 		$("#navlinks").removeClass("mobile");
 		$("#navlinksUl").removeClass("mobile");
 
-		// $("#navlinks").css('display', 'block');
-
 		mobileMenu=false;
-
 
 		$("#navlinks").show(1000, function(){
 
@@ -95,7 +93,7 @@ function workAfterResizeIsDone() {
 	windowHeight = $(window).height();
 	windowFormat = windowWidth / windowHeight;
 
-	if( windowFormat <= 1.25 ) {
+	if( windowFormat <= limitFormat ) {
 
 
 		$('#navbar').css('min-height','13vh');
@@ -183,7 +181,7 @@ window.addEventListener("resize", function() {
    
     // setTimeout returns the numeric ID which is used by
     // clearTimeOut to reset the timer
-    timeOutFunctionId = setTimeout(workAfterResizeIsDone, 300);
+    timeOutFunctionId = setTimeout(workAfterResizeIsDone, timeToResize);
 });
 
 
@@ -327,15 +325,17 @@ $( "#nav_college, #accueil_link_college" ).click(function() {
 
 
 	// spécifique à la page COLLEGE
-	$('#college_slider_gauche').removeClass('six five four three');
-	$('#college_slider_droite').removeClass('six five four three');
-
-	$('#bouton_sixieme').removeClass('is-active');
-	$('#bouton_cinquieme').removeClass('is-active');
-	$('#bouton_quatrieme').removeClass('is-active');
-	$('#bouton_troisieme').removeClass('is-active');
+	// $('#college_slider_gauche').removeClass('six five four three');
+	// $('#college_slider_droite').removeClass('six five four three');
+// 
+	// $('#bouton_sixieme').removeClass('is-active');
+	// $('#bouton_cinquieme').removeClass('is-active');
+	// $('#bouton_quatrieme').removeClass('is-active');
+	// $('#bouton_troisieme').removeClass('is-active');
 
 	$(".les_chapitres_viewbox").animate({ scrollTop: 0 }, "fast");
+	$(".informations_viewbox").animate({ scrollTop: 0 }, "fast");
+
 
 	if ( windowFormat > 1.2 ){
 		if (!college.classList.contains('active-section') && nav_college.classList.contains('clickable') ) {
@@ -439,14 +439,15 @@ $( "#nav_college, #accueil_link_college" ).click(function() {
 $( "#nav_lycee, #accueil_link_lycee" ).click(function() {
 
 		// spécifique à la page LYCEE
-		$('#lycee_slider_gauche').removeClass('one two zero');
-		$('#lycee_slider_droite').removeClass('one two zero');
-	
-		$('#bouton_seconde').removeClass('is-active');
-		$('#bouton_premiere').removeClass('is-active');
-		$('#bouton_terminale').removeClass('is-active');
+		// $('#lycee_slider_gauche').removeClass('one two zero');
+		// $('#lycee_slider_droite').removeClass('one two zero');
+	// 
+		// $('#bouton_seconde').removeClass('is-active');
+		// $('#bouton_premiere').removeClass('is-active');
+		// $('#bouton_terminale').removeClass('is-active');
 	
 		$(".les_chapitres_viewbox").animate({ scrollTop: 0 }, "fast");
+		$(".informations_viewbox").animate({ scrollTop: 0 }, "fast");
 
 
 	if ( windowFormat > 1.2 ){
@@ -877,10 +878,7 @@ $( "#nav_infos" ).click(function() {
 										 $(".les_chapitres_viewbox").animate({ scrollTop: 0 }, "slow");
 										 })	
 
-
-
-
-	document.addEventListener('DOMContentLoaded', ()=>{College_slider_gauche.classList.remove('six','five', 'four', 'three')})
+	// document.addEventListener('DOMContentLoaded', ()=>{College_slider_gauche.classList.remove('six','five', 'four', 'three')})
 
 	Sixieme.addEventListener('click',()=>{College_slider_gauche.classList.add('six'),    College_slider_gauche.classList.remove('five', 'four', 'three')})
 	Cinquieme.addEventListener('click',()=>{College_slider_gauche.classList.add('five'), College_slider_gauche.classList.remove('six', 'four', 'three')})
@@ -888,17 +886,12 @@ $( "#nav_infos" ).click(function() {
 	Troisieme.addEventListener('click',()=>{College_slider_gauche.classList.add('three'),College_slider_gauche.classList.remove('six', 'five', 'four')})
 
 
-	document.addEventListener('DOMContentLoaded', ()=>{College_slider_droite.classList.remove('six','five', 'four', 'three')})
+	// document.addEventListener('DOMContentLoaded', ()=>{College_slider_droite.classList.remove('six','five', 'four', 'three')})
 
 	Sixieme.addEventListener('click',()=>{  College_slider_droite.classList.add('six'),  College_slider_droite.classList.remove('five', 'four', 'three')})
 	Cinquieme.addEventListener('click',()=>{College_slider_droite.classList.add('five'), College_slider_droite.classList.remove('six', 'four', 'three')})
 	Quatrieme.addEventListener('click',()=>{College_slider_droite.classList.add('four'), College_slider_droite.classList.remove('six', 'five', 'three')})
 	Troisieme.addEventListener('click',()=>{College_slider_droite.classList.add('three'),College_slider_droite.classList.remove('six', 'five', 'four')})
-
-
-
-
-
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -933,18 +926,14 @@ $( "#nav_infos" ).click(function() {
 										 })	
 
 
-
-
-
-
-	document.addEventListener('DOMContentLoaded', ()=>{Lycee_slider_gauche.classList.remove('two','one', 'zero')})
+	// document.addEventListener('DOMContentLoaded', ()=>{Lycee_slider_gauche.classList.remove('two','one', 'zero')})
 
 	Seconde.addEventListener('click',()=>{  Lycee_slider_gauche.classList.add('two'),  Lycee_slider_gauche.classList.remove('one', 'zero')})
 	Premiere.addEventListener('click',()=>{Lycee_slider_gauche.classList.add('one'), Lycee_slider_gauche.classList.remove('two', 'zero')})
 	Terminale.addEventListener('click',()=>{Lycee_slider_gauche.classList.add('zero'), Lycee_slider_gauche.classList.remove('two', 'one')})
 
 
-	document.addEventListener('DOMContentLoaded', ()=>{Lycee_slider_droite.classList.remove('two','one', 'zero')})
+	// document.addEventListener('DOMContentLoaded', ()=>{Lycee_slider_droite.classList.remove('two','one', 'zero')})
 
 	Seconde.addEventListener('click',()=>{  Lycee_slider_droite.classList.add('two'),  Lycee_slider_droite.classList.remove('one', 'zero')})
 	Premiere.addEventListener('click',()=>{Lycee_slider_droite.classList.add('one'), Lycee_slider_droite.classList.remove('two', 'zero')})
@@ -954,7 +943,133 @@ $( "#nav_infos" ).click(function() {
 
 
 
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////// RESPONSIVE DES PAGES COLLEGES ET LYCEE //////////////////
+//////////////////////////////////////////////////////////////////////////////////
 
+
+$( window ).on( "load", function() { 
+
+	if( windowFormat <= limitFormat ) {
+
+		$('#college .contents').css('flex-direction','column');
+		$('#lycee .contents').css('flex-direction','column');
+
+		$('#college .les_niveaux').css('width','80%');
+		$('#college .les_niveaux').css('font-size','1.2em');
+
+		$('#lycee .les_niveaux').css('width','80%');
+		$('#lycee .les_niveaux').css('font-size','1.2em');
+
+
+		$(".un_chapitre").css("pointer-events", "none");
+
+		$(".doc_chapitre li").css("pointer-events", "auto");
+
+		$(".les_chapitres_viewbox").css('width','85%');
+		$(".les_chapitres_viewbox").css('height','65vh');
+		$(".les_chapitres_viewbox").css('margin-left','auto');
+		$(".les_chapitres_viewbox").css('margin-right','auto');
+		$(".les_chapitres_viewbox").css('margin-bottom','2vh');
+		// 
+		$(".informations_viewbox").css('width','85%');
+		$(".informations_viewbox").css('height','50vh');
+		$(".informations_viewbox").css('margin-left','auto');
+		$(".informations_viewbox").css('margin-right','auto');
+		$(".informations_viewbox").css('margin-bottom','2vh');
+		
+	} 
+		
+});
+
+	
+// timeOutFunctionId stores a numeric ID which is
+// used by clearTimeOut to reset timer
+var CollegeLyceeTimeOutFunctionId;
+// The function that we want to execute after
+// we are done resizing
+function CollegeLyceeWorkAfterResizeIsDone() {   
+	windowWidth = $(window).width();
+	windowHeight = $(window).height();
+	windowFormat = windowWidth / windowHeight;
+
+
+
+
+	if( windowFormat <= limitFormat ) {
+
+
+		$('#college .contents').css('flex-direction','column');
+		$('#lycee .contents').css('flex-direction','column');
+
+		$('#college .les_niveaux').css('width','80%');
+		$('#college .les_niveaux').css('font-size','1.2em');
+
+		$('#lycee .les_niveaux').css('width','80%');
+		$('#lycee .les_niveaux').css('font-size','1.2em');
+
+
+		$(".un_chapitre").css("pointer-events", "none");
+		$(".doc_chapitre li").css("pointer-events", "auto");
+
+		$(".les_chapitres_viewbox").css('width','85%');
+		$(".les_chapitres_viewbox").css('height','65vh');
+		$(".les_chapitres_viewbox").css('margin-left','auto');
+		$(".les_chapitres_viewbox").css('margin-right','auto');
+		$(".les_chapitres_viewbox").css('margin-bottom','2vh');
+		// 
+		$(".informations_viewbox").css('width','85%');
+		$(".informations_viewbox").css('height','50vh');
+		$(".informations_viewbox").css('margin-left','auto');
+		$(".informations_viewbox").css('margin-right','auto');
+		$(".informations_viewbox").css('margin-bottom','2vh');
+
+	} else{
+
+		// on retrouve les parametres css de depart en utilisant ""
+		
+		$('#college .contents').css('flex-direction',"");
+		$('#lycee .contents').css('flex-direction',"");
+
+		$('#college .les_niveaux').css('width',"");
+		$('#college .les_niveaux').css('font-size',"");
+
+		$('#lycee .les_niveaux').css('width',"");
+		$('#lycee .les_niveaux').css('font-size',"");
+
+
+		$(".un_chapitre").css("pointer-events", "");
+		$(".doc_chapitre li").css("pointer-events", "");
+
+		$(".les_chapitres_viewbox").css('width',"");
+		$(".les_chapitres_viewbox").css('height',"");
+		$(".les_chapitres_viewbox").css('margin-left',"");
+		$(".les_chapitres_viewbox").css('margin-right',"");
+		$(".les_chapitres_viewbox").css('margin-bottom',"");
+		
+		$(".informations_viewbox").css('width',"");
+		$(".informations_viewbox").css('height',"");
+		$(".informations_viewbox").css('margin-left',"");
+		$(".informations_viewbox").css('margin-right',"");
+		$(".informations_viewbox").css('margin-bottom',"");
+		
+	}
+	
+};
+ 
+// The following event is triggered continuously
+// while we are resizing the window
+window.addEventListener("resize", function() {
+   
+    // clearTimeOut() resets the setTimeOut() timer
+    // due to this the function in setTimeout() is
+    // fired after we are done resizing
+    clearTimeout(CollegeLyceeTimeOutFunctionId);
+   
+    // setTimeout returns the numeric ID which is used by
+    // clearTimeOut to reset the timer
+    CollegeLyceeTimeOutFunctionId = setTimeout(CollegeLyceeWorkAfterResizeIsDone, timeToResize);
+});
 
 
 

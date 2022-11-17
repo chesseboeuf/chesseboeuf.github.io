@@ -460,100 +460,6 @@ h1{
     font-size:1em;
 }
 
-
-/*************************** RESPONSIVE DES PAGES COLLEGE ET LYCEE *******************************/
-/*************************************************************************************************/
-
-
-@media screen and (max-width: 900px) {
-
-
-    #college .contents, #lycee .contents{ 
-        flex-direction: column;
-    }
-
-
-    #college .les_niveaux, #lycee .les_niveaux {
-        width: 80%;
-        font-size: 1.2em;
-        
-    }
-
-    /* supprimer correctement le hover */
-    .un_chapitre{
-    pointer-events: none;
-    }
-    
-    .doc_chapitre li{
-        pointer-events: auto;
-    }
-
-
-
-    .les_chapitres_viewbox{
-        width: 85%;
-        height: 68vh;
-        margin-left: auto;
-        margin-right: auto;  
-        margin-bottom: 7vh;
-
-    }
-
-
-
-    .slider{
-        position: relative;
-        transform: none;
-    }
-
-
-    .niveau{
-        position: relative;
-        width:98%;
-        margin-left: auto;
-        margin-right: auto;
-        animation: chapitres_myslide 1s;
-    }
-
-    @keyframes chapitres_myslide {
-        from {
-            opacity:0;
-            margin-left: -100%;
-        }
-        to {
-            opacity:1;
-            margin-left: 0%;
-        }
-    }
-    
-
-    #sixieme_contents, #cinquieme_contents, #quatrieme_contents, #troisieme_contents{
-        margin-left:0%; 
-        display: none; 
-    }
-
-    .six #sixieme_contents, .five #cinquieme_contents, .four #quatrieme_contents, .three #troisieme_contents {
-        display: block;
-
-    }
-
-    #seconde_contents, #premiere_contents, #terminale_contents{
-        margin-left:0%; 
-        display: none; 
-    }
-
-    .two #seconde_contents, .one #premiere_contents, .zero #terminale_contents{
-        display: block;
-
-    }
-
-
-}
-
-
-
-
-
 /***************************************************************************************************/
 /***************************************** PAGE COLLEGE **********************************************/
 /***************************************************************************************************/
@@ -673,10 +579,6 @@ h1{
 
 
 
-
-
-
-
 /***************************************************************************************************/
 /***************************************** PAGE LYCEE **********************************************/
 /***************************************************************************************************/
@@ -733,10 +635,7 @@ h1{
 }
 
 
-
-
 /*****************************************************/
-
 
 #seconde_contents{
     margin-left:0%;
@@ -774,6 +673,16 @@ h1{
 .zero{
     transform: translateX(-200%);
 }
+
+
+
+
+
+
+/*************************** RESPONSIVE DES PAGES COLLEGE ET LYCEE *******************************/
+/*************************************************************************************************/
+
+
 
 
 
