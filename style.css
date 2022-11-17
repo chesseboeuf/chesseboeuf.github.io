@@ -101,7 +101,7 @@ main{
     max-height: 90%;
     margin-top:10px;
     margin-bottom: 10px;
-    margin-left: 5%;
+    margin-left: 2.5%;
 }
 
 #hamburger{
@@ -111,13 +111,12 @@ main{
 
 #navlinks{
     display:block;
-    width:70%;
+    width:80%;
     margin-left: 10%;
     margin-right:10%;
 }
 
 #navlinksUl{
-    margin-left: 20px;
     display: flex; 
     justify-content: space-between;
     align-items: center;
@@ -555,7 +554,8 @@ h1{
 
 
 .partie_droite{
-    width:100%;
+    width:80%;
+    height:70vh;
     margin-left: 2vw; 
     margin-right: 1vw;
 }
@@ -566,7 +566,7 @@ h1{
     font-size:1em;
     /* padding: 1vh; */
     width: 99%;
-    min-height: 32vh;
+    min-height: 35vh;
     padding:1%;
     background-color: rgba(148, 191, 248, 0.185);
     backdrop-filter: blur(3px);
@@ -580,7 +580,9 @@ h1{
 
 .college_programme{
     margin-top: 2vh;
-    min-height: 32vh;
+    /* min-height: 32vh; */
+    height:auto;
+    max-height: 40%;
     width: 99%;
     padding: 1%;
     background-color: rgba(148, 191, 248, 0.185);
@@ -588,6 +590,8 @@ h1{
     border-width: 3px;
     border-style: solid;
     border-radius: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
 
 }
 

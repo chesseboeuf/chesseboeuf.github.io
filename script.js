@@ -6,10 +6,16 @@ var windowFormat = windowWidth / windowHeight;
 $( window ).on( "load", function() { 
 
 	
-	if( windowFormat <= 1.2 ) {
+	if( windowFormat <= 1.25 ) {
 
 		$('#navbar').css('min-height','13vh');
 		$('body').css('font-size','16pt');
+		$('#navlinks').css('margin-left','10%');
+		$('#navlinks').css('margin-right','10%');
+
+
+		
+
 
 		$("#navbar").addClass("mobile");
 		$("#mylogo").addClass("mobile");
@@ -26,21 +32,41 @@ $( window ).on( "load", function() {
 		$("#navlinks").removeClass("mobile");
 		$("#navlinksUl").removeClass("mobile");
 
-		$("#navlinks").css('display', 'block');
+		// $("#navlinks").css('display', 'block');
 
-		if(windowWidth < 650){
+		mobileMenu=false;
+
+
+		$("#navlinks").show(1000, function(){
+
+
+		if(windowWidth < 800){
+			$('#navlinks').css('margin-left','2%');
+			$('#navlinks').css('margin-right','2%');
+
+		}else{
+			$('#navlinks').css('margin-left','10%');
+			$('#navlinks').css('margin-right','10%');
+		}
+
+
+		if(windowWidth < 700){
 			$('body').css('font-size','14pt');
 		}else{
 			$('body').css('font-size','16pt');
 		}
 
 
+
+
 		if(windowHeight < 400){
-			$('#navbar').css('min-height','25vh');
+			$('#navbar').css('min-height','20vh');
 		}else{
 			$('#navbar').css('min-height','13vh');
 		}
 
+
+		});
 
 
 	}
@@ -69,11 +95,16 @@ function workAfterResizeIsDone() {
 	windowHeight = $(window).height();
 	windowFormat = windowWidth / windowHeight;
 
-	if( windowFormat <= 1.2 ) {
+	if( windowFormat <= 1.25 ) {
 
 
 		$('#navbar').css('min-height','13vh');
 		$('body').css('font-size','16pt');
+		$('#navlinks').css('margin-left','10%');
+		$('#navlinks').css('margin-right','10%');
+
+
+
 
 
 		$("#navbar").addClass("mobile");
@@ -100,23 +131,38 @@ function workAfterResizeIsDone() {
 		$("#navlinks").removeClass("mobile");
 		$("#navlinksUl").removeClass("mobile");
 
-		$("#navlinks").show(1000);
-
-
 		mobileMenu=false;
 
 
-		if(windowWidth < 650){
+		$("#navlinks").show(1000, function(){
+
+
+		if(windowWidth < 800){
+			$('#navlinks').css('margin-left','2%');
+			$('#navlinks').css('margin-right','2%');
+
+		}else{
+			$('#navlinks').css('margin-left','10%');
+			$('#navlinks').css('margin-right','10%');
+		}
+
+
+		if(windowWidth < 700){
 			$('body').css('font-size','14pt');
 		}else{
 			$('body').css('font-size','16pt');
 		}
+
+		
 
 		if(windowHeight < 400){
 			$('#navbar').css('min-height','20vh');
 		}else{
 			$('#navbar').css('min-height','13vh');
 		}
+
+
+		});
 
 	
 	}
@@ -139,6 +185,7 @@ window.addEventListener("resize", function() {
     // clearTimeOut to reset the timer
     timeOutFunctionId = setTimeout(workAfterResizeIsDone, 300);
 });
+
 
 
 
