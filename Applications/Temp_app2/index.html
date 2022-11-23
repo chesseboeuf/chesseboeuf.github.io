@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> 
+		<link rel="stylesheet" href="style.css" />
+        <script type="text/javascript" src="jquery-3.6.1.js"></script>
+
+
+    </head>
+
+
+    <body>
+        
+        <div id="container">
+            <!-- Draggable DIV -->
+            <div id="mydiv">
+
+            </div>
+
+          </div>
+
+        <!-- <scrip type="text/javascript" src="script.js"> </script> -->
+
+         <script type="text/javascript">
+
+            
+            function onDrag(myrect,XXX,YYY){
+
+                let autorisation = myrect.attr.autorisation;
+
+                if(autorisation){
+
+   
+                    let left = myrect.css('left');
+                    let top = myrect.css('top');
+                    
+
+                    XXX=Number(XXX);
+                    YYY=Number(YYY);
+                   
+                    
+        
+                    
+                    if(XXX-myrect.width()/2 > 0  && XXX+myrect.width()/2 < $('#container').width()  ){
+                    
+                        left = parseInt(XXX) + 'px';
+                        myrect.css('left', left);
+                    }else{
+
+                        if (XXX-myrect.width()/2 <= 0){
+                        
+                            left = parseInt(myrect.width()/2)+'px';
+                            myrect.css('left', left);
+                        }
+
+                        if ( XXX+myrect.width()/2 >= $('#container').width()){
+                        
+                            left = parseInt($('#container').width()-myrect.width()/2)+'px';
+                            myrect.css('left', left);
+                         }
+
+                    }
+
+
+                    if(YYY-myrect.height()/2 > 0  && YYY+myrect.height()/2 < $('#container').height()  ){
+                        top = parseInt(YYY) + 'px';
+                        myrect.css('top', top);
+
+                      
+                    }else{
+                        if (YYY-myrect.height()/2 <= 0){
+                        
+                            top = parseInt(myrect.height()/2)+'px';
+                            myrect.css('top', top);
+
+                        }
+
+                        if ( YYY+myrect.height()/2 >= $('#container').height()){
+                        
+                            top = parseInt($('#container').height()-myrect.height()/2)+'px';
+                            myrect.css('top', top);
+                         }
+                    }
+
+                }
+
+            }
+
+
+            function stopDrag(){
+
+                $('#mydiv').attr.autorisation = false;     
+                console.log('FIN');
+            }
+
+            document.addEventListener('mouseup', ()=>{
+                stopDrag();
+            });
+
+
+            document.getElementById('container').addEventListener('mouseleave', ()=>{
+                setTimeout('stopDrag()', 200);
+            });
+
+  
+            $('#mydiv').attr.autorisation = false;  
+
+            document.body.onmousemove = function(e){
+                    var lleft = document.getElementById('container').offsetLeft;
+                    var ttop = document.getElementById('container').offsetTop;
+
+                    onDrag($('#mydiv'),e.pageX-lleft,e.pageY-ttop);
+                };
+
+
+            $('#mydiv').mousedown( ()=>{
+                $('#mydiv').attr.autorisation = true;  
+            });
+
+            
+
+
+
+
+
+
+
+         </script>
+
+         
+
+    </body>
+
+
+    
+
+</html>

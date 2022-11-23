@@ -1,129 +1,147 @@
-//function demarrage(){
-
-var monSVG = document.createElementNS("http://www.w3.org/2000/svg",'svg');
 
 
-var xMax=150;
+// const monConteneur = document.createElement('div');
+// 
+// monConteneur.id = 'nurserie';
+// monConteneur.style.position = 'relative';
+// monConteneur.style.width="80vw";
+// monConteneur.style.height="70vh";
+// monConteneur.style.marginTop="15vh";
+// monConteneur.style.marginLeft="auto";
+// monConteneur.style.marginRight="auto";
+// monConteneur.style.border = "3px outset black";
+// 
+// document.body.appendChild(monConteneur);
+
+
+
+
+var xMax=100;  // on travail en pourcentages du parent (#nurserie)
 var yMax=100;
-var yMaxR=0.7*yMax; // pour eviter le chevauchement avec le cercle
 var cx=xMax/2; //centre
 var cy=yMax/2; //centre
-var VBString = "0 0 "+ xMax.toString()+ " " + yMax.toString();
-monSVG.setAttribute("viewBox", VBString); 
-// monSVG.setAttribute("preserveAspectRatio","none"); pour desactiver la conservation des proportions
-monSVG.id = 'image1';
-monSVG.style.position = 'absolute';
-var conteneur = document.getElementById("conteneurSVG");
-conteneur.appendChild(monSVG);
+
+
+
+
+var taille = Number(document.getElementById('curseur').max);
+
+
+var Rect = new Array(taille);
+var id = new Array(taille)
+var autorisation = new Array(taille);
+
+for (i=0 ; i<Rect.length ; i++){
+
+
+	Rect[i] = document.createElement('div');
+	document.getElementById('nurserie').appendChild(Rect[i]);
+	Rect[i].style.display = "none"; 
+	Rect[i].style.position = 'absolute';
+	Rect[i].classList.add('rectangle');
+
+	id[i] = 'rect' + i.toString();
+
+	Rect[i].id = id[i];
+
+
+	$("#"+id[i]).draggable({
+		containment: "#dragcontainer",
+		stack: '.rectangle' // le rectangle deplacé se place tout en haut de la pile des elements de classe ".rectangle"
+	});
+
+
+}
+
+
+$("#dragcontainer").resizable();
+
+$("#dragcontainer").draggable();
 
 
 
 
 
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////// RECTANGLES /////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+document.getElementById("curseur").addEventListener('input', updateRect,'false');
+document.getElementById("nombre").addEventListener('input', updateRect,'false');
+document.getElementById("nombre").addEventListener('change', updateRect,'false');
 
 
-document.getElementById("taille").addEventListener('input', updateRect,'false');
-
-function updateRect(){ // Cette fonction s activte au chargement de la page et a chaque actualisation de 
+function updateRect(){ // Cette fonction s activte au chargement de la page et a chaque actualisation du curseur 
 
 
-	if (!(typeof Rect === 'undefined')) {  // SI CONTRAIRE(Rect n est pas encore defini) ALORS
-
-		for(i=0 ; i<Rect.length ; i++){
-	  		Rect[i].parentNode.removeChild(Rect[i]);
-	  	}
+	for (i=0 ; i<Rect.length ; i++){
+		Rect[i].style.display = "none"; 
+		$("#"+id[i]).draggable( 'disable' );
 	}
 
-
-	var L = document.getElementById("taille").value;
+	
+	var L = document.getElementById("curseur").value;
 
     /////////////////////////////////////////////////////
     rect_index = Math.floor(L/2); 
     // pour initialiser la marche aleatoire  (rec_index est une variable globale du programme)
     /////////////////////////////////////////////////////
 
-	var l=Math.ceil(Math.sqrt(L));
     var nbr_colonnes=Math.ceil(Math.sqrt(L));
-    var q= Math.floor(L/l);
-    var nbr_lignes= Math.ceil(L/l);
+	var nbr_lignes= Math.ceil(L/nbr_colonnes);
+	var margeHorizontale = 0.02*xMax;
+	var margeVerticale = 0.01*yMax;
+
     var  nbr_petites_lignes= nbr_lignes*nbr_colonnes - L    // petites lignes de taille l-1.
     var nbr_grandes_lignes = nbr_lignes - nbr_petites_lignes;
-    Rect = new Array(L);
+    
+	// Rect = new Array(L);
     Vois = new Array(L);
     var xx = 0;
     var yy = 0;
     
 
-    ww = 0.8*0.9*xMax/l;  
-    hh = Math.min(0.8*yMaxR/nbr_lignes ,   0.8*yMaxR/3  ) ;
+
+	var HrectWidthReducCoef = 0.6;
+    var plainWidth = (xMax - 2*margeHorizontale)/nbr_colonnes;  
+	var ww = HrectWidthReducCoef*plainWidth;
+	var HmargeInterieure =(plainWidth-ww)/2;  
+
+
+	var VrectWidthReducCoef = 0.6;	
+	var plainHeight = (yMax - 2*margeVerticale)/nbr_lignes; 
+    // var hh = Math.min(0.8*yMax/nbr_lignes ,   0.8*yMax/3  ) ;
+	var hh = VrectWidthReducCoef*plainHeight;
+	var VmargeInterieure =(plainHeight-hh)/2;  
 
 
 /////////////////////////////////////////////////////////////////////////////
 //////////// CREATION DES RECTANGLES ET DE LEUR VOISINAGE ///////////////////
 	for (var i = 0; i < L; i++){ 
 
+		$("#"+id[i]).draggable( 'enable' );
 
-		// POSITIONNEMENT ET DESSIN DES RECTANGLES //
-		if (i < L - nbr_petites_lignes*(nbr_colonnes-1)){  // Grande lignes
+		var quotient = Math.floor(i/nbr_colonnes);
+		var remainder = i % nbr_colonnes;
+		xx = margeHorizontale +  remainder*plainWidth + HmargeInterieure; 
 
+		// yy = 5 + quotient*yMax/nbr_lignes + 0.1*yMax/nbr_lignes ; 
 
-			var quotient = Math.floor(i/nbr_colonnes);
-			var remainder = i % nbr_colonnes;
-
-
-			xx = 0.05*xMax + remainder*(1-2*0.05)*xMax/l + 0.1*(1-2*0.05)*xMax/l;
-			yy = 5 + quotient*yMaxR/nbr_lignes + 0.1*yMaxR/nbr_lignes ; 
+		yy = margeVerticale +  quotient*plainHeight + VmargeInterieure; 
 
 
-			Rect[i] = document.createElementNS("http://www.w3.org/2000/svg",'rect');
-			Rect[i].setAttribute('x', xx.toString());
-			Rect[i].setAttribute('y', yy.toString());
-			Rect[i].setAttribute('width', ww.toString());
-			Rect[i].setAttribute('height', hh.toString());
-			Rect[i].setAttribute('stroke-width','0.25');
-			Rect[i].setAttribute('stroke','black');
-            Rect[i].setAttribute('stroke-linecap','round');
-			Rect[i].style.fill="white";
-			monSVG.appendChild(Rect[i]); 
+		Rect[i].style.display = "block";
+		Rect[i].style.left = xx.toString()+'%';
+		Rect[i].style.top = yy.toString()+'%';
+		Rect[i].style.width = ww.toString()+'%';
+		Rect[i].style.height = hh.toString()+'%';
 
+	
 
-        
-		} else { // Petites lignes
-
-
-			var  j = i - (L - nbr_petites_lignes*(nbr_colonnes-1));
-
-			var  jj =  j % (nbr_colonnes -1) ;
-			var quotient = Math.floor(j/(nbr_colonnes-1));
-			xx = 0.05*xMax + jj*0.9*xMax/l + 0.1*0.9*xMax/l 
-			xx = xx + 0.5*0.9*xMax/l; // on centre les petites lignes
-			yy = 5 + (quotient + nbr_grandes_lignes  )*yMaxR/nbr_lignes + 0.1 *yMaxR/nbr_lignes ;  
-
-
-			 
-
-
-			Rect[i] = document.createElementNS("http://www.w3.org/2000/svg",'rect');
-			Rect[i].setAttribute('x', xx.toString());
-			Rect[i].setAttribute('y', yy.toString());
-			Rect[i].setAttribute('width', ww.toString());
-			Rect[i].setAttribute('height', hh.toString());
-			Rect[i].setAttribute('stroke-width','0.25');
-			Rect[i].setAttribute('stroke','black');
-			Rect[i].style.fill="white";
-
-			monSVG.appendChild(Rect[i]);  
-
-
-		}
-
-
-		////////////////////////////////////////////////////////////////////////////////
-		/////////////  DETERMINATION DES RECTANGLES VOISINS ////////////////////////////
-		/////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/////////////  DETERMINATION DES RECTANGLES VOISINS ////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 		if (i < L - nbr_petites_lignes*(nbr_colonnes-1)){ // grandes lignes 
 
 			var quotient = Math.floor(i/nbr_colonnes);
@@ -314,8 +332,6 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 		}  // fin if grande lignes
 
 
-
-
 		if (i > L - nbr_petites_lignes*(nbr_colonnes-1)-1 ){ //voisinage pour les rectangles des petites lignes (si il y en a)    
 
 
@@ -408,20 +424,14 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 
 			}
 
+		}  
 
-	   }  
-
-	/////////////////////////////////////////////////////////////////////////////////////
-	///////////// FIN DETERMINATION DES RECTANGLES VOISINS ////////////////////////////////// 
-	/////////////////////////////////////////////////////////////////////////////////////
-
-
-		   
+		
 	} // fin boucle for
-    
-    initialState();
 
+    initialState();
 	updateTexte();
+
 
 } // FIN de la fonction updateRect
 
@@ -433,38 +443,17 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 
 
 
-////////////////////////////  CERCLES //////////////////////////////////////////
-
-var monCercle1 = document.createElementNS("http://www.w3.org/2000/svg",'circle');
-
-
-var yCercle = 0.9*yMax;
-
-monCercle1.setAttribute("id", "blueCircleButton");  
-monCercle1.setAttribute("cx", cx.toString());
-monCercle1.setAttribute("cy", yCercle.toString());
-monCercle1.setAttribute("r", '3');
-monCercle1.setAttribute("stroke", "black");  
-monCercle1.setAttribute("stroke-width", 1);  
-monCercle1.setAttribute("opacity", 1);  
-monCercle1.setAttribute("fill", "blue");
-monSVG.appendChild(monCercle1);
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////// DEPLACER LES RECTANGLES /////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 
 
-var monCercle2 = document.createElementNS("http://www.w3.org/2000/svg",'circle');
-
-var redx = 100;
 
 
-monCercle2.setAttribute("id", "redCircleButton");  
-monCercle2.setAttribute("cx", redx.toString());
-monCercle2.setAttribute("cy", yCercle.toString());
-monCercle2.setAttribute("r", '2.5');
-monCercle2.setAttribute("stroke", "black");  
-monCercle2.setAttribute("stroke-width", 1);  
-monCercle2.setAttribute("opacity", 1);  
-monCercle2.setAttribute("fill", "red");
-monSVG.appendChild(monCercle2);
+
+
+
+
 
 
 
@@ -475,14 +464,21 @@ monSVG.appendChild(monCercle2);
 
 
 ///////////////////////////////////////////////////////////////////////////////
-///////////////////////// FONCTIONNEMENT /////////////////////////////////////:
+///////////////////////// FONCTIONNEMENT //////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 
-let rect_index; // on creer la variable rect_index. Une valeur lui est attribuee au premier appel de updateRect (donc au chargement de la page).
+
+
+var pivert = document.getElementById('woodpecker');
+
+let rect_index;// on creer la variable rect_index. Une valeur lui est attribuee au premier appel de updateRect (donc au chargement de la page).
+let indexDeepCopy=-2;
 var cpt=0;
 
+
 //////////////// intialeState : Mettre le jeu dans son etat initial /////////////////
-function localInitialState(RRect) { RRect.classList.remove('rectOn') ,  RRect.classList.add("rectOff")} ; 
+function localInitialState(RRect) { RRect.classList.remove('rectOn')} ; 
  
 function initialState(){
     cpt = 0;
@@ -492,45 +488,54 @@ function initialState(){
 
 
 
-var audio1 = new Audio('Mouse-Click-00-trim.mp3');
-audio1.duration=0.1;
+var audio1 = new Audio('mixkit-message-pop-alert-2354 (mp3cut.net).mp3');
 var audio2 = new Audio('sonic_ring.mp3');
-audio2.volume=0.05;
+audio2.volume = 0.01;
+
 
 
 
 
 function change(){
+
+	// animation du pivert //////////////
+	pivert.classList.toggle('is-active');
+	function pic(){
+		pivert.classList.toggle('is-active');
+	}
+	setTimeout(pic,50);
+	////////////////////////////////////////
+
 	
+	Rect[rect_index].classList.remove('rectOn');
 
-    if(monCercle1.getAttribute('fill')=='blue'){
-		monCercle1.setAttribute("fill", "white");	
-    }else{
-		monCercle1.setAttribute("fill", "blue");	
-    }
-
-
-    
-    sound_play();
-    Rect[rect_index].style.fill = 'white';
-    Rect[rect_index].setAttribute('stroke-width','0.25');
-    Rect[rect_index].setAttribute('stroke','black');
-    Texte[rect_index].setAttribute('stroke','black');
+ 
 	var Next = Vois[rect_index];
 	var K=Next.length;
 	var alea = Math.floor(Math.random()*K);
 
-	rect_index = Vois[rect_index][alea];
     
-    
-	Rect[rect_index].style.fill = 'yellow';
+	let test_index= Vois[rect_index][alea];
+	
+
+	/// on ne retourne pas sur le rectangle précédent //////
+    while(test_index==indexDeepCopy){
+		alea = Math.floor(Math.random()*K);
+		test_index = Vois[rect_index][alea];
+	}
+	////////////////////////////////////////////////////////
+	indexDeepCopy=rect_index;
+	rect_index=test_index;
+	
+
+	Rect[rect_index].classList.add('rectOn');
+	
+	
+	sound_play();
 	cpt++;
   
    
-    if(cpt==40){
-        Rect[rect_index].setAttribute('stroke-width','0.5');
-		Rect[rect_index].setAttribute('stroke','blue');
-		Texte[rect_index].setAttribute('stroke','blue');
+    if(cpt==31){
 		audio2.play();
 	}
 
@@ -547,35 +552,43 @@ function sound_pause(){
         audio1.currentTime = 0;
 }
 
-function pushBlueCircleButton(){
-
+function clickOnWoopecker(){
 
     cpt=0;
 
 
-	for (var i = 0; i < 20; i++){
+	let ttime=0;
 
 
-	   var to =   setTimeout(change,200*i);        
-                     
+	for (var i = 0; i < 31; i++){
+
+		
+
+		if (i<15){
+			ttime= 250*i ;
+		}else{
+			ttime= 250*i + Math.pow((i-15)*4,1.9);
+		}
+    
+	
+	setTimeout(change,ttime);   
+		
+	                 
 	}
 
-
-
-
-	
 }
 
 
 
 
 
-document.querySelector("#blueCircleButton").addEventListener('click',pushBlueCircleButton, false);
+document.querySelector("#woodpecker").addEventListener('click',clickOnWoopecker, false);
 
 
 
 
-
+document.getElementById("curseur").value = 25;
+document.getElementById("nombre").value = 25;
 
 updateRect();
 updateTexte();
@@ -596,6 +609,8 @@ updateTexte();
 ////////////////// Chargement de la liste   : A TERMINER
 //////////////////////////////////////////////////////////////////
 
+$("#menu").draggable();
+
 function updateTexte(){
 
 	if (!(typeof Texte === 'undefined')) {  // SI CONTRAIRE(Texte n est pas encore defini) ALORS
@@ -606,42 +621,40 @@ function updateTexte(){
 	}
 
 
-var monTexte = document.querySelector('textarea');
-
-monTexte=monTexte.value;
-maListe = monTexte.split('\n');
+ var monTexte = document.querySelector('textarea');
+ 
+ monTexte=monTexte.value;
+ maListe = monTexte.split('\n');
 
 Texte= new Array(Rect.length);
 
 
 for( i=0; i<  Rect.length; i++){
 
-	Texte[i] = document.createElementNS("http://www.w3.org/2000/svg",'text');
+	Texte[i] = document.createElement('div');
+	Texte[i].id = 'prenom' + i.toString();
+	Texte[i].classList.add('prenom');
     Texte[i].textContent = maListe[i];
 	
-	var xx = parseFloat(Rect[i].attributes.x.value); // parseFloat converti la chaine en nombre réel.   
-    var yy = parseFloat(Rect[i].attributes.y.value); 
-    var ww = parseFloat(Rect[i].attributes.width.value);
-    var hh = parseFloat(Rect[i].attributes.height.value);
-    yy = yy+ 0.6*hh;
+	// var xx = parseFloat(Rect[i].style.left); // parseFloat converti la chaine en nombre réel.   
+    // var yy = parseFloat(Rect[i].style.top); 
+    // var ww = parseFloat(Rect[i].style.width);
+    // var hh = parseFloat(Rect[i].style.height);
+    // yy = yy+ 0.6*hh;
+// 
+    // xx = xx + 0.5*ww;
+    // xx = xx - 0.5*Texte[i].textContent.length*0.075*ww;
+// 
+// 
+	// Texte[i].style.left = xx.toString()+'%';
+	// Texte[i].style.top = yy.toString()+'%';
+	// Texte[i].style.width = ww.toString()+'%';
+	// Texte[i].style.height = hh.toString()+'%';
 
-    xx = xx + 0.5*ww;
-    xx = xx - 0.5*Texte[i].textContent.length*0.075*ww;
 
-
-
-	Texte[i].setAttribute('x', xx.toString());
-	Texte[i].setAttribute('y', yy.toString());
-	Texte[i].setAttribute('width', ww.toString());
-	Texte[i].setAttribute('height', hh.toString());
-	Texte[i].setAttribute('stroke-width','0.2');
-	Texte[i].setAttribute('stroke','#000000');
-    Texte[i].setAttribute('font-size',(0.15*ww).toString());
-    Texte[i].setAttribute('text-anchor', 'start');
-	//Texte[i].style.fill="white";
 
     
-	monSVG.appendChild(Texte[i]); 
+	Rect[i].appendChild(Texte[i]); 
 
 
 
@@ -655,59 +668,27 @@ document.querySelector("#monBouton").addEventListener('click',updateTexte, false
 
 
 
-//////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////// GROUPEUR A FINIR /////////////////////////////////////////
 
 
-var nombreDeGroupes= 4;
-var cardinal = maListe.length;
+const rangeInputs = document.getElementById('curseur')
+const numberInput = document.getElementById('nombre')
 
-let randomName;
-
-             
-function chooseRandomElement(liste){
-    return liste[Math.floor(Math.random()*liste.length)];
+function handleInputChange(e) {
+  let target = e.target
+  if (e.target.type !== 'range') {
+    target = document.getElementById('curseur')
+  } 
+  const min = target.min
+  const max = target.max
+  const val = target.value
+  
+  target.style.backgroundSize = (val - min) * 100 / (max - min) + '% 100%'
 }
 
-function randomIndex(N){
-    return Math.floor(Math.random()*N);
-}
+rangeInputs.addEventListener('input', handleInputChange)
+numberInput.addEventListener('input', handleInputChange)
 
-
-
-
-
-
-var mesGroupes= new Array(nombreDeGroupes);
-
-
-function pushRedCircleButton(){
-    audio2.play();
-	var q = Math.floor(cardinal/nombreDeGroupes);
-	var r = cardinal%nombreDeGroupes;
-	var tempListe = new Array();
-	tempListe = maListe.slice();
-	var taille;
-	let ind;
-	for (var i= 1 ; i<nombreDeGroupes+1; i++){
-		if(i<r+1){
-	  	taille=q+1;
-    	}else{taille=q}
-    	mesGroupes[i-1]=new Array(taille);
-
-		for(j= 0; j<taille; j++){
-        	ind=randomIndex(tempListe.length);
-    		mesGroupes[i-1][j]= tempListe[ind];
-			tempListe.splice(ind,1);
-    	}
-		console.log(mesGroupes[i-1]);
-	}
-}
-
-document.querySelector("#redCircleButton").addEventListener('click',pushRedCircleButton, false);
-
-/////////////////////////////////////////////////////////////////////////////
-
+window.addEventListener("load", handleInputChange)
 
 
 

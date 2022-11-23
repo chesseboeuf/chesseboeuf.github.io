@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> 
+		<link rel="stylesheet" href="style.css" />
+        <script type="text/javascript" src="jquery-3.6.1.js"></script>
+
+
+    </head>
+
+
+    <body>
+        
+        <div id="container">
+            <!-- Draggable DIV -->
+            <div id="mydiv">
+
+            </div>
+
+          </div>
+
+        <!-- <scrip type="text/javascript" src="script.js"> </script> -->
+
+         <script type="text/javascript">
+
+            var drag=false;
+            var temp=false;
+
+            function onDrag(X,Y){
+
+                if(drag){
+ 
+                    let left = $("#mydiv").css('left');
+
+                    if(X-$('#mydiv').width()/2 > 0  && X+$('#mydiv').width()/2 < $('#container').width()  ){
+                    
+                        let newleft = parseInt(X) + 'px';
+                        $("#mydiv").css('left', newleft);
+
+                    } 
+
+                    // if(Y-$('#mydiv').height()/2 > 0  && Y+$('#mydiv').height()/2 < $('#container').height()  ){
+                        // let top = parseInt(Y) + 'px';
+                        // $("#mydiv").css('top', top);
+// 
+                    // }
+// 
+                }
+
+            }
+  
+            $('#mydiv').mousedown( ()=>{
+
+                drag=true;
+                temp=false;
+                
+
+                document.body.onmousemove = function(e){
+
+                    
+                    onDrag(e.pageX,e.pageY);
+                    
+
+                };
+
+            });
+
+            document.addEventListener('mouseup', ()=>{
+                drag=false;
+        
+            });
+
+            document.getElementById('container').addEventListener('mouseleave', ()=>{
+                // drag=false;
+            });
+
+
+
+
+         </script>
+
+         
+
+    </body>
+
+
+    
+
+</html>
