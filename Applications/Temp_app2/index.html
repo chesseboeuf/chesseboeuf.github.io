@@ -17,13 +17,14 @@
         
         <div id="container">
             <!-- Draggable DIV -->
-            <div id="mydiv">
+            <div id="mydiv1" class="carre1">
+            </div>
 
+            <div id="mydiv2" class="carre2">
             </div>
 
           </div>
 
-        <!-- <scrip type="text/javascript" src="script.js"> </script> -->
 
          <script type="text/javascript">
 
@@ -76,6 +77,7 @@
                         
                             top = parseInt(myrect.height()/2)+'px';
                             myrect.css('top', top);
+                            console.log('ICI');
 
                         }
 
@@ -93,7 +95,7 @@
 
             function stopDrag(){
 
-                $('#mydiv').attr.autorisation = false;     
+                $('#mydiv1').attr.autorisation = false;     
                 console.log('FIN');
             }
 
@@ -102,26 +104,168 @@
             });
 
 
-            document.getElementById('container').addEventListener('mouseleave', ()=>{
-                setTimeout('stopDrag()', 200);
-            });
-
-  
-            $('#mydiv').attr.autorisation = false;  
+            $('#mydiv1').attr.autorisation = false;  
 
             document.body.onmousemove = function(e){
-                    var lleft = document.getElementById('container').offsetLeft;
-                    var ttop = document.getElementById('container').offsetTop;
+                    var lleft = $('#container').offset().left;
+                    var ttop = $('#container').offset().top;
 
-                    onDrag($('#mydiv'),e.pageX-lleft,e.pageY-ttop);
+                    onDrag($('#mydiv1'),e.pageX-lleft,e.pageY-ttop);
                 };
 
 
-            $('#mydiv').mousedown( ()=>{
-                $('#mydiv').attr.autorisation = true;  
+            $('#mydiv1').mousedown( ()=>{
+                $('#mydiv1').attr.autorisation = true;  
             });
+// 
+// 
+// 
+// 
+// 
 
-            
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////::
+/////////////////////// NEW CODE ////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////:
+
+
+
+            // function onDrag(myrect,mycontainer,XXX,YYY){
+                // 
+                // let autorisation = myrect.attr.autorisation;
+                // 
+                // if(autorisation){
+                // 
+                // 
+                    // let left = myrect.css('left');
+                    // let top = myrect.css('top');
+                    // 
+                // 
+                    // XXX=Number(XXX);
+                    // YYY=Number(YYY);
+                // 
+                    // 
+                // 
+                    // 
+                    // if(XXX-myrect.width()/2 > 0  && XXX+myrect.width()/2 < mycontainer.width()  ){
+                    // 
+                        // left = parseInt(XXX) + 'px';
+                        // myrect.css('left', left);
+// 
+                    // }else{
+                    // 
+                        // if (XXX-myrect.width()/2 <= 0){
+                        // 
+                            // left = parseInt(myrect.width()/2)+'px';
+                            // myrect.css('left', left);
+                        // }
+                    // 
+                        // if ( XXX+myrect.width()/2 >= mycontainer.width()){
+                        // 
+                            // left = parseInt(mycontainer.width()-myrect.width()/2)+'px';
+                            // myrect.css('left', left);
+                        //  }
+                        // 
+                    // }
+                // 
+                // 
+                    // if(YYY-myrect.height()/2 > 0  && YYY+myrect.height()/2 < mycontainer.height()  ){
+                        // top = parseInt(YYY) + 'px';
+                        // myrect.css('top', top);
+                    // 
+                    // 
+                    // }else{
+                        // if (YYY-myrect.height()/2 <= 0){
+                        // 
+                            // top = parseInt(myrect.height()/2)+'px';
+                            // myrect.css('top', top);
+                            // console.log('ICI');
+                        // 
+                        // }
+                    // 
+                        // if ( YYY+myrect.height()/2 >= mycontainer.height()){
+                        // 
+                            // top = parseInt(mycontainer.height()-myrect.height()/2)+'px';
+                            // myrect.css('top', top);
+                        //  }
+                    // }
+                // 
+                // }
+// 
+            // }
+// 
+// 
+// 
+// 
+            // function stopDrag(aaa){
+                                // 
+                // aaa.attr.autorisation = false;     
+                // console.log('FIN');
+            // }
+// 
+            // function enableDrag(){
+                // e.target.attr.autorisation = true;  
+            // };
+// 
+// 
+            // function ddraggable (groupClass,containerId){
+// 
+                // document.removeEventListener('mousemove',todo);
+// 
+                // var mycontainer = $('#'+containerId);
+                // var mygroup = $('.'+groupClass);
+// 
+                // console.log(mygroup);
+// 
+// 
+// 
+                // document.addEventListener('mouseup', ()=>{
+                    // stopDrag(mygroup);
+                // });
+// 
+// 
+// 
+                // mygroup.attr.autorisation = false;
+                // 
+// 
+                // document.addEventListener('mousemove',todo);
+// 
+// 
+                // function todo(e){
+// 
+                    // var lleft = mycontainer.offset().left;
+                    // var ttop = mycontainer.offset().top;
+// 
+                    // onDrag(mygroup,mycontainer,e.clientX-lleft,e.clientY-ttop);
+                // };
+// 
+// 
+                // mygroup.mousedown(enableDrag);
+// 
+// 
+// 
+            // };
+// 
+        //    
+        // ddraggable('carre2','container');
+        //  ddraggable('carre1','container');
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+            // 
 
 
 

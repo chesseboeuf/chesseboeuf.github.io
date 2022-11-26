@@ -10,42 +10,79 @@
         <link rel="stylesheet" href="jquery-ui-1.13.2.custom/jquery-ui.min.css">
         <script src="jquery-ui-1.13.2.custom/external/jquery/jquery.js"></script>
         <script src="jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
-
+        <script src="drag-multiple-ui/dist/jquery-ui.drag-multiple.js"></script>
+        <script src="html2canvas.min.js"></script>
     
     </head>
 
     <body>
 
+
+
+        
+
         <div id="dragcontainer">
 
-        <img src="thin_woodpecker.png" alt="un oiseau" id="woodpecker"> 
+            <div id="bird_cage">
+                <img src="thin_woodpecker.png" alt="un oiseau" id="woodpecker"> 
+            </div>
+
+
+            <div id="prof_container">
+                <div id='prof' class="rectangle">
+                    Prof
+                </div>
+            </div>
 
             <div id="nurserie">
-                <!-- ici naissent les rectangles  -->
+                     <!-- ici naissent les rectangles  -->
+  
             </div>
         </div>
 
 
-         <div id=class_size>
-            <input type="range" value="25" id="curseur" name="curseur" min="0" max="100" oninput="nombre.value=value">
-            <input type="number" value="25" id="nombre" min="0" max="100"  oninput="curseur.value=value">
-         </div>
 
 
 		<div id="menu">
 
             <div id=monBouton>
                 <span> 
-                    Importer
+                    Prénoms
                 </span>
             </div>
 
-            <div>
+            <div class="editor">
+               
+                <div class="line-numbers">
+                    <!-- <span></span> -->
+                </div>
+
                 <textarea id="zone_texte" name="liste"></textarea>
-		    </div>
+
+            </div>
+
         </div>
 
 
+
+
+
+        <div id="actions">
+
+  
+             <div id=class_size>
+                 <input type="range" value="32" id="curseur" name="curseur" min="0" max="100" oninput="nombre.value=value">
+                 <input type="number" value="32" id="nombre" min="0" max="100"  oninput="curseur.value=value">
+            </div>
+          
+             <div id="switch_view">
+                     Switch
+             </div>
+         
+         
+             <input id="bouton_img" type="button" value="convert to image">
+
+        </div>
 
 
     </body>

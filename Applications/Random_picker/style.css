@@ -1,28 +1,29 @@
+@font-face {
+	font-family: 'Manga_temple';
+	src: url('Fonts/manga_temple/mangat.ttf') format('truetype')
+
+}
+
+
 html, body { margin:0; padding:0; overflow:hidden }
 
 
 body{
   background: url("background2.jpg") no-repeat fixed center/cover;  
-
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 16pt;
   height: 100vh;
+  position: relative;
 }
 
-#nurserie{
-  position:relative;
-  width: 94%;
-  height: 87.5%;
-  margin-left:auto;
-  margin-right:auto;
-}
+
 
 #dragcontainer{
   position:relative;
   width: 85vw;
-  height: 80vh;
-  margin-top:7vh;
-  margin-left:9vw;
+  height: 83vh;
+  margin-top:5vh;
+  margin-left:10vw;
   margin-right:auto;
   border-radius: 10px;
   border: 3px solid rgba(46, 24, 11, 0.671);
@@ -30,58 +31,52 @@ body{
   backdrop-filter: blur(5px);
   box-shadow: 25px 0 20px -20px rgba(0, 0, 0, 0.45);
 
-  display:flex;
-  align-items: center;
-  justify-content: center;
+  transition : transform 0.5s ease;  
+
+}
+
+#dragcontainer.prof_view{
+  transform : rotate(180deg);
  
 }
 
 
-
-#menu{
-  position:absolute;
-  width: 5.5vw;
-  height: 80%;
-  top:7.5vh;
-  left:2vw;
-  opacity:0.5;
-  transition: opacity 0.3s ease-in-out;
-
+#prof_container{
+  position : relative;
+  width: 15%;
+  height: 8%;
+  margin-top:2%;
+  margin-left:auto;
+  margin-right: auto;
+  z-index : 301;
 }
 
-#menu:hover{
-  opacity:1;
-}
-
-
-
-#menu textarea{
-  height: 75vh;
-}
-
-#monBouton{
-  width:100%;
-  height: 5%;
-  text-align: center;
-  background : rgb(189, 146, 97);
-  border: 1px solid black;
-  padding: 2px;
-  display:flex;
-  align-items: center;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  justify-content: center;
-}
-
-
-
-
-#zone_texte{
+#prof{
+  position : absolute;
   width: 100%;
-  height: auto;
-  resize: vertical;
-  border-top-width: 0px;
+  height: 100%;
+  border : 3px solid rgba(46, 24, 11, 0.671);
+  font-size: 1.5vw;
+  /* font-family: 'Manga_temple'; */
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
+
+#nurserie{
+  position:relative;
+  width: 94%;
+  height: 82%;
+  margin-top:1%;
+  margin-left:auto;
+  margin-right:auto;
+  transition : transform 0.5s ease;  
+}
+
+#nurserie.prof_view{
+  transform: rotate(180deg);
+}
+ 
 
 
 
@@ -91,26 +86,34 @@ body{
 
 
 .rectangle{
-  background: whitesmoke;
+  background: rgb(247, 247, 247);
   opacity : 1;
-  border : 2px outset black;
+  border : 1px outset black;
   border-radius: 5px;
-  width:100%;
-  height:100%;
+  /* width:100%; */
+  /* height:100%; */
   display : flex;
   align-items: center;
 
   transition : background 0.2s ease-out;
   transition : box-shadow 0.5s ease-out;
+
+  transition : transform 0.8s ease;  
+}
+
+
+.rectangle.prof_view{
+  transform: rotate(180deg);
+ 
 }
 
 
 .rectangle.ui-draggable-dragging{
   background:rgb(253, 230, 186);
   opacity : 0.8;
-  box-shadow: rgba(32, 46, 65, 0.4) 5px 5px,
-              rgba(32, 46, 65, 0.3) 10px 10px,
-              rgba(32, 46, 65, 0.2) 15px 15px;
+  box-shadow: rgba(32, 46, 65, 0.4) 3px 3px,
+              rgba(32, 46, 65, 0.3) 6px 6px,
+              rgba(32, 46, 65, 0.2) 9px 9px;
 }
 
 
@@ -122,23 +125,8 @@ body{
 
 
 
-
-
-#woodpecker{
-  cursor: pointer;
-  position: absolute;
-  width:3%;
-  left:99.65%;
-  top: -2%;
-  transform: rotate(3deg);
-  /* transition : transform 4s ease-in; */
-}
-
-#woodpecker.is-active{
-  transform: rotate(-30deg);
-}
-
-
+#nurserie .ui-selecting { background: pink ; }
+#nurserie .ui-selected { background: rgb(248, 147, 169); color: #000000; }
 
 
 
@@ -146,7 +134,7 @@ body{
 
 
 /* ////////////////////////////////////////////////////////////////////////// */
-/* ///////////////////// STYLE DES PRENOMS DES LES RECTANGLES ////////////// */
+/* ///////////////////// STYLE DES PRENOMS DANS LES RECTANGLES ////////////// */
 /* //////////////////////////////////////////////////////////////////////// */
 
 .prenom{
@@ -154,16 +142,89 @@ body{
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  font-size: 1.5vw;
+  word-wrap: break-word;
+  /* padding-left: 5px; */
+  /* padding-right: 5px; */
+  /* white-space: normal;  */
+  font-size: 1.3vw;
   text-align: center;
   top:50%;
   transform: translateY(-50%);
+
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+
+.box_number {
+  position : absolute;
+
+  bottom:0.5px;
+  right: 0.5px;
+  margin-top: 0px;
+  margin-bottom : 0px;
+  font-family: 'Manga_temple';
+  font-size:9pt;
+  line-height:9pt;
+  text-align: right;
+
 }
 
 
 
 
 
+/* ////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////// LE PIVERT ///////////////////////// */
+/* //////////////////////////////////////////////////////////////////////// */
+
+#woodpecker{
+  cursor: pointer;
+
+  width:100%;
+
+  z-index : 401;
+
+  transform: rotate(3deg);
+
+}
+
+#woodpecker.is-active{
+  transform: rotate(-30deg);
+}
+#bird_cage{
+  position: absolute;
+  
+  width:3.5%;
+  left:99.4%;
+  top: 0%;
+}
+
+#bird_cage.prof_view{
+   transform:  scaleY(-1); 
+   transition : transform 1s ease;  
+   
+}
+  
+
+
+
+
+
+#actions{
+  position : absolute;
+  top:88vh;
+  left : 50%;
+  transform:  translateX(-50%);
+  width: 60%;
+  height: 5vh;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:2%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 
 /* ///////////////////////////////////////////////// */
@@ -171,11 +232,36 @@ body{
 /* /////////////////////////////////////////////////// */
 
 
+#switch_view{
+  width : 70px;
+  height: 50px;
+  background: linear-gradient(#ecd9d2, #ff4500);
+  border: 3px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius : 50%;
+}
+
+
+
+#bouton_img{
+  width : 200px;
+  background: linear-gradient(#ecd9d2, #ff4500);
+  border: 3px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius : 10%;
+}
+
+
 #class_size{
-	position: absolute;
-  left: 50%;
-	top: 93%;
-  transform: translateX(-50%);
+	position: relative;
+  width: 50%;
+  display : flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -190,7 +276,7 @@ input{
 input[type="number"] {
 
   width: 60px;
-  padding: 5px 5px;
+  padding: 10px 5px;
   border: 1px solid #bbb;
   border-radius: 3px;
 }
@@ -198,8 +284,8 @@ input[type="number"] {
 input[type="range"] {
   appearance: 'none';
   -webkit-appearance: none;
-  margin-right: 15px;
-  width: 500px;
+  margin-right: 10px;
+  width: 70%;
   height: 7px;
   background: rgba(236, 192, 155, 0.6);
   border-radius: 5px;
@@ -283,5 +369,92 @@ input[type="range"]::-ms-track {
   box-shadow: none;
   border: none;
   background: transparent;
+}
+
+
+
+
+
+/* //////////////////////////////////////////////// */
+/* ///////////////// LA ZONE DE TEXTE ///////////// */
+/* //////////////////////////////////////////////// */
+
+
+#menu{
+  position:absolute;
+  width: 8.8vw;
+  height: auto;
+  top:7.5vh;
+  left:1.2vw;
+  opacity:0.5;
+  transition: opacity 0.2s ease-in-out;
+
+}
+
+
+#menu:hover{
+  opacity:1;
+}
+
+
+#monBouton{
+  height: 5%;
+  text-align: center;
+  background : rgb(189, 146, 97);
+  border: 1px solid black;
+  padding: 2px;
+  display:flex;
+  align-items: center;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  justify-content: center;
+}
+
+
+
+
+.editor {
+  display: inline-flex;
+  gap: 10px;
+  font-family: monospace;
+  line-height: 21px;
+  background: #282a3a;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  padding: 10px 10px;
+  overflow: hidden;
+}
+
+.line-numbers {
+  width: 20px;
+  font-family: 'Manga_temple';
+  font-size:12pt;
+  text-align: right;
+
+}
+
+.line-numbers span {
+  counter-increment:  linenumber;
+}
+
+.line-numbers span::before {
+  content: counter(linenumber);
+  display: block;
+  color: #506882;
+}
+
+#zone_texte{
+  width: 100%;
+  line-height: 21px;
+  font-size:10pt;
+  overflow-y: hidden;
+  padding: 0;
+  border: 0;
+  background: #282a3a;
+  color: #FFF;
+  outline: none;
+  resize: none;
 }
 
