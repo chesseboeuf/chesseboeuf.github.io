@@ -5,7 +5,7 @@
 }
 
 
-html, body { margin:0; padding:0; overflow:hidden }
+html, body { margin:0; padding:0; overflow: hidden}
 
 
 body{
@@ -26,12 +26,13 @@ body{
   margin-left:10vw;
   margin-right:auto;
   border-radius: 10px;
-  border: 3px solid rgba(46, 24, 11, 0.671);
-  background: #eeeada65;
+  border: 3px solid rgba(46, 24, 11, 0.774);
+  background: #eeeada67;
   backdrop-filter: blur(5px);
   box-shadow: 25px 0 20px -20px rgba(0, 0, 0, 0.45);
 
   transition : transform 0.5s ease;  
+  z-index:1;
 
 }
 
@@ -109,7 +110,7 @@ body{
 
 
 .rectangle.ui-draggable-dragging{
-  background:rgb(253, 230, 186);
+  background:rgb(255, 255, 255);
   opacity : 0.8;
   box-shadow: rgba(32, 46, 65, 0.4) 3px 3px,
               rgba(32, 46, 65, 0.3) 6px 6px,
@@ -216,7 +217,7 @@ body{
   top:88vh;
   left : 50%;
   transform:  translateX(-50%);
-  width: 60%;
+  width: 90%;
   height: 5vh;
   margin-left:auto;
   margin-right:auto;
@@ -224,6 +225,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index : 0;
 }
 
 
@@ -232,36 +234,14 @@ body{
 /* /////////////////////////////////////////////////// */
 
 
-#switch_view{
-  width : 70px;
-  height: 50px;
-  background: linear-gradient(#ecd9d2, #ff4500);
-  border: 3px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius : 50%;
-}
-
-
-
-#bouton_img{
-  width : 200px;
-  background: linear-gradient(#ecd9d2, #ff4500);
-  border: 3px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius : 10%;
-}
-
 
 #class_size{
 	position: relative;
   width: 50%;
-  display : flex;
+  display : flex; 
   align-items: center;
   justify-content: center;
+
 }
 
 
@@ -374,6 +354,135 @@ input[type="range"]::-ms-track {
 
 
 
+#switch_view{
+  width : 100px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius : 50%;
+  
+  background: linear-gradient(40deg, #7c195591, #352ef7af);
+  cursor: pointer;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-weight: bold;
+}
+
+#switch_view:hover{
+  transform: scale(1.02);
+  outline: 1px solid #000;
+  outline: -webkit-focus-ring-color auto 2px;
+}
+
+
+
+
+#bouton_img{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+  background: linear-gradient(40deg, #7c195591, #352ef7af);
+  cursor: pointer;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-weight: bold;
+}
+
+
+#bouton_img:hover{
+  transform: scale(1.02);
+  outline: 1px solid #000;
+  outline: -webkit-focus-ring-color auto 2px;
+}
+
+
+
+
+
+
+
+/* on ne peut pas mettre simplement display : none car dans ce cas le input de marche plus */
+#file{
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.file-input label{
+  display: block;
+  position: relative;
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+  background: linear-gradient(40deg, #7c195591, #352ef7af);
+  cursor: pointer;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  
+  transition: transform .2s ease-out;
+}
+
+
+input:hover + label
+{
+  transform: scale(1.02);
+  outline: 1px solid #000;
+  outline: -webkit-focus-ring-color auto 2px;
+}
+
+
+
+#export_button{
+  position: relative;
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+  background: linear-gradient(40deg, #7c195591, #352ef7af);
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform .2s ease-out;
+}
+
+
+
+#export_button:hover{
+  transform: scale(1.02);
+  outline: 1px solid #000;
+  outline: -webkit-focus-ring-color auto 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* //////////////////////////////////////////////// */
 /* ///////////////// LA ZONE DE TEXTE ///////////// */
@@ -388,6 +497,7 @@ input[type="range"]::-ms-track {
   left:1.2vw;
   opacity:0.5;
   transition: opacity 0.2s ease-in-out;
+  z-index:0;
 
 }
 
@@ -405,8 +515,8 @@ input[type="range"]::-ms-track {
   padding: 2px;
   display:flex;
   align-items: center;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   justify-content: center;
 }
 
@@ -421,8 +531,8 @@ input[type="range"]::-ms-track {
   background: #282a3a;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   padding: 10px 10px;
   overflow: hidden;
 }

@@ -710,7 +710,7 @@ function updateTexte(){
 	Texte= new Array(Rect.length);
 
 
-	for( i=0; i<  Rect.length; i++){
+	for( i=0; i<Rect.length; i++){
 
 		Texte[i] = document.createElement('div');
 		Texte[i].id = 'prenom' + i.toString();
@@ -735,7 +735,9 @@ textarea.addEventListener('keyup', event => {
 	.join('')
 });
 
+
 textarea.addEventListener('keyup', updateTexte,false);
+
 
 textarea.addEventListener('keydown', event => {
   if (event.key === 'Tab') {
@@ -747,8 +749,6 @@ textarea.addEventListener('keydown', event => {
 	event.preventDefault()
   }
 });
-
-
 
 
 
@@ -891,5 +891,133 @@ $(document).ready(function () {
 
 
 
+///////////////////////////////////////////////////////////////////
+//////////////////// FILE READER //////////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+var classState;
+
+document.querySelector("#file").addEventListener('change', function() {
+
+	if(document.querySelector("#file").files.length == 0) {
+		alert('Error : No file selected');
+		return;
+	}
+
+	// file selected by user
+	let file = document.querySelector("#file").files[0];
+
+	// file name
+	let file_name = file.name;
+	console.log(file_name);
+
+	// file MIME type
+	let file_type = file.type;
+	console.log(file_type);
+
+	// file size in bytes
+	let file_size = file.size;
+	console.log(file_size);
 
 
+	// Reader
+	var vReader = new FileReader();
+	vReader.readAsText(file);
+
+
+
+	vReader.onload = function(pEvent) {
+    // String Input
+    	var vContent = pEvent.target.result;   
+    	// JSON to object
+    	var vJson = JSON.parse(vContent); 
+
+		classState = vJson;  
+		
+		////////////////////////////////////////////////////////////////////////////
+		/////////////////// PRISE EN COMPTE DES NOUVELLES DONNEES //////////////////
+		////////////////////////////////////////////////////////////////////////////
+		for (i=0; i< Rect.length; i++){
+
+			Rect[i].className = '';
+    	    let myclass = classState.eleves[i].class;
+			let size = Object.keys(myclass).length;
+
+			for (j=0; j < size; j++){
+
+				Rect[i].classList.add(myclass[j]);
+
+			}
+
+			if(Rect[i].classList.contains('displayed')){
+				Rect[i].style.display = "block";
+			}else{
+				Rect[i].style.display = "none";
+			}
+		
+			Rect[i].style.left = classState.eleves[i].left;
+			Rect[i].style.top = classState.eleves[i].top;
+		
+
+		}
+
+
+	
+
+	}
+
+
+
+	// 
+
+
+
+	
+});
+
+
+// 
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////  Export data Downloadable JSON File ////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
+function exportToJsonFile(jsonData) {
+	// console.log(jsonData);
+    let dataStr = JSON.stringify(jsonData);
+    let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+
+    let exportFileDefaultName = 'data.json';
+
+    let linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+}
+
+
+
+
+
+document.getElementById('export_button').addEventListener('click', function() {
+
+	var eleves_data = new Array(taille);
+
+	for (i=0; i<Rect.length; i++){
+		let monRect= Rect[i];
+		let mesclass = Object.values(monRect.classList);
+
+
+		eleves_data[i] = {class : mesclass , left : monRect.style.left, top : monRect.style.top};
+	
+	}
+
+
+	var prof_data = {lleft : document.getElementById('prof').style.left, ttop : document.getElementById('prof').style.ttop};
+	var data = {eleves : eleves_data, prof: prof_data};
+	
+	exportToJsonFile(data);
+
+});

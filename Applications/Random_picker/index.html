@@ -15,6 +15,8 @@
     
     </head>
 
+
+    
     <body>
 
 
@@ -70,20 +72,38 @@
         <div id="actions">
 
   
-             <div id=class_size>
+            <div id=class_size>
                  <input type="range" value="32" id="curseur" name="curseur" min="0" max="100" oninput="nombre.value=value">
                  <input type="number" value="32" id="nombre" min="0" max="100"  oninput="curseur.value=value">
             </div>
           
-             <div id="switch_view">
+            <div id="switch_view">
                      Switch
-             </div>
+            </div>
          
          
-             <input id="bouton_img" type="button" value="convert to image">
+            <div id="bouton_img">
+                 Exporter image
+            </div>
+
+            <!------------------------------------------------------------------------------------------>
+            <!-----------------------------------FILE IMPORT AND EXPORT--------------------------------->
+
+            <div id="export_button">
+                Exporter classe
+            </div>
+
+            <div class="file-input">
+              <input type="file" id="file" class="file">
+              <label for="file">Importer classe</label>
+            </div>
+
+
 
         </div>
 
+
+    
 
     </body>
 
