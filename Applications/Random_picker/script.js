@@ -1,27 +1,54 @@
-
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+///////////////////////// VARIABLES GLOBALES /////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 
 
 var xMax=100;  // on travail en pourcentages du parent (#nurserie)
 var yMax=100;
-var cx=xMax/2; //centre
-var cy=yMax/2; //centre
-
-
-
-
 var taille = Number(document.getElementById('curseur').max);
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////
-////////////////////// CREATION DES CELLULES /////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
 
 var Rect = new Array(taille);
 var Numero = new Array(taille);
-var id = new Array(taille)
-var autorisation = new Array(taille);
+var id = new Array(taille);
+
+
+///////////////////////// Variables du pivert ////////////////////////
+// On creer la variable rect_index.
+// Une première valeur lui sera attribuee au premier appel de updateRect (donc au chargement de la page).
+let rect_index;
+var cpt=0;
+
+let indexDeepCopy=-2;
+
+var pivert = document.getElementById('woodpecker');
+
+var audio1 = new Audio('mixkit-message-pop-alert-2354 (mp3cut.net).mp3');
+var audio2 = new Audio('sonic_ring.mp3');
+audio2.volume = 0.01;
+
+
+////////////////////////// Zone de texte /////////////////////////////
+const textarea = document.querySelector('#zone_texte');
+const lineNumbers = document.querySelector('.line-numbers');
+var numberOfLines = 0;
+
+
+var eleve_view =false;
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////// CREATION DES CELLULES DANS LE HTML //////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
 
 for (i=0 ; i<Rect.length ; i++){
 
@@ -32,6 +59,8 @@ for (i=0 ; i<Rect.length ; i++){
 	Rect[i].style.display = "none"; 
 	Rect[i].style.position = 'absolute';
 	Rect[i].classList.add('rectangle');
+	
+	
 	//   Rect[i].classList.add("ui-widget-content");
 	
 
@@ -47,9 +76,10 @@ for (i=0 ; i<Rect.length ; i++){
 }
 
 
-
+//////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 ////////////////////// DEPLACER LES CELLULES /////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 
 for (i=0 ; i<Rect.length ; i++){
@@ -59,26 +89,65 @@ for (i=0 ; i<Rect.length ; i++){
         multiple: true,	
 		stack: '.rectangle', // le rectangle deplacé se place tout en haut de la pile des elements de classe ".rectangle"
 
+		drag: function( event, ui ) {
+				if(eleve_view==true){
+					// cas 1 : une seule cellule est déplacée
+					console.log(ui.position);
+					ui.position.left= $('#nurserie').width() - ui.position.left - $("#rect0").width() ;
+					ui.position.top= $('#nurserie').height() - ui.position.top - $("#rect0").height() ;
+
+					// cas 2 : deplacement après selection d'un groupe de cellules
+			    	let selectedGroup = document.getElementsByClassName('ui-selected displayed');
+				    for (i=0 ; i<selectedGroup.length ; i++){
+						let aSelectedRectId= '#' + selectedGroup[i].id;
+						var lll = ( 100 * parseFloat($(aSelectedRectId).position().left / parseFloat($(aSelectedRectId).parent().width())) ) + "%" ;
+						var ttt = ( 100 * parseFloat($(aSelectedRectId).position().top / parseFloat($(aSelectedRectId).parent().height())) ) + "%" ;
+						$(aSelectedRectId).css("left", lll);
+						$(aSelectedRectId).css("top", ttt);
+					}
+		    	}
+			},
+
+		//////////// Compatibilité avec le RESIZE ///////////////
 		// Par default draggable() convertit left et top en px.
 		// Si on veut les remettre en pourcentage il faut ajouter
 		// La function suivante
-
 		stop: function () {
 
-			// cas 1 : une seule cellule est déplacée
-			var l = ( 100 * parseFloat($(this).position().left / parseFloat($(this).parent().width())) ) + "%" ;
-			var t = ( 100 * parseFloat($(this).position().top / parseFloat($(this).parent().height())) ) + "%" ;
-			$(this).css("left", l);
-			$(this).css("top", t);
+			if(eleve_view==true){
+				// cas 1 : une seule cellule est déplacée
+				var l =   100 *(      $(this).parent().width() -   $(this).position().left - $(this).width()   )    / $(this).parent().width()         + "%" ;
+				var t =   100 *(      $(this).parent().height() -   $(this).position().top - $(this).height()   )    / $(this).parent().height()       + "%" ;
+				$(this).css("left", l);
+				$(this).css("top", t);
 
-			// cas 2 : deplacement après selection d'un groupe de cellules
-			let selectedGroup = document.getElementsByClassName('ui-selected displayed');
-			for (i=0 ; i<selectedGroup.length ; i++){
-				let aSelectedRectId= '#' + selectedGroup[i].id;
-				var lll = ( 100 * parseFloat($(aSelectedRectId).position().left / parseFloat($(aSelectedRectId).parent().width())) ) + "%" ;
-				var ttt = ( 100 * parseFloat($(aSelectedRectId).position().top / parseFloat($(aSelectedRectId).parent().height())) ) + "%" ;
-				$(aSelectedRectId).css("left", lll);
-				$(aSelectedRectId).css("top", ttt);
+				// cas 2 : deplacement après selection d'un groupe de cellules
+				let selectedGroup = document.getElementsByClassName('ui-selected displayed');
+				for (i=0 ; i<selectedGroup.length ; i++){
+					let aSelectedRectId= '#' + selectedGroup[i].id;
+					var lll =  100*( $(aSelectedRectId).parent().width() -  $(aSelectedRectId).position().left  -   $(aSelectedRectId).width   ) / $(aSelectedRectId).parent().width()     +  "%" ;
+					var ttt =  100*( $(aSelectedRectId).parent().height() -  $(aSelectedRectId).position().top  -   $(aSelectedRectId).height   ) / $(aSelectedRectId).parent().height()   +  "%" ;
+					$(aSelectedRectId).css("left", lll);
+					$(aSelectedRectId).css("top", ttt);
+				}
+
+				
+			}else{	
+				// cas 1 : une seule cellule est déplacée
+				var l =     100 *(    $(this).position().left / parseFloat($(this).parent().width())   )      + "%" ;
+				var t =     100 *(    $(this).position().top / parseFloat($(this).parent().height())   )      + "%" ;
+				$(this).css("left", l);
+				$(this).css("top", t);
+
+				// cas 2 : deplacement après selection d'un groupe de cellules
+				let selectedGroup = document.getElementsByClassName('ui-selected displayed');
+				for (i=0 ; i<selectedGroup.length ; i++){
+					let aSelectedRectId= '#' + selectedGroup[i].id;
+					var lll =  100*(     $(aSelectedRectId).position().left / $(aSelectedRectId).parent().width()     )  +  "%" ;
+					var ttt =  100*(     $(aSelectedRectId).position().top / $(aSelectedRectId).parent().height()     )  + "%" ;
+					$(aSelectedRectId).css("left", lll);
+					$(aSelectedRectId).css("top", ttt);
+				}
 			}
 		}
 	});
@@ -86,19 +155,64 @@ for (i=0 ; i<Rect.length ; i++){
 }
 
 
-
-$("#dragcontainer").resizable();
-$("#dragcontainer").draggable(); 
-$("#nurserie").selectable();
 $("#prof").draggable({
 	stack: '.rectangle',
-	containment: "#dragcontainer"
+	containment: "#dragcontainer",
+
+	drag: function( event, ui ) {
+			if(eleve_view==true){
+				// cas 1 : une seule cellule est déplacée
+				 console.log(ui.position);
+				ui.position.left= $('#dragcontainer').width() - ui.position.left - $("#prof").width() ;
+				ui.position.top= $('#dragcontainer').height() - ui.position.top - $("#prof").height() ;
+			}
+		},
+
+	
+
+	stop: function () {
+		if(eleve_view==true){
+			var l =   100 *(      $(this).parent().width() -   $(this).position().left - $(this).width()   )    / $(this).parent().width()         + "%" ;
+			var t =   100 *(      $(this).parent().height() -   $(this).position().top - $(this).height()   )    / $(this).parent().height()       + "%" ;
+			$(this).css("left", l);
+			$(this).css("top", t);
+		
+		}else{		
+			var l =     100 *(    $(this).position().left / parseFloat($(this).parent().width())   )      + "%" ;
+			var t =     100 *(    $(this).position().top / parseFloat($(this).parent().height())   )      + "%" ;
+			$(this).css("left", l);
+			$(this).css("top", t);
+		}
+	}	
 });
 
 
 
 
-///////////// SELECTION AVEC LE BOUTON CTRL /////////////////////////////
+
+$("#dragcontainer").resizable({
+
+	stop: function( event, ui ) {
+
+		var w =     100 *(    $(this).width() / parseFloat($(this).parent().width())   )      + "%" ;
+		var h =     100 *(    $(this).height() / parseFloat($(this).parent().height())   )      + "%" ;
+		$(this).css("width", w);
+		$(this).css("height", h);
+	}
+});
+
+
+$("#dragcontainer").draggable(); 
+
+$("#nurserie").selectable({
+	filter: ".rectangle" // seulement les éléments rectangle sont selectable (pas leur enfants 'prenom' et 'number') 
+  });
+
+
+
+
+
+///////////// SELECTION AVEC LE BOUTON CTRL /////////////////////////
 document.addEventListener('keydown', checkKeyDown);
 document.addEventListener('keyup', checkKeyUp);
 
@@ -113,7 +227,7 @@ function checkKeyDown ( event ) {
 		$(".rectangle").draggable( 'disable' );
 		$("#dragcontainer").draggable( 'disable' );
 
-	} else { ctrlPressed = false; }
+	} else {  /*ctrlPressed = false;*/ }
 
 };
   
@@ -134,40 +248,11 @@ function checkKeyUp ( event ) {
 
 
 
-
-
-
-
-// $( "body" ).keydown(function(event) {
-// 	if (event.ctrlKey) {
-// 		console.log("The CTRL key was pressed!");
-// 		$(".rectangle").draggable( 'disable' );
-
-		
-// 	  } else {
-// 		console.log( "This is an other key");
-// 	  }
-	
-	
-//   });
-
-//   $( "body" ).keyup(function(e) {
-// 	if (e.ctrlKey) {
-// 		console.log("The CTRL key was unpressed!");
-	
-// 	  } else {
-// 		console.log( "This is an other key that was unpressed");
-// 	  }	
-//   });
-
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////// RECTANGLES /////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////// POSITIONNEMENT DES CELLULES /////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 document.getElementById("curseur").addEventListener('input', updateRect,'false');
 document.getElementById("nombre").addEventListener('input', updateRect,'false');
@@ -195,7 +280,7 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 	var margeHorizontale = 0.02*xMax;
 	var margeVerticale = 0.00*yMax;
 
-    var  nbr_petites_lignes= nbr_lignes*nbr_colonnes - L    // petites lignes de taille l-1.
+    var  nbr_petites_lignes= 0;   // petites lignes de taille l-1.
     var nbr_grandes_lignes = nbr_lignes - nbr_petites_lignes;
     
 	// Rect = new Array(L);
@@ -565,22 +650,14 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 
 
 
-
+///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////// FONCTIONNEMENT //////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 
-
-
-
-
-let rect_index;// on creer la variable rect_index. Une valeur lui est attribuee au premier appel de updateRect (donc au chargement de la page).
-let indexDeepCopy=-2;
-var cpt=0;
-
-
-//////////////// intialeState : Mettre le jeu dans son etat initial /////////////////
+// Mettre la classe dans son etat initial /////////////////
 function localInitialState(RRect) { RRect.classList.remove('rectOn')} ; 
  
 function initialState(){
@@ -589,24 +666,7 @@ function initialState(){
 }
 
 
-
-
-////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////// LE PIVERT //////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-
-var pivert = document.getElementById('woodpecker');
-
-var audio1 = new Audio('mixkit-message-pop-alert-2354 (mp3cut.net).mp3');
-var audio2 = new Audio('sonic_ring.mp3');
-audio2.volume = 0.01;
-
-
-
-
-
-
-
+// action du pivert ////////////////////////////////////////////
 function change(){
 
 	// animation du pivert //////////////
@@ -624,9 +684,13 @@ function change(){
 	let test_index= Vois[rect_index][alea];	
 
 	/// on ne retourne pas sur le rectangle précédent //////
-    while(test_index==indexDeepCopy){
-		alea = Math.floor(Math.random()*K);
-		test_index = Vois[rect_index][alea];
+	/// ne pas faire si on a qu'une seule ligne sinon àa bloque ///
+	let LL = document.getElementById("curseur").value;
+	if(LL > 11){
+    	while(test_index==indexDeepCopy){
+			alea = Math.floor(Math.random()*K);
+			test_index = Vois[rect_index][alea];
+		}
 	}
 	////////////////////////////////////////////////////////
 	indexDeepCopy=rect_index;
@@ -650,7 +714,6 @@ function sound_play(){
 
 
 function clickOnWoopecker(){
-
     cpt=0;
 	let ttime=0;
 
@@ -668,8 +731,9 @@ function clickOnWoopecker(){
 
 }
 
-
 document.querySelector("#woodpecker").addEventListener('click',clickOnWoopecker, false);
+
+
 
 
 document.getElementById("curseur").value = 32;
@@ -682,9 +746,12 @@ updateTexte();
 
 
 
-//////////////////////////////////////////////////////////////////////////
-///////////////////////////// ZONE DE TEXTE //////////////////////////////
-//////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////// ZONE DE TEXTE /////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 
 $("#menu").draggable();
 
@@ -720,15 +787,21 @@ function updateTexte(){
 		Rect[i].appendChild(Texte[i]); 
 	}
 
+
+	numberOfLines = textarea.value.split('\n').length;
+
+    lineNumbers.innerHTML = Array(numberOfLines)
+	.fill('<span></span>')
+	.join('')
+
+	document.querySelector('.editor').style.height = 'auto';
+
 }
 
 
-const textarea = document.querySelector('#zone_texte')
-const lineNumbers = document.querySelector('.line-numbers')
 
 textarea.addEventListener('keyup', event => {
-    const numberOfLines = event.target.value.split('\n').length;
-	console.log(numberOfLines);
+    numberOfLines = event.target.value.split('\n').length;
 
     lineNumbers.innerHTML = Array(numberOfLines)
 	.fill('<span></span>')
@@ -753,9 +826,9 @@ textarea.addEventListener('keydown', event => {
 
 
 
-//////////////////////////////////////////////////////////////////////////
-/////////////////////////////////// CURSEUR //////////////////////////////
-//////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////// CURSEURS ////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 
 const rangeInputs = document.getElementById('curseur')
 const numberInput = document.getElementById('nombre')
@@ -780,9 +853,6 @@ window.addEventListener("load", handleInputChange)
 
 
 
-
-
-
 ///////////////////////////////////////////////////////////////////////////////
 /////////////////////// SWITCH VIEW ///////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -792,13 +862,15 @@ document.getElementById('switch_view').addEventListener('click',switch_view_func
 
 function switch_view_function(){
 
+    eleve_view = !eleve_view; // on change de mode
+
 	let allCells = $('.rectangle');
 	let pivert=  document.getElementById('bird_cage');
-	let dragcontainer = document.getElementById('dragcontainer');
+	let rot_cont = document.getElementById('rotation_container');
 
-	if(dragcontainer.classList.contains('prof_view')){
-		dragcontainer.classList.remove('prof_view');
-		pivert.classList.remove('prof_view');
+	if(rot_cont.classList.contains('prof_view')){
+		rot_cont.classList.remove('prof_view');
+		// pivert.classList.remove('prof_view');
 
 		for (i=0; i< allCells.length; i++){
 			allCells[i].classList.remove('prof_view');
@@ -806,8 +878,8 @@ function switch_view_function(){
 		}
 
 	}else{
-		dragcontainer.classList.add('prof_view');
-		pivert.classList.add('prof_view');
+		rot_cont.classList.add('prof_view');
+		// pivert.classList.add('prof_view');
 
 		for (i=0; i< allCells.length; i++){
 			allCells[i].classList.add('prof_view');	
@@ -852,6 +924,7 @@ $(document).ready(function () {
 
 		$('body').css('display', 'flex');
 		$('body').css('align-items', 'center');
+		$('footer').css('display', 'none');
 
 
 
@@ -870,6 +943,7 @@ $(document).ready(function () {
 		});
 
 		$('body').css('display', 'block');
+		$('footer').css('display', 'block');
 
 		$('#dragcontainer').css('box-shadow', '25px 0 20px -20px rgba(0, 0, 0, 0.45)');
 		$('#dragcontainer').css('margin-left', '10vw');
@@ -957,9 +1031,26 @@ document.querySelector("#file").addEventListener('change', function() {
 		
 			Rect[i].style.left = classState.eleves[i].left;
 			Rect[i].style.top = classState.eleves[i].top;
-		
-
+			Rect[i].style.width = classState.eleves[i].width;
+			Rect[i].style.height = classState.eleves[i].height;
+			Rect[i].style.zIndex = classState.eleves[i].altitude;
 		}
+
+
+		textarea.value=classState.prenoms;
+		updateTexte();
+
+
+		document.getElementById('nombre').value = classState.nbr;
+		let monCurseur =  document.getElementById('curseur');
+		monCurseur.value = classState.nbr;
+        
+
+		const mmmin = monCurseur.min;
+  		const mmmax = monCurseur.max;
+  		const vvval = monCurseur.value;
+  
+ 		monCurseur.style.backgroundSize = (vvval - mmmin) * 100 / (mmmax - mmmin) + '% 100%';
 
 
 	
@@ -1010,13 +1101,26 @@ document.getElementById('export_button').addEventListener('click', function() {
 		let mesclass = Object.values(monRect.classList);
 
 
-		eleves_data[i] = {class : mesclass , left : monRect.style.left, top : monRect.style.top};
+		eleves_data[i] = {class : mesclass,
+			             left : monRect.style.left,
+						 top : monRect.style.top,
+						 width : monRect.style.width,
+						 height : monRect.style.height,
+						 altitude : monRect.style.zIndex};
 	
 	}
 
 
-	var prof_data = {lleft : document.getElementById('prof').style.left, ttop : document.getElementById('prof').style.ttop};
-	var data = {eleves : eleves_data, prof: prof_data};
+	var prof_data = {lleft : document.getElementById('prof').style.left,
+		             ttop : document.getElementById('prof').style.ttop
+					};
+
+
+	const nombre_de_cellules = document.getElementById("curseur").value;
+	const texta = document.querySelector('#zone_texte').value;
+
+	
+	var data = {eleves : eleves_data, prof: prof_data, nbr: nombre_de_cellules, prenoms: texta};
 	
 	exportToJsonFile(data);
 

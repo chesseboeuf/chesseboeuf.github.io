@@ -12,12 +12,13 @@
         <script src="jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
         <script src="drag-multiple-ui/dist/jquery-ui.drag-multiple.js"></script>
         <script src="html2canvas.min.js"></script>
-    
+
+        
     </head>
 
 
     
-    <body>
+    <body id="body">
 
 
 
@@ -30,15 +31,18 @@
             </div>
 
 
-            <div id="prof_container">
+            <div id="rotation_container">
+
+ 
                 <div id='prof' class="rectangle">
                     Prof
                 </div>
-            </div>
 
-            <div id="nurserie">
-                     <!-- ici naissent les rectangles  -->
-  
+                <div id="nurserie">
+                         <!-- ici naissent les rectangles  -->
+                
+                </div>
+
             </div>
         </div>
 
@@ -73,8 +77,8 @@
 
   
             <div id=class_size>
-                 <input type="range" value="32" id="curseur" name="curseur" min="0" max="100" oninput="nombre.value=value">
-                 <input type="number" value="32" id="nombre" min="0" max="100"  oninput="curseur.value=value">
+                 <input type="range" value="32" id="curseur" name="curseur" min="0" max="104" oninput="nombre.value=value">
+                 <input type="number" value="32" id="nombre" min="0" max="104"  oninput="curseur.value=value">
             </div>
           
             <div id="switch_view">
@@ -90,7 +94,7 @@
             <!-----------------------------------FILE IMPORT AND EXPORT--------------------------------->
 
             <div id="export_button">
-                Exporter classe
+                 Sauvegarder
             </div>
 
             <div class="file-input">
@@ -103,9 +107,31 @@
         </div>
 
 
+
+
+			<footer>
+				<p>© 2022 C.Chesseboeuf</p>
+			</footer>
+
+
+
+
     
 
     </body>
+
+
+
+
+    <!-- empecher le click droit   
+    <script>
+        jQuery(document).bind("contextmenu", function(e) {
+            e.preventDefault();
+            return false;
+        });
+    </script>
+     fin : empecher le click droit -->  
+
 
 	<script src="script.js"></script>
 

@@ -5,7 +5,26 @@
 }
 
 
-html, body { margin:0; padding:0; overflow: hidden}
+html, body { 
+  margin:0;
+  padding:0;
+  width:100vw;
+  overflow: hidden;
+  user-select: none;
+}
+
+
+footer{
+  position : absolute;
+  bottom: 0.5%;
+  left : 0.5%;
+  font-size: 0.5em;
+  width:20%;
+  /* margin-top: 8vh; */
+  margin-left: auto;
+  margin-right: auto;
+
+}
 
 
 body{
@@ -13,6 +32,7 @@ body{
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 16pt;
   height: 100vh;
+  width: 100vw;
   position: relative;
 }
 
@@ -31,31 +51,34 @@ body{
   backdrop-filter: blur(5px);
   box-shadow: 25px 0 20px -20px rgba(0, 0, 0, 0.45);
 
-  transition : transform 0.5s ease;  
+
   z-index:1;
+  cursor : grab;
+
 
 }
 
-#dragcontainer.prof_view{
-  transform : rotate(180deg);
+#rotation_container{
+  position:absolute;
+  width:100%;
+  height: 100%;
+  transition : transform 0.5s ease;  
+}
+
+
+#rotation_container.prof_view{
+  
+  transform: rotate(180deg);
+}
  
-}
 
-
-#prof_container{
-  position : relative;
-  width: 15%;
-  height: 8%;
-  margin-top:2%;
-  margin-left:auto;
-  margin-right: auto;
-  z-index : 301;
-}
 
 #prof{
   position : absolute;
-  width: 100%;
-  height: 100%;
+  width: 15%;
+  height: 8%;
+  left:42.5%;
+  top:5%;  
   border : 3px solid rgba(46, 24, 11, 0.671);
   font-size: 1.5vw;
   /* font-family: 'Manga_temple'; */
@@ -65,13 +88,15 @@ body{
 }
 
 #nurserie{
-  position:relative;
+  position:absolute;
   width: 94%;
   height: 82%;
-  margin-top:1%;
-  margin-left:auto;
-  margin-right:auto;
+  /* margin-left:auto; */
+  /* margin-right:auto; */
+  left:3%;
+  top:15%; 
   transition : transform 0.5s ease;  
+  cursor:auto;
 }
 
 #nurserie.prof_view{
@@ -87,6 +112,7 @@ body{
 
 
 .rectangle{
+  cursor:grab;
   background: rgb(247, 247, 247);
   opacity : 1;
   border : 1px outset black;
@@ -99,12 +125,13 @@ body{
   transition : background 0.2s ease-out;
   transition : box-shadow 0.5s ease-out;
 
-  transition : transform 0.8s ease;  
+  transition : transform 1s ease;  
 }
 
 
+
 .rectangle.prof_view{
-  transform: rotate(180deg);
+  transform: rotate(-180deg);
  
 }
 
@@ -144,9 +171,6 @@ body{
   margin-left: auto;
   margin-right: auto;
   word-wrap: break-word;
-  /* padding-left: 5px; */
-  /* padding-right: 5px; */
-  /* white-space: normal;  */
   font-size: 1.3vw;
   text-align: center;
   top:50%;
@@ -181,7 +205,6 @@ body{
 
 #woodpecker{
   cursor: pointer;
-
   width:100%;
 
   z-index : 401;
@@ -193,6 +216,7 @@ body{
 #woodpecker.is-active{
   transform: rotate(-30deg);
 }
+
 #bird_cage{
   position: absolute;
   
@@ -210,18 +234,20 @@ body{
 
 
 
+/* //////////////////////////////////////////////////////////////////// */
+/* //////////////////////// BOUTONS ET  CURSEURS ////////////////////// */
+/* //////////////////////////////////////////////////////////////////// */
+
+
 
 
 #actions{
   position : absolute;
-  top:88vh;
-  left : 50%;
-  transform:  translateX(-50%);
+  top:92vh;
+  left : 5%;
   width: 90%;
   height: 5vh;
-  margin-left:auto;
-  margin-right:auto;
-  margin-top:2%;
+  /* margin-top:2%; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -267,9 +293,11 @@ input[type="range"] {
   margin-right: 10px;
   width: 70%;
   height: 7px;
-  background: rgba(236, 192, 155, 0.6);
+  /* background: rgba(236, 192, 155, 0.6); */
+  background:   #1b16a554;
+  /* background: linear-gradient(40deg, #3f0d2b91, #1b16a5af); */
   border-radius: 5px;
-  background-image: linear-gradient(#ff4500, #ff4500);
+  background-image: linear-gradient(#ff44008a, #ff440094);
   background-size: 70% 100%;
   background-repeat: no-repeat;
 }
@@ -284,7 +312,7 @@ input[type="range"]::-webkit-slider-thumb {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background: #ff4500;
+  background: #ff4400;
   cursor: ew-resize;
   box-shadow: 0 0 2px 0 #555;
   transition: all .3s ease-in-out;
@@ -356,13 +384,14 @@ input[type="range"]::-ms-track {
 
 #switch_view{
   width : 100px;
-  height: 50px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius : 50%;
   
-  background: linear-gradient(40deg, #7c195591, #352ef7af);
+  /* background: linear-gradient(40deg, #7c195591, #352ef7af); */
+  background: linear-gradient(40deg, #3f0d2b91, #1b16a5af);
   cursor: pointer;
   box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
   color: #fff;
@@ -385,10 +414,10 @@ input[type="range"]::-ms-track {
   justify-content: center;
   text-align: center;
 
-  width: 200px;
-  height: 50px;
+  width: 180px;
+  height: 45px;
   border-radius: 25px;
-  background: linear-gradient(40deg, #7c195591, #352ef7af);
+  background: linear-gradient(40deg, #3f0d2b91, #1b16a5af);
   cursor: pointer;
   box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
   color: #fff;
@@ -421,10 +450,10 @@ input[type="range"]::-ms-track {
 .file-input label{
   display: block;
   position: relative;
-  width: 200px;
-  height: 50px;
+  width: 180px;
+  height: 45px;
   border-radius: 25px;
-  background: linear-gradient(40deg, #7c195591, #352ef7af);
+  background: linear-gradient(40deg, #3f0d2b91, #1b16a5af);
   cursor: pointer;
   box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
   color: #fff;
@@ -450,10 +479,10 @@ input:hover + label
 
 #export_button{
   position: relative;
-  width: 200px;
-  height: 50px;
+  width: 180px;
+  height: 45px;
   border-radius: 25px;
-  background: linear-gradient(40deg, #7c195591, #352ef7af);
+  background: linear-gradient(40deg, #3f0d2b91, #1b16a5af);
   box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
@@ -493,11 +522,12 @@ input:hover + label
   position:absolute;
   width: 8.8vw;
   height: auto;
-  top:7.5vh;
+  top:5vh;
   left:1.2vw;
   opacity:0.5;
   transition: opacity 0.2s ease-in-out;
   z-index:0;
+  cursor: grab;
 
 }
 
@@ -559,7 +589,8 @@ input:hover + label
   width: 100%;
   line-height: 21px;
   font-size:10pt;
-  overflow-y: hidden;
+  height: auto;
+  overflow-y:hidden;
   padding: 0;
   border: 0;
   background: #282a3a;
