@@ -76,7 +76,7 @@ body{
 #prof{
   position : absolute;
   width: 15%;
-  height: 8%;
+  height: 9%;
   left:42.5%;
   top:5%;  
   border : 3px solid rgba(46, 24, 11, 0.671);
@@ -87,16 +87,102 @@ body{
   align-items: center;
 }
 
+#number_button{
+  position : absolute;
+  bottom:0;
+  left:0;
+  border-radius: 50%;
+  width: 10%;
+  height: 0;
+  padding-bottom: 4.5%;
+  padding-top: 5.5%;
+  border:1px solid black;
+  background-color:white;
+
+  transform : scale(1);
+  transition : transform 0.25s; 
+  cursor : pointer;
+
+  display : flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12pt;
+  font-family: 'Manga_temple';
+}
+
+#number_button:hover {
+  transform : scale(1.3);
+}
+
+
+
+
+#defaut_color_button{
+  position : absolute;
+  top:0;
+  right:0;
+  border-radius: 50%;
+  width: 10%;
+  height: 0;
+  padding-bottom: 10%;
+  border:1px solid black;
+  background-color:white;
+
+  transform : scale(1);
+  transition : transform 0.25s; 
+
+  cursor : pointer;
+
+
+}
+
+#defaut_color_button:hover {
+  transform : scale(1.3);
+}
+
+
+
+
+#color_picker{
+  display: none;
+}
+
+
+#color_front{
+position : absolute;
+bottom:0;
+right:0;
+border-radius: 50%;
+width: 10%;
+height: 0;
+padding-top: 10%;
+background-color:#5696C8;
+border:1px solid black;
+cursor : pointer;
+
+transform : scale(1);
+transition : transform 0.25s; 
+}
+
+
+#color_front:hover {
+  transform : scale(1.3);
+}
+
+
+
+
+
 #nurserie{
   position:absolute;
   width: 94%;
   height: 82%;
-  /* margin-left:auto; */
-  /* margin-right:auto; */
   left:3%;
   top:15%; 
   transition : transform 0.5s ease;  
   cursor:auto;
+  border : 1px dotted black;
+  border-radius: 10px;
 }
 
 #nurserie.prof_view{
@@ -138,7 +224,7 @@ body{
 
 .rectangle.ui-draggable-dragging{
   background:rgb(255, 255, 255);
-  opacity : 0.8;
+  opacity : 0.7;
   box-shadow: rgba(32, 46, 65, 0.4) 3px 3px,
               rgba(32, 46, 65, 0.3) 6px 6px,
               rgba(32, 46, 65, 0.2) 9px 9px;
@@ -147,16 +233,21 @@ body{
 
 
 .rectangle.rectOn{
-	background: rgb(255, 235, 169);
+	border: 5px outset rgb(255, 243, 70);
+  border-radius : 10px;
+  font-weight:bolder;
 }
 
 
 
 
-#nurserie .ui-selecting { background: pink ; }
-#nurserie .ui-selected { background: rgb(248, 147, 169); color: #000000; }
-
-
+#nurserie .ui-selecting {  
+  background : rgb(253, 221, 226) ;
+}
+#nurserie .ui-selected {
+  background : pink ;
+  color: #000000; 
+}
 
 
 

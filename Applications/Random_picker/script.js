@@ -12,6 +12,7 @@ var taille = Number(document.getElementById('curseur').max);
 var Rect = new Array(taille);
 var Numero = new Array(taille);
 var id = new Array(taille);
+Vois = new Array(taille);
 
 
 ///////////////////////// Variables du pivert ////////////////////////
@@ -70,6 +71,20 @@ for (i=0 ; i<Rect.length ; i++){
 
 	Numero[i] = document.createElement('div');
 	document.getElementById(id[i]).appendChild(Numero[i]);
+
+	/////////////////
+	/////////////////
+	/////////////////
+	/////////////////
+	/////////////////
+	/////////////////
+	/////////////////
+	/////////////////
+	/////////////////
+	/////////////////
+	/////////////////
+	/////////////////
+	// A remettre bien 
 	Numero[i].innerHTML = (i+1).toString();
 	Numero[i].classList.add('box_number');
 	// Numero[i].style.position = 'absolute';
@@ -190,6 +205,12 @@ $("#prof").draggable({
 
 
 
+$("#dragcontainer").draggable(); 
+
+
+
+
+
 $("#dragcontainer").resizable({
 
 	stop: function( event, ui ) {
@@ -202,14 +223,30 @@ $("#dragcontainer").resizable({
 });
 
 
-$("#dragcontainer").draggable(); 
+
+
+
 
 $("#nurserie").selectable({
-	filter: ".rectangle" // seulement les éléments rectangle sont selectable (pas leur enfants 'prenom' et 'number') 
+	filter: ".rectangle", // seulement les éléments rectangle sont selectable (pas leur enfants 'prenom' et 'number')
+	selecting: function( event, ui ) {
+		 if (ui.selecting.classList.contains('colorified')){
+		 ui.selecting.style.backgroundImage='linear-gradient(90deg, pink, rgba(255, 192, 203, 0) 50%)';
+		 }else{
+			ui.selecting.style.background='pink';
+		 }
+	},
+
+	unselecting: function( event, ui ) {
+		// ui.unselecting.style.backgroundImage='';
+		if (ui.unselecting.classList.contains('colorified')){
+			ui.unselecting.style.backgroundImage='';
+			}else{
+			   ui.unselecting.style.background='rgb(247,247,247)';
+			}
+	},
+
   });
-
-
-
 
 
 ///////////// SELECTION AVEC LE BOUTON CTRL /////////////////////////
@@ -248,6 +285,74 @@ function checkKeyUp ( event ) {
 
 
 
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+////////////////////// COLORATION DES CELLULES SELECTIONNEES ////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////  
+
+
+
+
+
+
+$("#color_picker").change(function(event) {
+    console.log($(this).val());
+    $("#color_front").css('background-color',$(this).val());
+});
+
+$("#color_front").click(function(event) {
+    $("#color_picker").click();
+});
+
+
+
+
+
+
+var changer_couleur = function(){
+	let couleur = document.getElementById('color_picker').value;
+
+	let selected_cells = $('.ui-selected');
+	for(i=0; i< selected_cells.length; i++){
+		let mySelectedCell = $('#'+selected_cells[i].id);
+		mySelectedCell.css('background',couleur);
+		mySelectedCell.addClass('colorified');
+		$('.ui-selected').css('background-image', 'linear-gradient(90deg, pink, rgba(255, 192, 203, 0) 50%)');
+	}
+
+};
+
+
+
+document.getElementById('color_picker').addEventListener('input',changer_couleur,'false');
+document.getElementById('color_picker').addEventListener('click',changer_couleur,'false');
+
+document.getElementById('defaut_color_button').addEventListener('click',function(){
+
+	let selected_cells = $('.ui-selected');
+	for(i=0; i< selected_cells.length; i++){
+		let mySelectedCell = $('#'+selected_cells[i].id);
+		if(mySelectedCell.hasClass('colorified')){
+			mySelectedCell.css('background','pink');
+			mySelectedCell.removeClass('colorified');
+		}
+
+	}
+
+});
+
+document.getElementById('number_button').addEventListener('click',function(){
+
+	$('.box_number').toggle();
+
+});
+
+
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////// POSITIONNEMENT DES CELLULES /////////////////////////////////////////////////
@@ -255,7 +360,7 @@ function checkKeyUp ( event ) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 document.getElementById("curseur").addEventListener('input', updateRect,'false');
-document.getElementById("nombre").addEventListener('input', updateRect,'false');
+// document.getElementById("nombre").addEventListener('input', updateRect,'false');
 document.getElementById("nombre").addEventListener('change', updateRect,'false');
 
 
@@ -269,27 +374,28 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 	}
 
 	
-	var L = document.getElementById("curseur").value;
+	var LL = document.getElementById("curseur").value;
 
     /////////////////////////////////////////////////////
-    rect_index = Math.floor(L/2);  // pour initialiser la marche aleatoire  (variable globale)
+    rect_index = Math.floor(LL/2);  // pour initialiser la marche aleatoire (variable globale)
     /////////////////////////////////////////////////////
 
-    var nbr_colonnes=Math.ceil(Math.sqrt(L)+2);
-	var nbr_lignes= Math.ceil(L/nbr_colonnes);
+    var nbr_colonnes=Math.min(LL,Math.ceil(Math.sqrt(LL)+2));
+	var nbr_lignes= 0;
+	if(nbr_colonnes==0){
+		nbr_lignes = 0;
+	}else{
+		var nbr_lignes= Math.ceil(LL/nbr_colonnes);
+	}
+	console.log('nombre de colonnes : ' +  nbr_colonnes.toString());
+	console.log('nombre de lignes : ' +  nbr_lignes.toString());
 	var margeHorizontale = 0.02*xMax;
 	var margeVerticale = 0.00*yMax;
-
-    var  nbr_petites_lignes= 0;   // petites lignes de taille l-1.
-    var nbr_grandes_lignes = nbr_lignes - nbr_petites_lignes;
     
-	// Rect = new Array(L);
-    Vois = new Array(L);
+    Vois = new Array(LL);
     var xx = 0;
     var yy = 0;
     
-
-
 	var HrectWidthReducCoef = 0.7;
     var plainWidth = (xMax - 2*margeHorizontale)/nbr_colonnes;  
 	var ww = HrectWidthReducCoef*plainWidth;
@@ -308,16 +414,14 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 
 /////////////////////////////////////////////////////////////////////////////
 //////////// CREATION DES RECTANGLES ET DE LEUR VOISINAGE ///////////////////
-	for (var i = 0; i < L; i++){ 
+	for (var i = 0; i < LL; i++){ 
 
 		$("#"+id[i]).draggable( 'enable' );
 
 		var quotient = Math.floor(i/nbr_colonnes);
 		var remainder = i % nbr_colonnes;
+
 		xx = margeHorizontale +  remainder*plainWidth + HmargeInterieure; 
-
-		// yy = 5 + quotient*yMax/nbr_lignes + 0.1*yMax/nbr_lignes ; 
-
 		yy = margeVerticale +  quotient*plainHeight + VmargeInterieure; 
 
 
@@ -334,296 +438,287 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 ////////////////////////////////////////////////////////////////////////////////
 /////////////  DETERMINATION DES RECTANGLES VOISINS ////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
-		if (i < L - nbr_petites_lignes*(nbr_colonnes-1)){ // grandes lignes 
-
-			var quotient = Math.floor(i/nbr_colonnes);
-			var remainder = i % nbr_colonnes;
+		var quotient = Math.floor(i/nbr_colonnes);
+		var remainder = i % nbr_colonnes;
 
 
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////// IL Y A EXACTEMENT 1 LIGNES ////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		if (nbr_lignes == 1 ){ 
 
-			if (nbr_grandes_lignes == 1 && nbr_petites_lignes!=0){  // traitement speciale si il n y a qu une seule grande ligne et des petites lignes
-
+			if(LL==1){
+				Vois[i]=null;
+			}else{
 				if (  remainder == 0 ){ // coin gauche 
-
-					Vois[i] = [  remainder + 1 , nbr_colonnes  ];
-
+					Vois[i] = [1];
 				}
-
-				if ( remainder == nbr_colonnes-1 ){ // coin  droit
-
-					Vois[i] = [remainder - 1 ,  nbr_colonnes + nbr_colonnes-2];
-
-				}
-
-				if ( remainder != 0   &&  remainder != nbr_colonnes-1 ){ // centre 
-
-					Vois[i] = [ remainder - 1 ,  remainder + 1 , (quotient+1)*(nbr_colonnes) + remainder-1, (quotient+1)*(nbr_colonnes) + remainder ];
-
-				}
-
-
-			}
-
-			if (nbr_grandes_lignes == 1 && nbr_petites_lignes ==0){  // traitement speciale si il n y a qu une seule grande ligne et pas de petite ligne
-
-				if (  remainder == 0 ){ // coin gauche 
-
-					Vois[i] = [  remainder + 1  ];
-
-				}
-
-				if ( remainder == nbr_colonnes-1 ){ // coin  droit
-
+				if ( remainder == LL-1 ){ // coin  droit
 					Vois[i] = [remainder - 1];
-
 				}
-
-				if ( remainder != 0   &&  remainder != nbr_colonnes-1 ){ // centre 
-
+				if ( remainder != 0   &&  remainder != LL-1 ){ // centre 
 					Vois[i] = [ remainder - 1 ,  remainder + 1 ];
-
 				}
-
-
 			}
 
-
-
-
-
-			if (nbr_grandes_lignes != 1 && nbr_petites_lignes!=0){    
-
-				if (quotient != 0  &&  quotient != nbr_grandes_lignes-1 && remainder != 0 &&  remainder != nbr_colonnes-1 ){ // case du centre 
-
-					Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder  , (quotient+1)*nbr_colonnes + remainder + 1 ];
-
-				}
-
-				if (quotient == 0  &&  remainder == 0 ){ // coin sup gauche 
-
-					Vois[i] = [ (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder  , (quotient+1)*nbr_colonnes + remainder + 1 ];
-
-				}
-
-				if (quotient == 0  &&  remainder == nbr_colonnes-1 ){ // coin sup droit
-
-					Vois[i] = [(quotient)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder];
-
-				}
-
-				if (quotient == 0  && remainder != 0 &&  remainder != nbr_colonnes-1 ){ // centre de la ligne sup
-
-					Vois[i] = [(quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder  , (quotient+1)*nbr_colonnes + remainder + 1 ];
-
-				}
-
-
-
-
-				if (quotient == nbr_grandes_lignes-1   && remainder != 0 &&  remainder != nbr_colonnes-1 ){ // centre de la ligne inf 
-
-					Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*(nbr_colonnes) + remainder-1, (quotient+1)*(nbr_colonnes) + remainder  ];
-
-				}
-
-				if (remainder == 0   && quotient != 0 &&  quotient != nbr_grandes_lignes-1 ){ // centre de la colonne gauche
-
-					Vois[i] = [(quotient-1)*nbr_colonnes + remainder , (quotient-1)*nbr_colonnes + remainder +1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder ,  (quotient+1)*nbr_colonnes + remainder + 1 ];
-
-
-				}
-
-				if (remainder == nbr_colonnes-1   && quotient != 0 &&  quotient != nbr_grandes_lignes-1 ){ // centre de la colonne droite
-
-					Vois[i] = [(quotient-1)*nbr_colonnes + remainder-1 , (quotient-1)*nbr_colonnes + remainder  , (quotient)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder -1,  (quotient+1)*nbr_colonnes + remainder  ];
-
-
-				}
-
-				if (quotient == nbr_grandes_lignes - 1  &&  remainder == 0 ){ // coin inf gauche
-
-					Vois[i] = [(quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder + 1, (quotient+1)*nbr_colonnes]; 
-
-
-				}
-
-				if (quotient == nbr_grandes_lignes-1  &&  remainder == nbr_colonnes-1 ){ // coin inf droit  
-
-					Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder , (quotient)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + nbr_colonnes-2 ];
-
-				}
-
-
-			} // fin du if 'il y a plusieur grande ligne et au moins une petite'
-
-			if (nbr_grandes_lignes != 1 && nbr_petites_lignes == 0){    
-
-				if (quotient != 0  &&  quotient != nbr_grandes_lignes-1 && remainder != 0 &&  remainder != nbr_colonnes-1 ){ // case du centre 
-
-					Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder  , (quotient+1)*nbr_colonnes + remainder + 1 ];
-
-				}
-
-				if (quotient == 0  &&  remainder == 0 ){ // coin sup gauche 
-
-					Vois[i] = [ (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder  , (quotient+1)*nbr_colonnes + remainder + 1 ];
-
-				}
-
-				if (quotient == 0  &&  remainder == nbr_colonnes-1 ){ // coin sup droit
-
-					Vois[i] = [(quotient)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder];
-
-				}
-
-				if (quotient == 0  && remainder != 0 &&  remainder != nbr_colonnes-1 ){ // centre de la ligne sup
-
-					Vois[i] = [(quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder  , (quotient+1)*nbr_colonnes + remainder + 1 ];
-
-				}
-
-
-
-
-				if (quotient == nbr_grandes_lignes-1   && remainder != 0 &&  remainder != nbr_colonnes-1 ){ // centre de la ligne inf 
-
-					Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1   ];
-
-				}
-
-				if (remainder == 0   && quotient != 0 &&  quotient != nbr_grandes_lignes-1 ){ // centre de la colonne gauche
-
-					Vois[i] = [(quotient-1)*nbr_colonnes + remainder , (quotient-1)*nbr_colonnes + remainder +1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder ,  (quotient+1)*nbr_colonnes + remainder + 1 ];
-
-
-				}
-
-				if (remainder == nbr_colonnes-1   && quotient != 0 &&  quotient != nbr_grandes_lignes-1 ){ // centre de la colonne droite
-
-					Vois[i] = [(quotient-1)*nbr_colonnes + remainder-1 , (quotient-1)*nbr_colonnes + remainder  , (quotient)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder -1,  (quotient+1)*nbr_colonnes + remainder  ];
-
-
-				}
-
-				if (quotient == nbr_grandes_lignes - 1  &&  remainder == 0 ){ // coin inf gauche
-
-					Vois[i] = [(quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder + 1]; 
-
-
-				}
-
-				if (quotient == nbr_grandes_lignes-1  &&  remainder == nbr_colonnes-1 ){ // coin inf droit  
-
-					Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder , (quotient)*nbr_colonnes + remainder - 1 ];
-
-				}
-
-
-			} // fin if 'il y a plusieurs lignes et pas de petites lignes'
-
-		}  // fin if grande lignes
-
-
-		if (i > L - nbr_petites_lignes*(nbr_colonnes-1)-1 ){ //voisinage pour les rectangles des petites lignes (si il y en a)    
-
-
-			var temp = i - nbr_grandes_lignes*nbr_colonnes;
-			var quotient = Math.floor(temp/(nbr_colonnes-1));
-			var remainder = temp % (nbr_colonnes-1);
-
-
-			if(nbr_petites_lignes==1 && nbr_colonnes-1 > 1){
-				if(remainder==0){
-					Vois[i]= [ i-nbr_colonnes , i-nbr_colonnes+1 , i+1 ];
-				}
-				if(remainder==nbr_colonnes-2){
-					Vois[i]= [ i-nbr_colonnes , i-nbr_colonnes+1 , i-1 ];
-				}
-				if(remainder!=nbr_colonnes-2 && remainder!=0){
-					Vois[i]= [ i-nbr_colonnes , i-nbr_colonnes+1 , i-1 , i+1 ];
-				}
-
-
-			}
-
-			if(nbr_petites_lignes==1 && nbr_colonnes-1 == 1){
-
-				Vois[i]= [ i-nbr_colonnes , i-nbr_colonnes+1 ];
-
-			}
-
-
-			if (nbr_petites_lignes > 1){
-
-				if (quotient == 0  &&  remainder == 0 ){ // coin sup gauche 
-
-					Vois[i]= [ i-nbr_colonnes , i-nbr_colonnes+1 , i+1 , i + nbr_colonnes-1, i + nbr_colonnes-1 + 1  ];
-
-				}
-
-				if (quotient == 0  &&  remainder == nbr_colonnes-2 ){ // coin sup droit
-
-					Vois[i]= [ i-nbr_colonnes , i-nbr_colonnes+1 , i-1 , i + nbr_colonnes-2, i + nbr_colonnes-1   ];
-
-				}
-
-				if (quotient == 0  && remainder != 0 &&  remainder != nbr_colonnes-2 ){ // centre de la ligne sup
-
-					Vois[i]= [ i-nbr_colonnes , i-nbr_colonnes+1 ,i-1 , i+1 , i + nbr_colonnes-2, i + nbr_colonnes-1 , i + nbr_colonnes  ];
-
-				}
-
-				if (quotient == nbr_petites_lignes-1  &&  remainder == 0 ){ // coin inf gauche 
-
-					Vois[i]= [  i - (nbr_colonnes-1), i - (nbr_colonnes-1)+1 ,  i+1   ];
-
-				}
-
-				if (quotient == nbr_petites_lignes-1  &&  remainder == nbr_colonnes-2 ){ // coin inf droit
-
-					Vois[i]= [ i-(nbr_colonnes -1)-1 , i-(nbr_colonnes-1) , i-1  ];
-
-				}
-
-				if (quotient ==  nbr_petites_lignes-1  && remainder != 0 &&  remainder != nbr_colonnes-2 ){ // centre de la ligne inf
-
-					Vois[i]= [ i-(nbr_colonnes -1) -1  , i-(nbr_colonnes - 1) ,  i-(nbr_colonnes-1) +1   ,i-1 , i+1  ];
-
-				}
-
-				if (remainder==0 && quotient != 0 && quotient != nbr_petites_lignes-1 ){ // centre colonne gauche
-
-					Vois[i]= [ i-(nbr_colonnes -1)   ,   i-(nbr_colonnes-1) +1  , i+1 ,  i + nbr_colonnes-1 , i + nbr_colonnes  ];
-
-				}  
-
-				if (remainder==nbr_colonnes-2  && quotient != 0 && quotient != nbr_petites_lignes-1 ){ // centre colonne droite
-
-					Vois[i]= [ i-(nbr_colonnes -1) -1  ,   i-(nbr_colonnes-1)   , i-1 ,  i + nbr_colonnes-2 , i + nbr_colonnes -1  ];
-
-				}                
-
-
-
-
-
-				if (quotient != 0 && quotient != nbr_petites_lignes-1 && remainder != 0 && remainder!= nbr_colonnes-2 ){ // centre global
-
-					Vois[i]= [i-(nbr_colonnes-1) -1 , i-(nbr_colonnes - 1) ,  i-(nbr_colonnes-1)+1   ,i-1 , i+1 , i+nbr_colonnes-2 , i+nbr_colonnes - 1 ,  i+nbr_colonnes  ]
-
-				}
-
-
-			}
-
-		}  
-
+		}
 		
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////// IL Y A EXACTEMENT 2 LIGNES ////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		if (nbr_lignes == 2){  
+
+
+			// LIGNE SUPERIEUR QUAND LA DERNIERE N'EST PAS PLEINE /////////////////////////////////////////////////////////////////////////////////////////////
+			if (quotient == 0  && (LL-1)%nbr_colonnes!==nbr_colonnes-1 ){ 
+
+				if(remainder < (LL-1)%nbr_colonnes){ // avant décalage
+					if(remainder==0){
+						Vois[i] = [(quotient)*nbr_colonnes + 1  , (quotient+1)*nbr_colonnes  , (quotient+1)*nbr_colonnes +1 ];
+					}else{
+						Vois[i] = ['AAAAA' , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder  , (quotient+1)*nbr_colonnes + remainder + 1 ];
+					}	
+				}
+				if(remainder == (LL-1)%nbr_colonnes){ // sur le décalage
+					if(remainder ==0){
+						Vois[i] = [(quotient)*nbr_colonnes + 1  , (quotient+1)*nbr_colonnes ];
+					}else{
+						Vois[i] = [(quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder ];	
+					}
+				}
+				if(remainder == (LL-1)%nbr_colonnes + 1){ // décalage + 1
+					if(remainder==nbr_colonnes-1){
+						Vois[i] = [ (quotient)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder - 1 ];
+					}else{
+						Vois[i] = [(quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1];
+					}
+					
+				}
+				if (remainder > (LL-1)%nbr_colonnes + 1){ // après le décalage +1
+					if(remainder==nbr_colonnes-1){
+						Vois[i] = [(quotient)*nbr_colonnes + remainder - 1];
+					}else{
+						Vois[i] = [(quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 ];
+					}
+				}
+			}
+			
+			// LIGNE SUPERIEURE QUAND LA DERNIERE EST PLEINE /////////////////////////////////////////////////////////////////////////////////////////////
+			if (quotient == 0  && (LL-1)%nbr_colonnes ==nbr_colonnes-1 ){ 
+
+				if(remainder== 0 || remainder == nbr_colonnes-1 ){
+					if(remainder== 0){ //gauche
+						Vois[i] = [(quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder ,  (quotient+1)*nbr_colonnes + remainder + 1 ];
+					}
+					if(remainder == nbr_colonnes-1){ //droite
+						Vois[i] = [(quotient)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder -1,  (quotient+1)*nbr_colonnes + remainder  ];
+					}
+				}else{
+					Vois[i] = [(quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder  , (quotient+1)*nbr_colonnes + remainder + 1 ];
+
+				}
+			}
+
+
+			// LIGNE INFERIEURE /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 			if(quotient == nbr_lignes -1){
+
+				if ((LL-1)%nbr_colonnes==0 || (LL-1)%nbr_colonnes==1 || (LL-1)%nbr_colonnes==nbr_colonnes-1){
+
+					if((LL-1)%nbr_colonnes==0){ // La ligne inférieure comporte un élément
+						Vois[i] = [(quotient-1)*nbr_colonnes  , (quotient-1)*nbr_colonnes + 1];
+						console.log('a');
+						console.log(i.toString()) 
+					}
+	
+					if((LL-1)%nbr_colonnes==1){ // La ligne inférieure comporte deux éléments
+						if (remainder == 0 ){ // gauche
+							Vois[i] = [(quotient-1)*nbr_colonnes  , (quotient-1)*nbr_colonnes + 1 , (quotient)*nbr_colonnes + 1]; 
+		
+						}
+						if (remainder == 1 ){ // droite  
+							Vois[i] = [(quotient-1)*nbr_colonnes  , (quotient-1)*nbr_colonnes + 1 , (quotient-1)*nbr_colonnes + 2, (quotient)*nbr_colonnes ];
+						}
+					}
+	
+					if((LL-1)%nbr_colonnes==nbr_colonnes-1){ // La ligne inférieure est pleine
+	
+						if (remainder == 0 ){ // gauche
+							Vois[i] = [(quotient-1)*nbr_colonnes  , (quotient-1)*nbr_colonnes + 1 , (quotient)*nbr_colonnes + 1]; 
+						}
+	
+						if (remainder != 0 &&  remainder != nbr_colonnes-1 ){ // centre 
+							Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1   ];
+						}
+	
+						if (remainder == nbr_colonnes-1 ){ // coin droit  
+							Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder , (quotient)*nbr_colonnes + remainder - 1 ];
+						}
+					}
+
+				}else{// Ligne inférieure cas général
+
+					if (remainder == 0 ){ // gauche
+						Vois[i] = [(quotient-1)*nbr_colonnes  , (quotient-1)*nbr_colonnes + 1 , (quotient)*nbr_colonnes + 1]; 
+					}
+
+					if (remainder == (LL-1)%nbr_colonnes ){ // coin droit  
+						Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder ,  (quotient-1)*nbr_colonnes + remainder+1, (quotient)*nbr_colonnes + remainder - 1 ];
+					}
+
+					if (remainder != 0 &&  remainder != (LL-1)%nbr_colonnes ){ // centre 
+						Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1   ];
+					}
+				}
+
+			}
+
+		}
+
+
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////// IL Y A PLUS QUE 2 LIGNES //////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		if (nbr_lignes > 2){ 
+
+			// LIGNE SUPERIEURE /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			if (quotient == 0 ){
+				if(remainder==0){ // coin gauche 
+					Vois[i] = [  1 , nbr_colonnes   , nbr_colonnes + 1 ];
+				}
+				if(remainder == nbr_colonnes-1){ // coin  droit
+					Vois[i] = [remainder - 1 ,nbr_colonnes + remainder - 1 , nbr_colonnes + remainder];
+				}
+				if (remainder != 0  &&  remainder != nbr_colonnes-1 ){ // centre 
+					Vois[i] = [ remainder - 1 ,  remainder + 1 , nbr_colonnes + remainder - 1 , nbr_colonnes + remainder  , nbr_colonnes + remainder + 1 ];
+				}
+			}
+
+
+			// AVANT DERNIERE LIGNE QUAND LA DERNIERE N'EST PAS PLEINE /////////////////////////////////////////////////////////////////////////////////////////////
+			if (quotient == nbr_lignes -2  && (LL-1)%nbr_colonnes!==nbr_colonnes-1 ){ 
+				if(remainder < (LL-1)%nbr_colonnes){ // avant décalage
+					if(remainder==0){
+						Vois[i] = [(quotient-1)*nbr_colonnes , (quotient-1)*nbr_colonnes + 1 , (quotient)*nbr_colonnes + 1  , (quotient+1)*nbr_colonnes  , (quotient+1)*nbr_colonnes +1 ];
+					}else{
+						Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder  , (quotient+1)*nbr_colonnes + remainder + 1 ];
+					}	
+				}
+				if(remainder == (LL-1)%nbr_colonnes){ // sur le décalage
+					if(remainder ==0){
+						Vois[i] = [(quotient-1)*nbr_colonnes , (quotient-1)*nbr_colonnes + 1 , (quotient)*nbr_colonnes + 1  , (quotient+1)*nbr_colonnes ];
+					}else{
+						Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder ];	
+					}
+				}
+				if(remainder == (LL-1)%nbr_colonnes + 1){ // décalage + 1
+					if(remainder==nbr_colonnes-1){
+						Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder - 1 ];
+					}else{
+						Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1];
+					}
+					
+				}
+				if (remainder > (LL-1)%nbr_colonnes + 1){ // après le décalage +1
+					if(remainder==nbr_colonnes-1){
+						Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient)*nbr_colonnes + remainder - 1];
+					}else{
+						Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 ];
+					}
+				}
+			}
+
+			// AVANT DERNIERE LIGNE QUAND LA DERNIERE EST PLEINE /////////////////////////////////////////////////////////////////////////////////////////////	
+			if (quotient == nbr_lignes -2  && (LL-1)%nbr_colonnes ==nbr_colonnes-1 ){ 
+
+				if( remainder== 0 || remainder== nbr_colonnes-1 ){
+					if(remainder== 0){ 
+						Vois[i] = [(quotient-1)*nbr_colonnes + remainder , (quotient-1)*nbr_colonnes + remainder +1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder ,  (quotient+1)*nbr_colonnes + remainder + 1 ];
+					}
+					if(remainder== nbr_colonnes-1){ 
+						Vois[i] = [(quotient-1)*nbr_colonnes + remainder-1 , (quotient-1)*nbr_colonnes + remainder  , (quotient)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder -1,  (quotient+1)*nbr_colonnes + remainder  ];
+					}
+				}else{
+					Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder  , (quotient+1)*nbr_colonnes + remainder + 1 ];
+				}
+			}
+
+
+			// LIGNE INFERIEURE /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 			if(quotient == nbr_lignes -1){
+
+
+				if ((LL-1)%nbr_colonnes==0 || (LL-1)%nbr_colonnes==1 || (LL-1)%nbr_colonnes==nbr_colonnes-1){
+					if((LL-1)%nbr_colonnes==0){ // La ligne inférieure comporte un élément
+						Vois[i] = [(quotient-1)*nbr_colonnes  , (quotient-1)*nbr_colonnes + 1]; 
+					}
+
+					if((LL-1)%nbr_colonnes==1){ // La ligne inférieure comporte deux éléments
+						if (remainder == 0 ){ // gauche
+							Vois[i] = [(quotient-1)*nbr_colonnes  , (quotient-1)*nbr_colonnes + 1 , (quotient)*nbr_colonnes + 1]; 
+						}
+						if (remainder == 1 ){ // droite  
+							Vois[i] = [(quotient-1)*nbr_colonnes  , (quotient-1)*nbr_colonnes + 1 , (quotient-1)*nbr_colonnes + 2, (quotient)*nbr_colonnes ];
+						}
+					}
+
+					if((LL-1)%nbr_colonnes==nbr_colonnes-1){ // La ligne inférieure est pleine
+
+						if (remainder == 0 ){ // gauche
+							Vois[i] = [(quotient-1)*nbr_colonnes  , (quotient-1)*nbr_colonnes + 1 , (quotient)*nbr_colonnes + 1]; 
+						}
+
+						if (remainder != 0 &&  remainder != nbr_colonnes-1 ){ // centre 
+							Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1   ];
+						}
+
+						if (remainder == nbr_colonnes-1 ){ // coin droit  
+							Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder , (quotient)*nbr_colonnes + remainder - 1 ];
+						}
+					}
+				}else{
+					// Ligne inférieure cas général
+
+					if (remainder == 0 ){ // gauche
+						Vois[i] = [(quotient-1)*nbr_colonnes  , (quotient-1)*nbr_colonnes + 1 , (quotient)*nbr_colonnes + 1]; 
+					}
+
+					if (remainder == (LL-1)%nbr_colonnes ){ // coin droit  
+						Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder ,  (quotient-1)*nbr_colonnes + remainder+1, (quotient)*nbr_colonnes + remainder - 1 ];
+					}
+
+					if (remainder != 0 &&  remainder != (LL-1)%nbr_colonnes ){ // centre 
+						Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1   ];
+					}
+				}
+
+			}
+
+
+            /////////////////////////////////////////////////// cas général ///////////////////////////////////////////////////////
+			if (quotient > 0  &&  quotient < nbr_lignes-2 && remainder != 0 &&  remainder != nbr_colonnes-1 ){ // case du centre 
+				Vois[i] = [(quotient-1)*nbr_colonnes + remainder - 1 , (quotient-1)*nbr_colonnes + remainder  , (quotient-1)*nbr_colonnes + remainder + 1 , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder  , (quotient+1)*nbr_colonnes + remainder + 1 ];
+			}
+
+
+			if (remainder == 0   && quotient > 0 &&  quotient < nbr_lignes-2 ){ // centre de la colonne gauche
+				Vois[i] = [(quotient-1)*nbr_colonnes + remainder , (quotient-1)*nbr_colonnes + remainder +1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder ,  (quotient+1)*nbr_colonnes + remainder + 1 ];
+			}
+			if (remainder == nbr_colonnes-1   && quotient > 0 &&  quotient < nbr_lignes-2 ){ // centre de la colonne droite
+				Vois[i] = [(quotient-1)*nbr_colonnes + remainder-1 , (quotient-1)*nbr_colonnes + remainder  , (quotient)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder -1,  (quotient+1)*nbr_colonnes + remainder  ];
+			}
+
+		} 
+
+
+
+
+
+
 	} // fin boucle for
 
     initialState();
 	updateTexte();
-
 
 } // FIN de la fonction updateRect
 
@@ -650,20 +745,26 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 
 
 
-///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-///////////////////////// FONCTIONNEMENT //////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// FONCTIONNEMENT ///////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 // Mettre la classe dans son etat initial /////////////////
-function localInitialState(RRect) { RRect.classList.remove('rectOn')} ; 
+function localInitialState(RRect) { 
+	RRect.classList.remove('rectOn');
+	RRect.addEventListener('click', function(){
+		RRect.classList.remove('rectOn');
+	});
+} 
  
 function initialState(){
     cpt = 0;
 	Rect.forEach(localInitialState);
 }
+
 
 
 // action du pivert ////////////////////////////////////////////
@@ -921,6 +1022,7 @@ $(document).ready(function () {
 		$('#dragcontainer').css('margin-right', 'auto');
 
 		$('#dragcontainer').css('margin-top', '0px');
+		$('#nurserie').css('border', '0px');
 
 		$('body').css('display', 'flex');
 		$('body').css('align-items', 'center');
@@ -935,7 +1037,7 @@ $(document).ready(function () {
 			var anchorTag = document.createElement("a");
 			document.body.appendChild(anchorTag);
 			// document.getElementById("previewImg").appendChild(canvas);
-			anchorTag.download = "filename.jpg";
+			anchorTag.download = "maclasse.jpg";
 			anchorTag.href = canvas.toDataURL();
 			anchorTag.target = '_blank';
 			anchorTag.click();
@@ -949,6 +1051,9 @@ $(document).ready(function () {
 		$('#dragcontainer').css('margin-left', '10vw');
 		$('#dragcontainer').css('margin-right', 'auto');
 		 $('#dragcontainer').css('margin-top', '5vh');
+
+		 $('#nurserie').css('border', '1px dotted black');
+
 
 		$('#menu').css('display' , 'block');
 		$('#actions').css('display' , 'flex');
@@ -1053,17 +1158,17 @@ document.querySelector("#file").addEventListener('change', function() {
  		monCurseur.style.backgroundSize = (vvval - mmmin) * 100 / (mmmax - mmmin) + '% 100%';
 
 
-	
+		 document.getElementById('prof').style.left = classState.prof.lleft;
+		 document.getElementById('prof').style.top = classState.prof.ttop;
+		 document.getElementById('prof').style.zIndex = classState.prof.altitude;
+		
+
+		//  $('#prof').css('left', classState.prof.lleft);
+		//  $('#prof').css('top', classState.prof.ttop);
 
 	}
 
-
-
-	// 
-
-
-
-	
+	// 	
 });
 
 
@@ -1080,7 +1185,7 @@ function exportToJsonFile(jsonData) {
     let dataStr = JSON.stringify(jsonData);
     let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
 
-    let exportFileDefaultName = 'data.json';
+    let exportFileDefaultName = 'maclasse.json';
 
     let linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
@@ -1112,7 +1217,8 @@ document.getElementById('export_button').addEventListener('click', function() {
 
 
 	var prof_data = {lleft : document.getElementById('prof').style.left,
-		             ttop : document.getElementById('prof').style.ttop
+		             ttop : document.getElementById('prof').style.top,
+					 altitude :  document.getElementById('prof').style.zIndex
 					};
 
 
@@ -1125,3 +1231,7 @@ document.getElementById('export_button').addEventListener('click', function() {
 	exportToJsonFile(data);
 
 });
+
+
+
+

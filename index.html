@@ -76,22 +76,21 @@
 
 					<div class="mybox profs">
 						<h3>
-							Enseignants
+							Enseignants et autres utilisateurs
 						</h3>
 
-							Vous pouvez utiliser comme bon vous semble tous les documents que vous trouverez sur ce site.				
+						<p>
+							Vous pouvez utiliser comme bon vous semble tous les documents que vous trouverez sur ce site, ceci en dehors de toute utilisation commerciale.
+						</p>
+						<p>
+							Si vous reprenez sur votre propre site les documents ou les applications présentés ici, merci d'en préciser l'origine.
+						</p>	
+							
 
+
+							
 
 						<p>
-							Attention cependant :
-							<ul>
-								<li> Le programme n'est pas encore complet, en particulier au lycée. 
-									 Bien que TZR depuis plusieurs années, je n'ai pas encore eu tous les niveaux
-								</li>
-								<li> 
-									Des erreurs sont encore présentes dans les documents.
-								</li>
-							</ul>
 						</p>
 
 
@@ -111,14 +110,13 @@
 
 					</h3>
 
-					Je parle toujours un peu du jeu de Hex à mes élèves. Cela peut mener à l'organisation d'un tournois en classe ou dans l'établissement.
-					Vous trouverez ici quelques ressources autour de ce jeu captivant.
+					Vous trouverez sur ce site quelques ressources autour du jeu de Hex :
 
 					<p>
 
 						<ul>
 							<li>
-								Un plateau interactif codé en Javascript (cliquer sur l'image). Il n'y a pas encore d'IA mais cela viendra un jour.
+								Un plateau interactif (cliquer sur l'image). Il n'y a pas encore d'IA mais cela viendra un jour...
 							</li>
 
 							<li>
@@ -139,7 +137,7 @@
 				<div class="mybox applications">	
 
 					<h3>
-						Programmation
+						Contenus numériques et programmation
 					<img class="logo_js" src="Images/logo_js_2.png">
 					<img class="logo_py" src="Images/logo_py.png">
 					<img class="logo_geo" src="Images/logo_geo.png">
@@ -148,12 +146,25 @@
 					</h3>
 
 
-					J'utilise aussi ce site pour garder à disposition les applications que j'utilise parfois en cours.
+					J'utilise aussi ce site pour avoir à disposition les contenus numériques que j'utilise en cours.
+
 
 					<p>
-						Il y a bien sûre des applications issues du trio scratch, geogebra, python, mais aussi des applications Javascript
-						qui ont l'avantage de pouvoir être executées partout (il suffit d'un moteur de recherche).
+
+						<ul>
+							<li>
+								Il y a bien sûre des contenus issues du trio Scratch, Geogebra, Python. Ceux-ci s'inscrivent directement dans le programme de l'éducation nationale.
+							</li>
+
+							<li>
+								Il y a également quelques applications Javascript que j'ai développées pour un usage personnel, en espérant que quelques collègues y trouvent un intérêt. Les applications Javascript ont l'avantage de pouvoir être executées partout (un moteur de recherche suffit).
+							</li>
+
+
+						</ul>
+
 					</p>
+
 
 				</div>
 
@@ -975,13 +986,40 @@
 
 
 					<p>
-						Le jeu de Hex est un jeu de société abstrait pour deux joueurs.
+						Le jeu de Hex est un jeu de stratégie abstrait pour deux joueurs.
 						Il se joue sur un plateau en forme de losange dont les cases sont hexagonales. 
-						Il fut inventé de manière indépendante par Piet Hein en 1942 et John Nash en 1948.
+						J'ai développé cette application pour illustrer quelques techniques de jeu en classe. Elle permet également de jouer à deux avec un ordinateur ou un téléphone.
+					
 					</p>
 
-
 					<p>
+						L'ajout d'une IA n'est pas une partie facile car la taille du plateau de jeu exclu tout utilisation directe d'un algorithme minimax.
+						Néanmoins, cela devrait pouvoir se faire car beaucoup de ressources sont aujourd'hui librement disponibles sur ce sujet : 
+
+						<ul>
+							<li>
+								La section
+								<a href="https://www.hexwiki.net/index.php/Computer_Hex#AI_techniques_used_in_Hex">
+									 'Computer Hex' 
+								</a>	
+								du site hexwiki.net.					
+							</li>
+
+							<li>
+								Un article de référence :
+								<a href="MesDocuments/Vadim V. Anshelevich.pdf">
+									 Vadim V.Anshelevich : The Game of Hex, an automatic theorem proving approach to game programming.
+								</a>
+							</li>
+						</ul>
+						
+
+
+
+					</p>
+					
+
+					<p class="texte_a_droite">
 						Cliquer sur l'image pour accèder au plateau interactif.
 					</p>
 
@@ -997,7 +1035,7 @@
 
 					<h3>
 
-						Choix aléatoire
+						Random picker
 
 						<a href="Applications/Random_picker/index.html">
 							<img id="woodpecker" src="Images/woodpecker.png" alt="pivert">
@@ -1007,14 +1045,60 @@
 
 
 					<p>
-						Quand on est prof il arrive souvent que l'on doivent choisir un élève dans la classe. Pour cela on peut s'en remettre au hasard (mais pas toujours).
+					À l'origine cette application me servait simplement à choisir au hasard et de manière ludique un nom dans une liste (la liste des élèves de la classe).
+
 					</p>
 
 					<p>
-						J'ai codé une application javascript permettant de choisir au hasard un élément dans une liste.
+						Elle permet toujours de le faire (en cliquant sur le pivert) mais avec le temps j'ai ajouté plusieurs fonctionnalités. 
+						Aujourd'hui elle me sert surtout à gérer mon plan de classe ou à animer des travaux de groupe. 
 					</p>
 
 					<p>
+						Consulté l'aide ci-dessous pour prendre en main l'application :
+					</p>
+
+					<p>
+					<div id="random_picker_help">
+
+						<p>
+							<span class="list_number">1.</span>
+                            Choisir le nombre d'élèves dans votre classe (avec le curseur).
+						</p>
+						<p>
+							<span class="list_number">2.</span>
+							Écrire la liste des prénoms. Si vous copier/coller une liste veillez à ce que vos prénoms soient séparés par un retour à la ligne.
+						</p>
+						<p>
+							<span class="list_number">3.</span>
+							Vous pouvez selectionner un groupe de cellules en les entourant à la souris ou en maintenant la touche CTRL du clavier et en cliquant sur les cellules à grouper.
+						</p>
+						<p>
+							<span class="list_number">4.</span>
+							Vous pouver déplacer les cellules individuellement ou en groupe.
+						</p>
+
+						<p>
+							<span class="list_number">5.</span>
+							Vous pouver colorer les cellules individuellement ou en groupe (l'outil 'couleur' est sur le bureau du prof).
+						</p>
+
+						<p>
+							<span class="list_number">6.</span>
+							À tout moment vous pouvez 'switcher' entre la vue prof et la vue élève.
+						</p>
+
+						<p>
+							<span class="list_number">7.</span>
+							À tout moment vous pouvez sauvegarder l'état de votre classe soit sous la forme du image 'maclasse.jpg' soit sous la forme d'une fichier 'maclass.json' qu'il faudra importer pour retrouver votre classe dans l'état ou vous l'avez laissé.
+						</p>
+
+					</div>	
+					</p>
+
+
+
+					<p class="texte_a_droite">
 						Cliquer sur le pivert pour accèder à l'application.
 					</p>
 
@@ -1040,12 +1124,11 @@
 				<p>
 					Chessboardjs est une application Javascript mise à disposition librement sur le site <a href='https://chessboardjs.com'> chessboardjs.com </a>.
 					Elle consiste en un plateau interactif permettant de positionner des pièces sur un échiquier.	
-					L'application est excellente et comme le dit l'accroche du site chessboardjs est " The easiest way to embed a chess board on your site".
-					Néanmoins il ne s'agit en aucun cas d'une application permettant de jouer aux échecs : chessboardjs ne connaît pas les règles des échec et, a fortioris, ne comporte pas d'IA calculant le coup à jouer.  
+					L'application est excellente mais il faut préciser qu'il ne s'agit en aucun cas d'une application permettant de "jouer" aux échecs : chessboardjs ne connaît pas les règles des échec et, a fortioris, ne comporte pas d'IA calculant le coup à jouer.  
 				
 				</p>
 
-				<p>
+				<p class="texte_a_droite">
 					Cliquer sur la reine pour accèder au plateau intéractif 
 				</p>
 

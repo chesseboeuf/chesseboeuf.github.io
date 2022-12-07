@@ -726,6 +726,19 @@ h1{
 
 
 
+#random_picker_help{
+    margin-left: 5%;
+}
+
+#random_picker_help .list_number{
+    font-size: 15pt;
+    font-weight: 900;
+}
+
+.texte_a_droite{
+    text-align: right;
+}
+
 /*************************** RESPONSIVE DE LA PAGE APPLICATIONS *******************************/
 /*********************************************************************************************/
 
