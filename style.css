@@ -1,3 +1,8 @@
+@font-face {
+	font-family: 'Manga_temple';
+	src: url('Applications/Random_picker/Fonts/manga_temple/mangat.ttf') format('truetype')
+
+}
 /***************************************************************************************************/
 /******************************** RESET des propriétés du navigateur (ALL PAGES) *******************************/
 /***************************************************************************************************/
@@ -272,14 +277,20 @@ h1{
 }
 
 
- #accueil .mybox{
-    overflow: auto;  /* la box s'agrandit pour accueillir l'image (qui est plus haute que le texte) */
+#accueil .mybox{
+    overflow:hidden;  /* la box s'agrandit pour accueillir l'image (qui est plus haute que le texte) */
+    overflow-x:hidden;
 } 
 
 #accueil_hex_board{
     max-width: 20%;
     height: auto;
     float: right;
+    transition : transform 0.25s ease;
+}
+
+#accueil_hex_board:hover{
+    transform: scale(1.1);   
 }
 
 
@@ -703,6 +714,7 @@ h1{
 #applications .mybox{
     margin-top: 2vh;
     overflow: auto;  /* la box s'agrandit pour accueillir l'image (qui est plus haute que le texte) */
+    overflow-x: hidden;
 } 
 
 
@@ -710,28 +722,51 @@ h1{
     max-width: 20%;
     height: auto;
     float: right;
+    transition : transform 0.25s ease;
 }
+
+#hex_board:hover{
+    transform : scale(1.1);    
+}
+
+
 
 #woodpecker{
     width: 10%;
     height: auto;
     float: right;
+    transition : transform 0.25s ease;
+}
+
+#woodpecker:hover{
+    transform : scale(1.1);    
 }
 
 #white_queen{
     width: 10%;
     height: auto;
     float: right;
+    transition : transform 0.25s ease;
 }
 
+#white_queen:hover{
+    transform : scale(1.1);    
+}
 
 
 #random_picker_help{
     margin-left: 5%;
 }
 
+#random_picker_help .help_item{
+    margin: 10px;
+}
+
+
+
 #random_picker_help .list_number{
-    font-size: 15pt;
+    margin-right: 10px;
+    font-size: 16pt;
     font-weight: 900;
 }
 

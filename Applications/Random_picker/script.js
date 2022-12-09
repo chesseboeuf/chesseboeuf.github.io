@@ -1,3 +1,11 @@
+$(window).on('load', function (e) {
+
+    $(body).fadeIn(1000,function(){});	
+});
+
+
+
+
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// VARIABLES GLOBALES /////////////////////////////////////
@@ -36,7 +44,8 @@ const lineNumbers = document.querySelector('.line-numbers');
 var numberOfLines = 0;
 
 
-var eleve_view =false;
+var eleve_view =true; // la vue par défaut est la vue élève.
+var number_visible = true // au début, les numero de cellules sont visibles 
 
 
 
@@ -105,7 +114,7 @@ for (i=0 ; i<Rect.length ; i++){
 		stack: '.rectangle', // le rectangle deplacé se place tout en haut de la pile des elements de classe ".rectangle"
 
 		drag: function( event, ui ) {
-				if(eleve_view==true){
+				if(eleve_view==false){
 					// cas 1 : une seule cellule est déplacée
 					console.log(ui.position);
 					ui.position.left= $('#nurserie').width() - ui.position.left - $("#rect0").width() ;
@@ -129,7 +138,7 @@ for (i=0 ; i<Rect.length ; i++){
 		// La function suivante
 		stop: function () {
 
-			if(eleve_view==true){
+			if(eleve_view==false){
 				// cas 1 : une seule cellule est déplacée
 				var l =   100 *(      $(this).parent().width() -   $(this).position().left - $(this).width()   )    / $(this).parent().width()         + "%" ;
 				var t =   100 *(      $(this).parent().height() -   $(this).position().top - $(this).height()   )    / $(this).parent().height()       + "%" ;
@@ -175,7 +184,7 @@ $("#prof").draggable({
 	containment: "#dragcontainer",
 
 	drag: function( event, ui ) {
-			if(eleve_view==true){
+			if(eleve_view==false){
 				// cas 1 : une seule cellule est déplacée
 				 console.log(ui.position);
 				ui.position.left= $('#dragcontainer').width() - ui.position.left - $("#prof").width() ;
@@ -186,7 +195,7 @@ $("#prof").draggable({
 	
 
 	stop: function () {
-		if(eleve_view==true){
+		if(eleve_view==false){
 			var l =   100 *(      $(this).parent().width() -   $(this).position().left - $(this).width()   )    / $(this).parent().width()         + "%" ;
 			var t =   100 *(      $(this).parent().height() -   $(this).position().top - $(this).height()   )    / $(this).parent().height()       + "%" ;
 			$(this).css("left", l);
@@ -346,6 +355,7 @@ document.getElementById('defaut_color_button').addEventListener('click',function
 document.getElementById('number_button').addEventListener('click',function(){
 
 	$('.box_number').toggle();
+	number_visible = !number_visible;
 
 });
 
@@ -387,8 +397,7 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 	}else{
 		var nbr_lignes= Math.ceil(LL/nbr_colonnes);
 	}
-	console.log('nombre de colonnes : ' +  nbr_colonnes.toString());
-	console.log('nombre de lignes : ' +  nbr_lignes.toString());
+
 	var margeHorizontale = 0.02*xMax;
 	var margeVerticale = 0.00*yMax;
     
@@ -527,8 +536,7 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 
 					if((LL-1)%nbr_colonnes==0){ // La ligne inférieure comporte un élément
 						Vois[i] = [(quotient-1)*nbr_colonnes  , (quotient-1)*nbr_colonnes + 1];
-						console.log('a');
-						console.log(i.toString()) 
+	
 					}
 	
 					if((LL-1)%nbr_colonnes==1){ // La ligne inférieure comporte deux éléments
@@ -971,7 +979,6 @@ function switch_view_function(){
 
 	if(rot_cont.classList.contains('prof_view')){
 		rot_cont.classList.remove('prof_view');
-		// pivert.classList.remove('prof_view');
 
 		for (i=0; i< allCells.length; i++){
 			allCells[i].classList.remove('prof_view');
@@ -980,7 +987,6 @@ function switch_view_function(){
 
 	}else{
 		rot_cont.classList.add('prof_view');
-		// pivert.classList.add('prof_view');
 
 		for (i=0; i< allCells.length; i++){
 			allCells[i].classList.add('prof_view');	
@@ -1015,6 +1021,11 @@ $(document).ready(function () {
 		$('#actions').css('display' , 'none');
 		$('#woodpecker').css('display' , 'none');
 		$('.box_number').css('display' , 'none');
+
+		$('#number_button').css('display' , 'none');
+		$('#color_front').css('display' , 'none');
+		$('#defaut_color_button').css('display' , 'none');
+
 
 
 		$('#dragcontainer').css('box-shadow', 'none');
@@ -1057,8 +1068,16 @@ $(document).ready(function () {
 
 		$('#menu').css('display' , 'block');
 		$('#actions').css('display' , 'flex');
-		$('.box_number').css('display' , 'block');
 		$('#woodpecker').css('display' , 'block');
+
+		$('#number_button').css('display' , 'flex');
+		$('#color_front').css('display' , 'block');
+		$('#defaut_color_button').css('display' , 'block');
+
+		if(number_visible){
+			$('.box_number').css('display' , 'block');
+		}
+
 
 	});
 
@@ -1116,8 +1135,11 @@ document.querySelector("#file").addEventListener('change', function() {
 		////////////////////////////////////////////////////////////////////////////
 		/////////////////// PRISE EN COMPTE DES NOUVELLES DONNEES //////////////////
 		////////////////////////////////////////////////////////////////////////////
+
+		// mise a jour des cellules eleves
 		for (i=0; i< Rect.length; i++){
 
+			let monRect= Rect[i];
 			Rect[i].className = '';
     	    let myclass = classState.eleves[i].class;
 			let size = Object.keys(myclass).length;
@@ -1139,18 +1161,26 @@ document.querySelector("#file").addEventListener('change', function() {
 			Rect[i].style.width = classState.eleves[i].width;
 			Rect[i].style.height = classState.eleves[i].height;
 			Rect[i].style.zIndex = classState.eleves[i].altitude;
+			$('#'+monRect.id).css('background-color',classState.eleves[i].backgroundColor);
+
+
+			// on ne s'intéresse pas à ceux qui étaient selectionnés
+			Rect[i].classList.remove('ui-selected');
+			$('#'+monRect.id).css('background-image','');
+
 		}
 
 
+		// mise a jour de la zone de texte
 		textarea.value=classState.prenoms;
 		updateTexte();
 
 
+		// mise a jour du curseur
 		document.getElementById('nombre').value = classState.nbr;
 		let monCurseur =  document.getElementById('curseur');
 		monCurseur.value = classState.nbr;
         
-
 		const mmmin = monCurseur.min;
   		const mmmax = monCurseur.max;
   		const vvval = monCurseur.value;
@@ -1158,17 +1188,37 @@ document.querySelector("#file").addEventListener('change', function() {
  		monCurseur.style.backgroundSize = (vvval - mmmin) * 100 / (mmmax - mmmin) + '% 100%';
 
 
+		// mise a jour de la cellule prof
 		 document.getElementById('prof').style.left = classState.prof.lleft;
 		 document.getElementById('prof').style.top = classState.prof.ttop;
 		 document.getElementById('prof').style.zIndex = classState.prof.altitude;
+
+
+		 //mise a jour de la vue
+
+		 if(classState.eleve_view){
+			document.getElementById('prof').classList.remove('prof_view');
+			document.getElementById('rotation_container').classList.remove('prof_view');
+			for (i=0; i< Rect.length; i++){
+				Rect[i].classList.remove('prof_view');
+			}
+			eleve_view = true;
+		 }else{
+			document.getElementById('prof').classList.add('prof_view');
+			document.getElementById('rotation_container').classList.add('prof_view');
+			for (i=0; i< Rect.length; i++){
+				Rect[i].classList.add('prof_view');
+			}
+			eleve_view = false;
+		 }
+
+
 		
-
-		//  $('#prof').css('left', classState.prof.lleft);
-		//  $('#prof').css('top', classState.prof.ttop);
-
 	}
 
 	// 	
+
+	document.getElementById('file').value = null;
 });
 
 
@@ -1206,27 +1256,43 @@ document.getElementById('export_button').addEventListener('click', function() {
 		let mesclass = Object.values(monRect.classList);
 
 
+
+		if(monRect.classList.contains('ui-selected') && !monRect.classList.contains('colorified')){
+			$('#'+ monRect.id).css('background-color' , 'rgb(247,247,247)');
+		}
+
 		eleves_data[i] = {class : mesclass,
 			             left : monRect.style.left,
 						 top : monRect.style.top,
 						 width : monRect.style.width,
 						 height : monRect.style.height,
+						 backgroundColor :  $('#'+ monRect.id).css('background-color'),
 						 altitude : monRect.style.zIndex};
+
+
+		if(monRect.classList.contains('ui-selected') && !monRect.classList.contains('colorified')){
+			$('#'+ monRect.id).css('background-color' , 'pink');
+		}
 	
 	}
 
 
-	var prof_data = {lleft : document.getElementById('prof').style.left,
+
+	var prof_data = {class : Object.values(document.getElementById('prof').classList),
+		             lleft : document.getElementById('prof').style.left,
 		             ttop : document.getElementById('prof').style.top,
 					 altitude :  document.getElementById('prof').style.zIndex
 					};
+
+	var view_data= eleve_view;
+	
 
 
 	const nombre_de_cellules = document.getElementById("curseur").value;
 	const texta = document.querySelector('#zone_texte').value;
 
 	
-	var data = {eleves : eleves_data, prof: prof_data, nbr: nombre_de_cellules, prenoms: texta};
+	var data = {eleves : eleves_data, prof: prof_data, eleve_view:view_data, nbr: nombre_de_cellules, prenoms: texta};
 	
 	exportToJsonFile(data);
 
