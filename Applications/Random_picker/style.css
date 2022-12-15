@@ -71,30 +71,60 @@ body{
 
 
 #rotation_container.prof_view{
-  
   transform: rotate(180deg);
 }
  
 
 
-#prof{
+
+#prof_wrapper{
   position : absolute;
   width: 15%;
   height: 9%;
   left:42.5%;
-  top:5%;  
+  top:5%; 
+}
+
+
+#prof{
+  width:100%;
+  height: 100%;
   border : 3px solid rgba(46, 24, 11, 0.671);
+  border-radius: 5px;
   font-size: 1.5vw;
-  /* font-family: 'Manga_temple'; */
   display:flex;
   justify-content: center;
   align-items: center;
+  cursor:grab;
+  background: rgb(247, 247, 247);
+  opacity : 1;
+
+  transition : box-shadow 0.5s ease-out;
+  transition : transform 1s ease; 
 }
+
+
+#prof_wrapper.ui-draggable-dragging{
+  background:rgb(255, 255, 255);
+  opacity : 0.7;
+  box-shadow: rgba(32, 46, 65, 0.4) 3px 3px,
+              rgba(32, 46, 65, 0.3) 6px 6px,
+              rgba(32, 46, 65, 0.2) 9px 9px;
+}
+
+
+
+#prof.prof_view{
+  transform: rotate(180deg);
+}
+
+
+
 
 #number_button{
   position : absolute;
-  bottom:0;
-  left:0;
+  top:1%;
+  left:1%;
   border-radius: 50%;
   width: 10%;
   height: 0;
@@ -121,29 +151,33 @@ body{
 
 
 
-#defaut_color_button{
+.color_front{
   position : absolute;
-  top:0;
-  right:0;
   border-radius: 50%;
-  width: 10%;
+  width: 8%;
   height: 0;
-  padding-bottom: 10%;
+  padding-top: 8%;
   border:1px solid black;
-  background-color:white;
-
-  transform : scale(1);
-  transition : transform 0.25s; 
-
   cursor : pointer;
+  transform : scale(1);
+  opacity:0.9;
+  transition : transform 0.25s ease; 
+  }
 
 
-}
 
-#defaut_color_button:hover {
+.color_front:hover {
   transform : scale(1.3);
 }
 
+
+
+#defaut_color_button{
+  position : absolute;
+  bottom:0;
+  left:1%;
+  background-color: rgb(247, 247, 247);
+}
 
 
 
@@ -152,25 +186,44 @@ body{
 }
 
 
-#color_front{
-position : absolute;
-bottom:0;
-right:0;
-border-radius: 50%;
-width: 10%;
-height: 0;
-padding-top: 10%;
-background-color:#5696C8;
-border:1px solid black;
-cursor : pointer;
 
-transform : scale(1);
-transition : transform 0.25s; 
+
+
+#color_front1{
+  bottom:0;
+  left:11%;
+  background:#a3e4fd;
 }
 
+#color_front2{
+  bottom:0;
+  left:20%;
+  background:#9bff9b;
+}
 
-#color_front:hover {
-  transform : scale(1.3);
+#color_front3{
+  bottom:0;
+  left:30%;
+  background:hsl(56, 94%, 79%);
+}
+
+#color_front4{
+  bottom:0;
+  left:40%;
+  background:#ffc788;
+}
+
+#color_front5{
+  bottom:0;
+  left:50%;
+  background:#ff7272;
+}
+
+#custom_color_front{
+  bottom:0;
+  left:60%;
+  background:#e156fd;
+  border-radius: 5px;
 }
 
 
@@ -201,20 +254,29 @@ transition : transform 0.25s;
 /* /////////////////////////////////////////////////////////////////////////////////////// */
 
 
+
+.wrapper{
+  position : absolute;
+  display : flex;
+  align-items: center;
+  transition : transform 1s ease;
+  transition : box-shadow 0.5s ease-out;  
+}
+
+
+
 .rectangle{
+  width:100%;
+  height:100%;
   cursor:grab;
   background: rgb(247, 247, 247);
   opacity : 1;
   border : 1px outset black;
   border-radius: 5px;
-  /* width:100%; */
-  /* height:100%; */
   display : flex;
   align-items: center;
 
-  transition : background 0.2s ease-out;
   transition : box-shadow 0.5s ease-out;
-
   transition : transform 1s ease;  
 }
 
@@ -226,13 +288,6 @@ transition : transform 0.25s;
 }
 
 
-.rectangle.ui-draggable-dragging{
-  background:rgb(255, 255, 255);
-  opacity : 0.7;
-  box-shadow: rgba(32, 46, 65, 0.4) 3px 3px,
-              rgba(32, 46, 65, 0.3) 6px 6px,
-              rgba(32, 46, 65, 0.2) 9px 9px;
-}
 
 
 
@@ -244,14 +299,6 @@ transition : transform 0.25s;
 
 
 
-
-#nurserie .ui-selecting {  
-  background : rgb(253, 221, 226) ;
-}
-#nurserie .ui-selected {
-  background : pink ;
-  color: #000000; 
-}
 
 
 
@@ -694,3 +741,23 @@ input:hover + label
   resize: none;
 }
 
+
+
+
+
+
+
+#rotate_handler{
+  position : absolute;
+  right: -15%;
+  border : 1px dashed black;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius : 100%;
+  font-size: 12pt;
+  z-index : 1;
+
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}

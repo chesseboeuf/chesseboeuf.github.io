@@ -1,8 +1,10 @@
+//////////////////////////////////////////////////////////////////////////////////
+///////////////////////// FADEIN AU CHARGEMENT ///////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 $(window).on('load', function (e) {
 
     $(body).fadeIn(1000,function(){});	
 });
-
 
 
 
@@ -12,38 +14,44 @@ $(window).on('load', function (e) {
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 
-
 var xMax=100;  // on travail en pourcentages du parent (#nurserie)
 var yMax=100;
 var taille = Number(document.getElementById('curseur').max);
 
+// les wrapper sont les parents directs des rectangles
+// Cette technique est necessaire pour regler le petit bug causé par l'utilisation simultanée de Jquery draggable et Jquery rotatable.
+// wrapper est l'element draggable
+// Rect est l'element rotatable et selectable
+// wrapper : postion, taille
+// Rect : style
+var wrapper = new Array(taille);
 var Rect = new Array(taille);
+var cellAngle = new Array(taille);
+var rectId = new Array(taille);
+var wrapperId = new Array(taille);
 var Numero = new Array(taille);
-var id = new Array(taille);
-Vois = new Array(taille);
+var Vois = new Array(taille);
 
 
-///////////////////////// Variables du pivert ////////////////////////
-// On creer la variable rect_index.
+/////////////////////////////////// Variables du pivert /////////////////////////////////
+// On creer la variable rect_index pour le fonctionnement du pivert
 // Une première valeur lui sera attribuee au premier appel de updateRect (donc au chargement de la page).
 let rect_index;
 var cpt=0;
-
 let indexDeepCopy=-2;
-
 var pivert = document.getElementById('woodpecker');
-
 var audio1 = new Audio('mixkit-message-pop-alert-2354 (mp3cut.net).mp3');
 var audio2 = new Audio('sonic_ring.mp3');
 audio2.volume = 0.01;
 
 
-////////////////////////// Zone de texte /////////////////////////////
+////////////////////////// Variables de la zone de texte /////////////////////////////
 const textarea = document.querySelector('#zone_texte');
 const lineNumbers = document.querySelector('.line-numbers');
 var numberOfLines = 0;
 
 
+////////////////////////// Autres variables globales //////////////////////////////
 var eleve_view =true; // la vue par défaut est la vue élève.
 var number_visible = true // au début, les numero de cellules sont visibles 
 
@@ -63,33 +71,26 @@ var number_visible = true // au début, les numero de cellules sont visibles
 for (i=0 ; i<Rect.length ; i++){
 
 
+	wrapper[i] =  document.createElement('div');
 	Rect[i] = document.createElement('div');
-	document.getElementById('nurserie').appendChild(Rect[i]);
+	document.getElementById('nurserie').appendChild(wrapper[i]);
+	wrapperId[i]= 'wrapper' + i.toString();
+	wrapper[i].id = wrapperId[i];
+	wrapper[i].classList.add('wrapper');
+	document.getElementById(wrapperId[i]).appendChild(Rect[i]);
 
-	Rect[i].style.display = "none"; 
-	Rect[i].style.position = 'absolute';
+	wrapper[i].style.display = "none"; 
+	wrapper[i].style.position = 'absolute';
 	Rect[i].classList.add('rectangle');
-	
-	
-	//   Rect[i].classList.add("ui-widget-content");
-	
+	rectId[i] = 'rect' + i.toString();
+	Rect[i].id = rectId[i];
 
-	id[i] = 'rect' + i.toString();
 
-	Rect[i].id = id[i];
+	cellAngle[i]=0;
 
 	Numero[i] = document.createElement('div');
-	document.getElementById(id[i]).appendChild(Numero[i]);
+	document.getElementById(rectId[i]).appendChild(Numero[i]);
 
-	/////////////////
-	/////////////////
-	/////////////////
-	/////////////////
-	/////////////////
-	/////////////////
-	/////////////////
-	/////////////////
-	/////////////////
 	/////////////////
 	/////////////////
 	/////////////////
@@ -106,22 +107,49 @@ for (i=0 ; i<Rect.length ; i++){
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 
-for (i=0 ; i<Rect.length ; i++){
 
-	$("#"+id[i]).draggable({
+// supprimer la selection (ou plutôt la couleur associée)
+// quand on clique sur un rectangle qui n'en fait pas partie
+$('.rectangle').mousedown(function(){
+
+	if(!$(this).hasClass('ui-selected')){
+
+		let selectedGroup = document.querySelectorAll(".ui-selected.rectangle.displayed");
+
+		for (i=0 ; i<selectedGroup.length ; i++){
+			let mySelectedCell = selectedGroup[i];
+			if(mySelectedCell.classList.contains('colorified')){
+				mySelectedCell.style.backgroundImage='';
+			}else{
+				mySelectedCell.style.backgroundColor='rgb(247,247,247)';
+			}
+
+		}
+// 
+	}
+});
+
+
+
+for (i=0 ; i<wrapper.length ; i++){
+
+	$("#"+wrapperId[i]).draggable({
 		containment: "#dragcontainer",
-        multiple: true,	
-		stack: '.rectangle', // le rectangle deplacé se place tout en haut de la pile des elements de classe ".rectangle"
+        multiple: true,
+		stack: '.wrapper', // le wrapper deplacé se place tout en haut de la pile des elements de classe ".wrapper"
+		handle: ".rectangle", // c'est en cliquant sur le rectangle (enfant de wrapper) qu'on peut dragger
+
 
 		drag: function( event, ui ) {
-				if(eleve_view==false){
+
+				if(eleve_view==false){ // Si on est en vision prof (on a cliqué sur SWITCH)
 					// cas 1 : une seule cellule est déplacée
-					console.log(ui.position);
-					ui.position.left= $('#nurserie').width() - ui.position.left - $("#rect0").width() ;
-					ui.position.top= $('#nurserie').height() - ui.position.top - $("#rect0").height() ;
+					ui.position.left = $('#nurserie').width() - ui.position.left - $("#rect0").width() ;
+					ui.position.top = $('#nurserie').height() - ui.position.top - $("#rect0").height() ;
 
 					// cas 2 : deplacement après selection d'un groupe de cellules
-			    	let selectedGroup = document.getElementsByClassName('ui-selected displayed');
+					let selectedGroup = document.getElementsByClassName('wrapper ui-selected displayed');
+
 				    for (i=0 ; i<selectedGroup.length ; i++){
 						let aSelectedRectId= '#' + selectedGroup[i].id;
 						var lll = ( 100 * parseFloat($(aSelectedRectId).position().left / parseFloat($(aSelectedRectId).parent().width())) ) + "%" ;
@@ -138,7 +166,7 @@ for (i=0 ; i<Rect.length ; i++){
 		// La function suivante
 		stop: function () {
 
-			if(eleve_view==false){
+			if(eleve_view==false){ // Si on est en vision prof (on a cliqué sur SWITCH)
 				// cas 1 : une seule cellule est déplacée
 				var l =   100 *(      $(this).parent().width() -   $(this).position().left - $(this).width()   )    / $(this).parent().width()         + "%" ;
 				var t =   100 *(      $(this).parent().height() -   $(this).position().top - $(this).height()   )    / $(this).parent().height()       + "%" ;
@@ -164,7 +192,7 @@ for (i=0 ; i<Rect.length ; i++){
 				$(this).css("top", t);
 
 				// cas 2 : deplacement après selection d'un groupe de cellules
-				let selectedGroup = document.getElementsByClassName('ui-selected displayed');
+				let selectedGroup = document.getElementsByClassName('wrapper ui-selected displayed');
 				for (i=0 ; i<selectedGroup.length ; i++){
 					let aSelectedRectId= '#' + selectedGroup[i].id;
 					var lll =  100*(     $(aSelectedRectId).position().left / $(aSelectedRectId).parent().width()     )  +  "%" ;
@@ -179,14 +207,12 @@ for (i=0 ; i<Rect.length ; i++){
 }
 
 
-$("#prof").draggable({
-	stack: '.rectangle',
+$("#prof_wrapper").draggable({
+	stack: '.wrapper',
 	containment: "#dragcontainer",
 
 	drag: function( event, ui ) {
-			if(eleve_view==false){
-				// cas 1 : une seule cellule est déplacée
-				 console.log(ui.position);
+			if(eleve_view==false){  // Si on est en vision prof (on a cliqué sur SWITCH)
 				ui.position.left= $('#dragcontainer').width() - ui.position.left - $("#prof").width() ;
 				ui.position.top= $('#dragcontainer').height() - ui.position.top - $("#prof").height() ;
 			}
@@ -235,27 +261,41 @@ $("#dragcontainer").resizable({
 
 
 
-
 $("#nurserie").selectable({
 	filter: ".rectangle", // seulement les éléments rectangle sont selectable (pas leur enfants 'prenom' et 'number')
 	selecting: function( event, ui ) {
 		 if (ui.selecting.classList.contains('colorified')){
-		 ui.selecting.style.backgroundImage='linear-gradient(90deg, pink, rgba(255, 192, 203, 0) 50%)';
+		 ui.selecting.style.backgroundImage='linear-gradient(120deg, pink, rgba(255, 192, 203, 0) 70%)';
 		 }else{
-			ui.selecting.style.background='pink';
+			 ui.selecting.style.backgroundColor='pink';
 		 }
+		  ui.selecting.parentNode.classList.add('ui-selected');
 	},
 
 	unselecting: function( event, ui ) {
-		// ui.unselecting.style.backgroundImage='';
 		if (ui.unselecting.classList.contains('colorified')){
 			ui.unselecting.style.backgroundImage='';
 			}else{
-			   ui.unselecting.style.background='rgb(247,247,247)';
+			   ui.unselecting.style.backgroundColor='rgb(247,247,247)';
 			}
+		 ui.unselecting.parentNode.classList.remove('ui-selected');
+ 
 	},
 
+	unselected: function( event, ui ) {
+		if (ui.unselected.classList.contains('colorified')){
+			ui.unselected.style.backgroundImage='';
+			}else{
+				ui.unselected.style.backgroundColor='rgb(247,247,247)';
+			}
+			
+	}
+
+
   });
+
+
+
 
 
 ///////////// SELECTION AVEC LE BOUTON CTRL /////////////////////////
@@ -283,7 +323,7 @@ function checkKeyUp ( event ) {
 
 		if ( ctrlPressed ) { 
 	
-			$(".rectangle").draggable( 'enable' );
+			$(".wrapper").draggable( 'enable' );
 			$("#dragcontainer").draggable( 'enable' );
 
 		 }
@@ -295,6 +335,12 @@ function checkKeyUp ( event ) {
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////// ACTIONS DE LA TABLE DU PROF ////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -302,16 +348,67 @@ function checkKeyUp ( event ) {
 /////////////////////////////////////////////////////////////////////////////////////  
 
 
+var coloration = function(couleur){
+
+	let selected_cells = $('.rectangle.ui-selected');
+	for(i=0; i< selected_cells.length; i++){
+		let mySelectedCell = $('#'+selected_cells[i].id);
+		mySelectedCell.css('background',couleur);
+		mySelectedCell.css('background-image', 'linear-gradient(120deg, pink, rgba(255, 192, 203, 0) 70%)');
+		mySelectedCell.addClass('colorified');
+	}
+
+};
 
 
 
+////////// couleur 1 /////////////////////
+$('#color_front1').click( function(){
 
-$("#color_picker").change(function(event) {
-    console.log($(this).val());
-    $("#color_front").css('background-color',$(this).val());
+	let mycolor = $('#color_front1').css('background-color');
+	coloration(mycolor);
+});
+////////// couleur 2 /////////////////////
+$('#color_front2').click( function(){
+
+	let mycolor = $('#color_front2').css('background-color');
+	coloration(mycolor);
+});	
+////////// couleur 3 /////////////////////
+$('#color_front3').click( function(){
+
+	let mycolor = $('#color_front3').css('background-color');
+	coloration(mycolor);
+});
+////////// couleur 4 /////////////////////
+$('#color_front4').click( function(){
+
+	let mycolor = $('#color_front4').css('background-color');
+	coloration(mycolor);
+});
+////////// couleur 5 /////////////////////
+$('#color_front5').click( function(){
+
+	let mycolor = $('#color_front5').css('background-color');
+	coloration(mycolor);
 });
 
-$("#color_front").click(function(event) {
+
+/////////////////////////////////////////////////////////////
+/////////////// couleur perso ///////////////////////////////
+var custom_coloration = function(){
+	let mycolor = document.getElementById('color_picker').value;
+	$("#custom_color_front").css('background-color',mycolor);
+
+	coloration(mycolor);
+};
+
+
+
+document.getElementById('color_picker').addEventListener('input',custom_coloration,'false');
+document.getElementById('color_picker').addEventListener('click',custom_coloration,'false');
+
+$("#custom_color_front").click(function(){
     $("#color_picker").click();
 });
 
@@ -320,26 +417,9 @@ $("#color_front").click(function(event) {
 
 
 
-var changer_couleur = function(){
-	let couleur = document.getElementById('color_picker').value;
 
-	let selected_cells = $('.ui-selected');
-	for(i=0; i< selected_cells.length; i++){
-		let mySelectedCell = $('#'+selected_cells[i].id);
-		mySelectedCell.css('background',couleur);
-		mySelectedCell.addClass('colorified');
-		$('.ui-selected').css('background-image', 'linear-gradient(90deg, pink, rgba(255, 192, 203, 0) 50%)');
-	}
-
-};
-
-
-
-document.getElementById('color_picker').addEventListener('input',changer_couleur,'false');
-document.getElementById('color_picker').addEventListener('click',changer_couleur,'false');
 
 document.getElementById('defaut_color_button').addEventListener('click',function(){
-
 	let selected_cells = $('.ui-selected');
 	for(i=0; i< selected_cells.length; i++){
 		let mySelectedCell = $('#'+selected_cells[i].id);
@@ -351,6 +431,11 @@ document.getElementById('defaut_color_button').addEventListener('click',function
 	}
 
 });
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////// VISIBILITE DES NUMEROS DE CELLULE /////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////  
 
 document.getElementById('number_button').addEventListener('click',function(){
 
@@ -377,10 +462,11 @@ document.getElementById("nombre").addEventListener('change', updateRect,'false')
 function updateRect(){ // Cette fonction s activte au chargement de la page et a chaque actualisation du curseur 
 
 
-	for (i=0 ; i<Rect.length ; i++){
-		Rect[i].style.display = "none";
-		Rect[i].classList.remove('displayed'); 
-		$("#"+id[i]).draggable( 'disable' );
+	for (i=0 ; i<wrapper.length ; i++){
+		wrapper[i].style.display = "none";
+		wrapper[i].classList.remove('displayed'); 
+		Rect[i].classList.remove('displayed');
+		$("#"+wrapperId[i]).draggable( 'disable' );
 	}
 
 	
@@ -425,7 +511,7 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 //////////// CREATION DES RECTANGLES ET DE LEUR VOISINAGE ///////////////////
 	for (var i = 0; i < LL; i++){ 
 
-		$("#"+id[i]).draggable( 'enable' );
+		$("#"+wrapperId[i]).draggable( 'enable' );
 
 		var quotient = Math.floor(i/nbr_colonnes);
 		var remainder = i % nbr_colonnes;
@@ -434,12 +520,13 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 		yy = margeVerticale +  quotient*plainHeight + VmargeInterieure; 
 
 
-		Rect[i].style.display = "block";
+		wrapper[i].style.display = "block";
+		wrapper[i].classList.add('displayed');
 		Rect[i].classList.add('displayed');
-		Rect[i].style.left = xx.toString()+'%';
-		Rect[i].style.top = yy.toString()+'%';
-		Rect[i].style.width = ww.toString()+'%';
-		Rect[i].style.height = hh.toString()+'%';
+		wrapper[i].style.left = xx.toString()+'%';
+		wrapper[i].style.top = yy.toString()+'%';
+		wrapper[i].style.width = ww.toString()+'%';
+		wrapper[i].style.height = hh.toString()+'%';
 
 
 	
@@ -485,7 +572,7 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 					if(remainder==0){
 						Vois[i] = [(quotient)*nbr_colonnes + 1  , (quotient+1)*nbr_colonnes  , (quotient+1)*nbr_colonnes +1 ];
 					}else{
-						Vois[i] = ['AAAAA' , (quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder  , (quotient+1)*nbr_colonnes + remainder + 1 ];
+						Vois[i] = [(quotient)*nbr_colonnes + remainder - 1 , (quotient)*nbr_colonnes + remainder + 1 , (quotient+1)*nbr_colonnes + remainder - 1 , (quotient+1)*nbr_colonnes + remainder  , (quotient+1)*nbr_colonnes + remainder + 1 ];
 					}	
 				}
 				if(remainder == (LL-1)%nbr_colonnes){ // sur le décalage
@@ -740,24 +827,11 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////// FONCTIONNEMENT ///////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// FONCTIONNEMENT GENERAL///////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 // Mettre la classe dans son etat initial /////////////////
@@ -966,6 +1040,13 @@ window.addEventListener("load", handleInputChange)
 /////////////////////// SWITCH VIEW ///////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
+function tourner(jqueryElement,degree){
+
+let mem = jqueryElement.css('transform');
+
+}
+
+
 document.getElementById('switch_view').addEventListener('click',switch_view_function);
 
 
@@ -980,21 +1061,118 @@ function switch_view_function(){
 	if(rot_cont.classList.contains('prof_view')){
 		rot_cont.classList.remove('prof_view');
 
-		for (i=0; i< allCells.length; i++){
-			allCells[i].classList.remove('prof_view');
+		for (i=0; i< allCells.length; i++){			
+			cellAngle[i] = cellAngle[i] + 180;
+			let monAngle = cellAngle[i];
+			$('#' + allCells[i].id).css('transform','rotate(' +  monAngle.toString()  +'deg)');
+
+			// allCells[i].classList.remove('prof_view');
+
+
+
 
 		}
+		document.getElementById('prof').classList.remove('prof_view');
 
 	}else{
 		rot_cont.classList.add('prof_view');
 
 		for (i=0; i< allCells.length; i++){
-			allCells[i].classList.add('prof_view');	
-			
+			cellAngle[i] = cellAngle[i] - 180;
+			let monAngle = cellAngle[i];
+			$('#' + allCells[i].id).css('transform','rotate(' +  monAngle.toString()  +'deg)');
 
+			// allCells[i].classList.add('prof_view');	
 		}
+
+
+		document.getElementById('prof').classList.add('prof_view');
 	}
 }
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////// ROTATION DES CELLULES ///////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+$(document).ready(function() {
+	var params = {
+		// Callback fired on rotation start.
+		start: function(event, ui) {
+		},
+		// Callback fired during rotation.
+		rotate: function(event, ui) {
+
+
+			let monAngle = ui.angle.current * (180 /  Math.PI);
+			if(!eleve_view){
+				monAngle = (monAngle -180 ) % 360;
+			}
+			let selected_cells = $('.ui-selected.rectangle');
+			for(i=0; i< selected_cells.length; i++){
+				let mySelectedCell = $('#'+selected_cells[i].id);
+				mySelectedCell.css('transform','rotate(' +  monAngle.toString()  +'deg)');
+
+				// A terminer 
+				let cellId = selected_cells[i].id;
+				let stringIndex = cellId.slice(4); // en enleve les 4 premier caractères, c a dire 'rect'.
+				let index = parseInt(stringIndex);
+				cellAngle[index] = monAngle;
+				
+			}  
+
+		},
+		// Callback fired on rotation end.
+		stop: function(event, ui) {
+		},
+		// Set the rotation center
+		rotationCenterOffset: {
+			top: 0,
+			left: 0
+		},
+
+		handle: $(document.createElement('img')).attr('src', 'my_handle.png').css('transform','scale(0.5) translateX(50px)'),
+
+		handleOffset :  {
+			top: 0, 
+			left: 0
+		},
+
+		transforms: {
+			translate: '0%, 0%',
+			// scale: '2'
+			//any other transforms
+		},
+
+		snap: true,
+		step : 22.5,
+
+
+
+	};
+
+	$('#rotate_handler').rotatable(params);
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1020,11 +1198,12 @@ $(document).ready(function () {
 		$('#menu').css('display' , 'none');
 		$('#actions').css('display' , 'none');
 		$('#woodpecker').css('display' , 'none');
+		$('#rotate_handler').css('display' , 'none');
 		$('.box_number').css('display' , 'none');
 
 		$('#number_button').css('display' , 'none');
-		$('#color_front').css('display' , 'none');
-		$('#defaut_color_button').css('display' , 'none');
+
+		$('.color_front').css('display' , 'none');
 
 
 
@@ -1038,9 +1217,6 @@ $(document).ready(function () {
 		$('body').css('display', 'flex');
 		$('body').css('align-items', 'center');
 		$('footer').css('display', 'none');
-
-
-
 
 
 
@@ -1069,10 +1245,12 @@ $(document).ready(function () {
 		$('#menu').css('display' , 'block');
 		$('#actions').css('display' , 'flex');
 		$('#woodpecker').css('display' , 'block');
+		$('#rotate_handler').css('display' , 'flex');
 
 		$('#number_button').css('display' , 'flex');
-		$('#color_front').css('display' , 'block');
-		$('#defaut_color_button').css('display' , 'block');
+
+		$('.color_front').css('display' , 'block');
+
 
 		if(number_visible){
 			$('.box_number').css('display' , 'block');
@@ -1152,17 +1330,24 @@ document.querySelector("#file").addEventListener('change', function() {
 
 			if(Rect[i].classList.contains('displayed')){
 				Rect[i].style.display = "block";
+				wrapper[i].style.display="block";
 			}else{
 				Rect[i].style.display = "none";
+				wrapper[i].style.display="none";
 			}
 		
-			Rect[i].style.left = classState.eleves[i].left;
-			Rect[i].style.top = classState.eleves[i].top;
-			Rect[i].style.width = classState.eleves[i].width;
-			Rect[i].style.height = classState.eleves[i].height;
-			Rect[i].style.zIndex = classState.eleves[i].altitude;
-			$('#'+monRect.id).css('background-color',classState.eleves[i].backgroundColor);
+			wrapper[i].style.left = classState.eleves[i].left;
+			wrapper[i].style.top = classState.eleves[i].top;
+			wrapper[i].style.width = classState.eleves[i].width;
+			wrapper[i].style.height = classState.eleves[i].height;
+			wrapper[i].style.zIndex = classState.eleves[i].altitude;
 
+
+			let monAngle = classState.eleves[i].angle;
+			$('#'+monRect.id).css('transform','rotate(' +  monAngle.toString()  +'deg)');
+			cellAngle[i]=monAngle;
+
+			$('#'+monRect.id).css('background-color',classState.eleves[i].backgroundColor);
 
 			// on ne s'intéresse pas à ceux qui étaient selectionnés
 			Rect[i].classList.remove('ui-selected');
@@ -1189,9 +1374,9 @@ document.querySelector("#file").addEventListener('change', function() {
 
 
 		// mise a jour de la cellule prof
-		 document.getElementById('prof').style.left = classState.prof.lleft;
-		 document.getElementById('prof').style.top = classState.prof.ttop;
-		 document.getElementById('prof').style.zIndex = classState.prof.altitude;
+		 document.getElementById('prof_wrapper').style.left = classState.prof.lleft;
+		 document.getElementById('prof_wrapper').style.top = classState.prof.ttop;
+		 document.getElementById('prof_wrapper').style.zIndex = classState.prof.altitude;
 
 
 		 //mise a jour de la vue
@@ -1199,16 +1384,12 @@ document.querySelector("#file").addEventListener('change', function() {
 		 if(classState.eleve_view){
 			document.getElementById('prof').classList.remove('prof_view');
 			document.getElementById('rotation_container').classList.remove('prof_view');
-			for (i=0; i< Rect.length; i++){
-				Rect[i].classList.remove('prof_view');
-			}
+
 			eleve_view = true;
 		 }else{
 			document.getElementById('prof').classList.add('prof_view');
 			document.getElementById('rotation_container').classList.add('prof_view');
-			for (i=0; i< Rect.length; i++){
-				Rect[i].classList.add('prof_view');
-			}
+
 			eleve_view = false;
 		 }
 
@@ -1216,13 +1397,9 @@ document.querySelector("#file").addEventListener('change', function() {
 		
 	}
 
-	// 	
-
 	document.getElementById('file').value = null;
 });
 
-
-// 
 
 
 
@@ -1246,13 +1423,14 @@ function exportToJsonFile(jsonData) {
 
 
 
-
 document.getElementById('export_button').addEventListener('click', function() {
 
 	var eleves_data = new Array(taille);
 
 	for (i=0; i<Rect.length; i++){
 		let monRect= Rect[i];
+		let monWrapper = wrapper[i];
+		let monAngle = cellAngle[i];
 		let mesclass = Object.values(monRect.classList);
 
 
@@ -1262,12 +1440,13 @@ document.getElementById('export_button').addEventListener('click', function() {
 		}
 
 		eleves_data[i] = {class : mesclass,
-			             left : monRect.style.left,
-						 top : monRect.style.top,
-						 width : monRect.style.width,
-						 height : monRect.style.height,
+			             left : monWrapper.style.left,
+						 top : monWrapper.style.top,
+						 width : monWrapper.style.width,
+						 height : monWrapper.style.height,
+						 angle : monAngle,
 						 backgroundColor :  $('#'+ monRect.id).css('background-color'),
-						 altitude : monRect.style.zIndex};
+						 altitude : monWrapper.style.zIndex};
 
 
 		if(monRect.classList.contains('ui-selected') && !monRect.classList.contains('colorified')){
@@ -1278,10 +1457,9 @@ document.getElementById('export_button').addEventListener('click', function() {
 
 
 
-	var prof_data = {class : Object.values(document.getElementById('prof').classList),
-		             lleft : document.getElementById('prof').style.left,
-		             ttop : document.getElementById('prof').style.top,
-					 altitude :  document.getElementById('prof').style.zIndex
+	var prof_data = {lleft : document.getElementById('prof_wrapper').style.left,
+		             ttop : document.getElementById('prof_wrapper').style.top,
+					 altitude :  document.getElementById('prof_wrapper').style.zIndex
 					};
 
 	var view_data= eleve_view;

@@ -5,16 +5,39 @@
         <meta charset="UTF-8" />
         <title>Random picker</title>
         <meta http-equiv="content-Language" content="fr" />
+
+        <!------------------------------- MES STYLES -------------------------->
         <link rel="stylesheet" href="style.css" />
 
-        <link rel="stylesheet" href="jquery-ui-1.13.2.custom/jquery-ui.min.css">
+        
+        <!----------------------- JQUERY et JQUERY UI ------------------------>
         <script src="jquery-ui-1.13.2.custom/external/jquery/jquery.js"></script>
         <script src="jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="jquery-ui-1.13.2.custom/jquery-ui.min.css">
+
+
+         <!----------------------- DRAG MULTIPLE ----------------------------->
         <script src="drag-multiple-ui/dist/jquery-ui.drag-multiple.js"></script>
+
+
+        <!------------------------ JQUERY ROTATABLE ------------------------------->
+        <script src="jQuery-UI-Rotatable-Elements/jquery.ui.rotatable.js"></script>
+        <!-- this is small and will allow you to override look/feel of handle -->
+        <link rel="stylesheet" href="jQuery-UI-Rotatable-Elements/jquery.ui.rotatable.css">
+
+
+
+        <!-------------------------- EXPORTER IMAGE ----------------------------->
         <script src="html2canvas.min.js"></script>
 
         
     </head>
+
+
+
+
+
+
 
 
     
@@ -30,30 +53,39 @@
 
             <div id="rotation_container">
 
+
  
-                <div id='prof' class="rectangle">
-                    Prof
+                <div class="wrapper" id="prof_wrapper">
+                    <div id='prof'>
+                        Prof
 
-                    <div id="number_button">
-                        <div>N</div>
+                        <div id="number_button">
+                            <div>N</div>
+                        </div>
+
+                        <span id="custom_color_front" class='color_front'></span>
+                        <input type='color' value='#e156fd' class='bar' id='color_picker'>
+
+                        <span id="color_front1" class='color_front'></span>
+                        <span id="color_front2" class='color_front'></span>
+                        <span id="color_front3" class='color_front'></span>
+                        <span id="color_front4" class='color_front'></span>
+                        <span id="color_front5" class='color_front'></span>
+
+
+                        <div id="defaut_color_button" class='color_front'></div>
+
+                        <div id="rotate_handler">
+                            <!-- Rotate me! -->
+                        </div>
+
                     </div>
-
-
-
-                    <span id="color_front"></span>
-                    <input type='color' value='#5696C8' class='bar' id='color_picker'>
-                    
-
-
-                    <div id="defaut_color_button">
-                    </div>
-
-
                 </div>
 
+
+
                 <div id="nurserie">
-                         <!-- ici naissent les rectangles  -->
-                
+                     <!-- ici naissent les rectangles  -->                
                 </div>
 
             </div>
@@ -81,6 +113,9 @@
             </div>
 
         </div>
+
+
+
 
 
 
@@ -115,8 +150,6 @@
               <label for="file">Importer classe</label>
             </div>
 
-
-
         </div>
 
 
@@ -136,6 +169,14 @@
 
 
 
+
+
+	<script src="script.js"></script>
+
+
+
+
+
     <!-- empecher le click droit   
     <script>
         jQuery(document).bind("contextmenu", function(e) {
@@ -144,9 +185,6 @@
         });
     </script>
      fin : empecher le click droit -->  
-
-
-	<script src="script.js"></script>
 
 </html>
 
