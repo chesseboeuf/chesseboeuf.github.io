@@ -4,6 +4,12 @@
 $(window).on('load', function (e) {
 
     $(body).fadeIn(1000,function(){});	
+
+
+	document.getElementById("curseur").value = 32;
+	document.getElementById("nombre").value = 32;
+
+	updateRect();
 });
 
 
@@ -14,8 +20,8 @@ $(window).on('load', function (e) {
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 
-var xMax=100;  // on travail en pourcentages du parent (#nurserie)
-var yMax=100;
+// var xMax=100;  // on travail en pourcentages du parent (#nurserie)
+// var yMax=100;
 var taille = Number(document.getElementById('curseur').max);
 
 // les wrapper sont les parents directs des rectangles
@@ -31,6 +37,7 @@ var rectId = new Array(taille);
 var wrapperId = new Array(taille);
 var Numero = new Array(taille);
 var Vois = new Array(taille);
+var gridSize =5; // tailler de la grille sur laquelle on deplace (drag) les cellules
 
 
 /////////////////////////////////// Variables du pivert /////////////////////////////////
@@ -108,29 +115,6 @@ for (i=0 ; i<Rect.length ; i++){
 //////////////////////////////////////////////////////////////////////////////////
 
 
-// supprimer la selection (ou plutôt la couleur associée)
-// quand on clique sur un rectangle qui n'en fait pas partie
-$('.rectangle').mousedown(function(){
-
-	if(!$(this).hasClass('ui-selected')){
-
-		let selectedGroup = document.querySelectorAll(".ui-selected.rectangle.displayed");
-
-		for (i=0 ; i<selectedGroup.length ; i++){
-			let mySelectedCell = selectedGroup[i];
-			if(mySelectedCell.classList.contains('colorified')){
-				mySelectedCell.style.backgroundImage='';
-			}else{
-				mySelectedCell.style.backgroundColor='rgb(247,247,247)';
-			}
-
-		}
-// 
-	}
-});
-
-
-
 for (i=0 ; i<wrapper.length ; i++){
 
 	$("#"+wrapperId[i]).draggable({
@@ -140,68 +124,89 @@ for (i=0 ; i<wrapper.length ; i++){
 		handle: ".rectangle", // c'est en cliquant sur le rectangle (enfant de wrapper) qu'on peut dragger
 
 
+
 		drag: function( event, ui ) {
 
+			
+
+
 				if(eleve_view==false){ // Si on est en vision prof (on a cliqué sur SWITCH)
-					// cas 1 : une seule cellule est déplacée
+
+					// la  cellule déplacée
 					ui.position.left = $('#nurserie').width() - ui.position.left - $("#rect0").width() ;
 					ui.position.top = $('#nurserie').height() - ui.position.top - $("#rect0").height() ;
 
-					// cas 2 : deplacement après selection d'un groupe de cellules
-					let selectedGroup = document.getElementsByClassName('wrapper ui-selected displayed');
+					// le groupe selectionné (si il y en a un) suit la cellule deplacée
+					let selected_cells = $('.wrapper.ui-selected.displayed');
+					for(i=0; i< selected_cells.length; i++){
+						let mySelectedCell = $('#'+selected_cells[i].id);
+						var lll =  100 * mySelectedCell.position().left / $('#nurserie').width() ;
+						var ttt = 100 * mySelectedCell.position().top / $('#nurserie').height() ;
+						$(mySelectedCell).css("left", lll+'%');
+						$(mySelectedCell).css("top", ttt+'%');
 
-				    for (i=0 ; i<selectedGroup.length ; i++){
-						let aSelectedRectId= '#' + selectedGroup[i].id;
-						var lll = ( 100 * parseFloat($(aSelectedRectId).position().left / parseFloat($(aSelectedRectId).parent().width())) ) + "%" ;
-						var ttt = ( 100 * parseFloat($(aSelectedRectId).position().top / parseFloat($(aSelectedRectId).parent().height())) ) + "%" ;
-						$(aSelectedRectId).css("left", lll);
-						$(aSelectedRectId).css("top", ttt);
 					}
 		    	}
 			},
 
-		//////////// Compatibilité avec le RESIZE ///////////////
-		// Par default draggable() convertit left et top en px.
-		// Si on veut les remettre en pourcentage il faut ajouter
-		// La function suivante
+
 		stop: function () {
+					
+			//////////// Compatibilité avec le RESIZE ///////////////
+			// Par default draggable() convertit left et top en px.
+			// Si on veut les remettre en pourcentage il faut ajouter
+			// La function suivante
 
-			if(eleve_view==false){ // Si on est en vision prof (on a cliqué sur SWITCH)
-				// cas 1 : une seule cellule est déplacée
-				var l =   100 *(      $(this).parent().width() -   $(this).position().left - $(this).width()   )    / $(this).parent().width()         + "%" ;
-				var t =   100 *(      $(this).parent().height() -   $(this).position().top - $(this).height()   )    / $(this).parent().height()       + "%" ;
-				$(this).css("left", l);
-				$(this).css("top", t);
+			if(eleve_view){ // Si on est en vision ELEVE
 
-				// cas 2 : deplacement après selection d'un groupe de cellules
-				let selectedGroup = document.getElementsByClassName('ui-selected displayed');
-				for (i=0 ; i<selectedGroup.length ; i++){
-					let aSelectedRectId= '#' + selectedGroup[i].id;
-					var lll =  100*( $(aSelectedRectId).parent().width() -  $(aSelectedRectId).position().left  -   $(aSelectedRectId).width   ) / $(aSelectedRectId).parent().width()     +  "%" ;
-					var ttt =  100*( $(aSelectedRectId).parent().height() -  $(aSelectedRectId).position().top  -   $(aSelectedRectId).height   ) / $(aSelectedRectId).parent().height()   +  "%" ;
-					$(aSelectedRectId).css("left", lll);
-					$(aSelectedRectId).css("top", ttt);
+
+				// la cellule déplacée
+				var l =     100 * $(this).position().left / $('#nurserie').width();
+				var t =     100 * $(this).position().top / $('#nurserie').height()  ;
+				$(this).css("left", l+'%');
+				$(this).css("top", t+'%');
+
+
+				// le groupe selectionné (si il y en a un) suit la cellule deplacée
+				let selected_cells = $('.wrapper.ui-selected.displayed');
+				for(i=0; i< selected_cells.length; i++){
+					let mySelectedCell = $('#'+selected_cells[i].id);
+					var lll =  100 * mySelectedCell.position().left / $('#nurserie').width() ;
+					var ttt = 100 * mySelectedCell.position().top / $('#nurserie').height() ;
+					$(mySelectedCell).css("left", lll+'%');
+					$(mySelectedCell).css("top", ttt+'%');
+
 				}
 
-				
-			}else{	
-				// cas 1 : une seule cellule est déplacée
-				var l =     100 *(    $(this).position().left / parseFloat($(this).parent().width())   )      + "%" ;
-				var t =     100 *(    $(this).position().top / parseFloat($(this).parent().height())   )      + "%" ;
-				$(this).css("left", l);
-				$(this).css("top", t);
 
-				// cas 2 : deplacement après selection d'un groupe de cellules
-				let selectedGroup = document.getElementsByClassName('wrapper ui-selected displayed');
-				for (i=0 ; i<selectedGroup.length ; i++){
-					let aSelectedRectId= '#' + selectedGroup[i].id;
-					var lll =  100*(     $(aSelectedRectId).position().left / $(aSelectedRectId).parent().width()     )  +  "%" ;
-					var ttt =  100*(     $(aSelectedRectId).position().top / $(aSelectedRectId).parent().height()     )  + "%" ;
-					$(aSelectedRectId).css("left", lll);
-					$(aSelectedRectId).css("top", ttt);
+			}else{	// Si on est en vision PROF
+
+				// Symmétrie de la cellule deplacée
+				var l =   100 *(      $('#nurserie').width() -   $(this).position().left - $(this).width()   )    / $('#nurserie').width()      ;
+				var t =   100 *(      $('#nurserie').height() -   $(this).position().top - $(this).height()   )    / $('#nurserie').height()     ;
+				$(this).css("left", l+'%');
+				$(this).css("top", t+'%');
+
+				// le groupe selectionné (si il y en a un) suit la cellule deplacée
+				let selected_cells = $('.wrapper.ui-selected.displayed');
+				for(i=0; i< selected_cells.length; i++){
+					let mySelectedCell = $('#'+selected_cells[i].id);
+					var lll =  100*( $('#nurserie').width() -  mySelectedCell.position().left  -   mySelectedCell.width()   ) / $('#nurserie').width()    ;
+					var ttt =  100*( $('#nurserie').height() -  mySelectedCell.position().top  -   mySelectedCell.height()   ) / $('#nurserie').height()   ;
+					mySelectedCell.css("left", lll+'%');
+					mySelectedCell.css("top", ttt+'%');
 				}
+
 			}
-		}
+
+
+
+
+
+
+		},
+
+	    grid: [gridSize, gridSize]
 	});
 
 }
@@ -244,8 +249,6 @@ $("#dragcontainer").draggable();
 
 
 
-
-
 $("#dragcontainer").resizable({
 
 	stop: function( event, ui ) {
@@ -261,16 +264,71 @@ $("#dragcontainer").resizable({
 
 
 
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////// SELECTIONNER LES CELLULES ///////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+
+
 $("#nurserie").selectable({
 	filter: ".rectangle", // seulement les éléments rectangle sont selectable (pas leur enfants 'prenom' et 'number')
+	
 	selecting: function( event, ui ) {
+
+		 // conloration des elements selectionnés
 		 if (ui.selecting.classList.contains('colorified')){
 		 ui.selecting.style.backgroundImage='linear-gradient(120deg, pink, rgba(255, 192, 203, 0) 70%)';
 		 }else{
 			 ui.selecting.style.backgroundColor='pink';
 		 }
 		  ui.selecting.parentNode.classList.add('ui-selected');
+
+
+
+		// Les elements selectionnes non incline retourne sur la grille
+		let theId =  ui.selecting.id;
+		let stringIndex = theId.slice(4); // en enleve les 7 premiers caractères, c a dire 'wrapper'.
+		let index = parseInt(stringIndex);
+		let monAngle = cellAngle[index]; 
+		let mySelectedCell = $('#wrapper'+stringIndex);
+
+
+		if (monAngle%90 != 0  ){
+			// nothing
+		}else{
+
+			if(eleve_view){ // Si on est en vision ELEVE
+
+				//repositionnement sur la grille
+				let tttop = Math.round(mySelectedCell.position().top/gridSize) * gridSize;
+				tttop = 100 * tttop/$('#nurserie').height();
+				let llleft = Math.round(mySelectedCell.position().left/gridSize) * gridSize;
+				llleft = 100 * llleft/$('#nurserie').width();
+
+				mySelectedCell.css('left' , llleft.toString() +'%' );
+				mySelectedCell.css('top' , tttop.toString() +'%' );
+
+			}else{// Si on est en vision PROF
+
+				// Symmetrie
+				let lll =  $('#nurserie').width() -  mySelectedCell.position().left  -   mySelectedCell.width()    ;
+				let ttt =   $('#nurserie').height() -  mySelectedCell.position().top  -   mySelectedCell.height()  ;
+				//repositionnement sur la grille
+				let tttop = Math.round(ttt/gridSize) * gridSize;
+				let llleft = Math.round(lll/gridSize) * gridSize;
+				tttop = 100 * tttop/$('#nurserie').height();
+				llleft = 100 * llleft/$('#nurserie').width();
+
+				mySelectedCell.css("left", llleft+'%');
+				mySelectedCell.css("top", tttop+'%');
+
+			}	
+
+		}
+			
 	},
+
 
 	unselecting: function( event, ui ) {
 		if (ui.unselecting.classList.contains('colorified')){
@@ -281,6 +339,18 @@ $("#nurserie").selectable({
 		 ui.unselecting.parentNode.classList.remove('ui-selected');
  
 	},
+
+
+	
+	selected: function( event, ui ) {
+		if (ui.selected.classList.contains('colorified')){
+		ui.selected.style.backgroundImage='linear-gradient(120deg, pink, rgba(255, 192, 203, 0) 70%)';
+		}else{
+			ui.selected.style.backgroundColor='pink';
+		}
+		 ui.selected.parentNode.classList.add('ui-selected');
+   },
+
 
 	unselected: function( event, ui ) {
 		if (ui.unselected.classList.contains('colorified')){
@@ -295,9 +365,6 @@ $("#nurserie").selectable({
   });
 
 
-
-
-
 ///////////// SELECTION AVEC LE BOUTON CTRL /////////////////////////
 document.addEventListener('keydown', checkKeyDown);
 document.addEventListener('keyup', checkKeyUp);
@@ -310,10 +377,10 @@ function checkKeyDown ( event ) {
 
 		ctrlPressed = true;
 
-		$(".rectangle").draggable( 'disable' );
+		$(".wrapper").draggable( 'disable' );
 		$("#dragcontainer").draggable( 'disable' );
 
-	} else {  /*ctrlPressed = false;*/ }
+	} else {  }
 
 };
   
@@ -326,11 +393,43 @@ function checkKeyUp ( event ) {
 			$(".wrapper").draggable( 'enable' );
 			$("#dragcontainer").draggable( 'enable' );
 
+			ctrlPressed=false;
+
 		 }
 
 	}
 
 };
+
+
+
+
+
+
+// supprimer la selection (ou plutôt la couleur associée)
+// quand on clique sur un rectangle qui n'en fait pas partie
+$('.rectangle').mousedown(function(){
+
+	if(!$(this).hasClass('ui-selected') && !ctrlPressed ){
+
+		let selectedGroup = document.querySelectorAll(".ui-selected.rectangle.displayed");
+
+		for (i=0 ; i<selectedGroup.length ; i++){
+			let mySelectedCell = selectedGroup[i];
+			if(mySelectedCell.classList.contains('colorified')){
+				mySelectedCell.style.backgroundImage='';
+			}else{
+				mySelectedCell.style.backgroundColor='rgb(247,247,247)';
+			}
+
+		}
+// 
+	}
+});
+
+
+
+
 
 
 
@@ -484,6 +583,10 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 		var nbr_lignes= Math.ceil(LL/nbr_colonnes);
 	}
 
+
+	let  xMax=$('#nurserie').width();
+    let  yMax=$('#nurserie').height();
+
 	var margeHorizontale = 0.02*xMax;
 	var margeVerticale = 0.00*yMax;
     
@@ -494,17 +597,22 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 	var HrectWidthReducCoef = 0.7;
     var plainWidth = (xMax - 2*margeHorizontale)/nbr_colonnes;  
 	var ww = HrectWidthReducCoef*plainWidth;
+	let qww = Math.round(ww/gridSize);
+	ww = qww*gridSize-1; // -1 pour éviter le chevauchement des bordures
 	var HmargeInterieure =(plainWidth-ww)/2;  
 
 
 	var VrectWidthReducCoef = 0.6;	
 	var plainHeight = (yMax - 2*margeVerticale)/nbr_lignes; 
 	var hh = VrectWidthReducCoef*plainHeight;
-	hh=Math.min(hh,25);
+	hh=Math.min(hh,0.25*yMax);
+	let qhh = Math.round(hh/gridSize);
+	hh = qhh*gridSize -1; // -1 pour éviter le chevauchement des bordures
 	var VmargeInterieure =(plainHeight-hh)/2;  
 
-
-	
+	// convertions en pourcentages
+	ww = 100 * ww/xMax;
+	hh = 100 * hh/yMax;
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -517,9 +625,18 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 		var remainder = i % nbr_colonnes;
 
 		xx = margeHorizontale +  remainder*plainWidth + HmargeInterieure; 
+		let qxx = Math.round(xx/gridSize);
+		xx= qxx*gridSize;
 		yy = margeVerticale +  quotient*plainHeight + VmargeInterieure; 
+		let qyy = Math.round(yy/gridSize);
+		yy= qyy*gridSize;
 
 
+		// convertions en pourcentages
+		xx = 100 * xx/xMax;
+		yy = 100 * yy/yMax;
+
+        // applications
 		wrapper[i].style.display = "block";
 		wrapper[i].classList.add('displayed');
 		Rect[i].classList.add('displayed');
@@ -919,15 +1036,6 @@ document.querySelector("#woodpecker").addEventListener('click',clickOnWoopecker,
 
 
 
-document.getElementById("curseur").value = 32;
-document.getElementById("nombre").value = 32;
-
-updateRect();
-updateTexte();
-
-
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -939,7 +1047,22 @@ updateTexte();
 $("#menu").draggable();
 
 $(".editor").resizable({
-	handles: 's'
+	// handles: {
+		// 's': '#southEditorGrip'
+	// }
+
+	// handles: {
+        // 'nw': '#nwgrip',
+        // 'ne': '#negrip',
+        // 'sw': '#swgrip',
+        // 'se': '#segrip',
+        // 'n': '#ngrip',
+        // 'e': '#egrip',
+        // 's': '#sgrip',
+        // 'w': '#wgrip'
+    // }
+	handles : 's'
+
 });
 
 
@@ -1130,8 +1253,63 @@ $(document).ready(function() {
 			}  
 
 		},
-		// Callback fired on rotation end.
+
+		// A la fin de la rotation : 
+		// Si la table n'est plus horizontale ou verticale, on drag en continue (on est plus bloquer sur la grille)
+		// Sinon on drag sur la grille
 		stop: function(event, ui) {
+			let monAngle = ui.angle.current * (180 /  Math.PI);
+			let selected_cells = $('.wrapper.ui-selected.displayed');
+			
+			if (monAngle%90 != 0  ){
+				for(i=0; i< selected_cells.length; i++){
+					let mySelectedCell = $('#'+selected_cells[i].id);
+					// on drag en continu
+					mySelectedCell.draggable( "option", "grid", false );
+				}
+			}else{
+				for(i=0; i< selected_cells.length; i++){
+					let mySelectedCell = $('#'+selected_cells[i].id);
+
+					if(eleve_view){ // Si on est en vision ELEVE
+
+						//repositionnement sur la grille
+						let tttop = Math.round(mySelectedCell.position().top/gridSize) * gridSize;
+						tttop = 100 * tttop/$('#nurserie').height();
+						let llleft = Math.round(mySelectedCell.position().left/gridSize) * gridSize;
+						llleft = 100 * llleft/$('#nurserie').width();
+
+						mySelectedCell.css('left' , llleft.toString() +'%' );
+						mySelectedCell.css('top' , tttop.toString() +'%' );
+
+						// De nouveau on drag sur la grille
+						mySelectedCell.draggable( "option", "grid", [gridSize,gridSize] );
+
+					}else{// Si on est en vision PROF
+
+						// Symmetrie
+						let lll =  $('#nurserie').width() -  mySelectedCell.position().left  -   mySelectedCell.width()    ;
+						let ttt =   $('#nurserie').height() -  mySelectedCell.position().top  -   mySelectedCell.height()  ;
+						//repositionnement sur la grille
+						let tttop = Math.round(ttt/gridSize) * gridSize;
+						let llleft = Math.round(lll/gridSize) * gridSize;
+						tttop = 100 * tttop/$('#nurserie').height();
+						llleft = 100 * llleft/$('#nurserie').width();
+
+						mySelectedCell.css("left", llleft+'%');
+						mySelectedCell.css("top", tttop+'%');
+
+						// De nouveau on drag sur la grille
+						mySelectedCell.draggable( "option", "grid", [gridSize,gridSize] );
+
+					}
+
+
+				}
+
+
+
+			}
 		},
 		// Set the rotation center
 		rotationCenterOffset: {
@@ -1148,14 +1326,10 @@ $(document).ready(function() {
 
 		transforms: {
 			translate: '0%, 0%',
-			// scale: '2'
-			//any other transforms
 		},
 
 		snap: true,
 		step : 22.5,
-
-
 
 	};
 
@@ -1164,8 +1338,21 @@ $(document).ready(function() {
 
 
 
+////////////////////////////////////////////////////////////////////////
+///////////// Positionnement de la molette de rotation /////////////////
+////////////////////////////////////////////////////////////////////////
 
 
+$(window).on('load resize', function () {
+
+	let width = $('#rotate_handler').width();
+
+	let right =  width/2;
+	right = -100 * right / $('#prof').width();
+
+    $('#rotate_handler').css('right', right+'%');
+
+});
 
 
 

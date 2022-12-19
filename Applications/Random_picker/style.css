@@ -75,7 +75,9 @@ body{
 }
  
 
-
+/***************************************************/
+/**************** TABLE DU PROF ********************/
+/***************************************************/
 
 #prof_wrapper{
   position : absolute;
@@ -97,8 +99,7 @@ body{
   align-items: center;
   cursor:grab;
   background: rgb(247, 247, 247);
-  opacity : 1;
-
+ 
   transition : box-shadow 0.5s ease-out;
   transition : transform 1s ease; 
 }
@@ -150,7 +151,6 @@ body{
 
 
 
-
 .color_front{
   position : absolute;
   border-radius: 50%;
@@ -187,38 +187,31 @@ body{
 
 
 
-
-
 #color_front1{
   bottom:0;
   left:11%;
   background:#a3e4fd;
 }
-
 #color_front2{
   bottom:0;
   left:20%;
   background:#9bff9b;
 }
-
 #color_front3{
   bottom:0;
   left:30%;
   background:hsl(56, 94%, 79%);
 }
-
 #color_front4{
   bottom:0;
   left:40%;
   background:#ffc788;
 }
-
 #color_front5{
   bottom:0;
   left:50%;
   background:#ff7272;
 }
-
 #custom_color_front{
   bottom:0;
   left:60%;
@@ -226,6 +219,34 @@ body{
   border-radius: 5px;
 }
 
+
+
+
+#rotate_handler{
+  position : absolute;
+  /* positionnement en javascript */
+  border : 1px dashed black;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius : 100%;
+  font-size: 12pt;
+
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  cursor:default;
+ 
+}
+
+#rotate_handler img{
+  cursor: pointer;
+}
+
+
+
+/***************************************************/
+/*************** FIN TABLE DU PROF ******************/
+/***************************************************/
 
 
 
@@ -246,6 +267,7 @@ body{
   transform: rotate(180deg);
 }
  
+
 
 
 
@@ -666,11 +688,11 @@ input:hover + label
   height: auto;
   top:5vh;
   left:1.2vw;
-  opacity:0.5;
+  opacity:0.7;
   transition: opacity 0.2s ease-in-out;
   z-index:0;
   cursor: grab;
-
+  margin-bottom: 100px;
 }
 
 
@@ -714,6 +736,7 @@ input:hover + label
   font-family: 'Manga_temple';
   font-size:12pt;
   text-align: right;
+  margin-bottom: 10px;  /* same as zone_texte*/
 
 }
 
@@ -739,25 +762,17 @@ input:hover + label
   color: #FFF;
   outline: none;
   resize: none;
+  margin-bottom: 10px;  /* same as .line-numbers*/
 }
 
 
 
-
-
-
-
-#rotate_handler{
-  position : absolute;
-  right: -15%;
-  border : 1px dashed black;
-  height: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius : 100%;
-  font-size: 12pt;
-  z-index : 1;
-
-  display:flex;
-  align-items: center;
-  justify-content: center;
+.editor .ui-resizable-handle{
+  width: 100%;
+  height: 15px;
+  background : rgb(189, 146, 97);  /* same as monBouton */
+  border-bottom-left-radius: 10px;  /* same as monBouton */
+  border-bottom-right-radius: 10px;  /* same as monBouton */
 }
+
+
