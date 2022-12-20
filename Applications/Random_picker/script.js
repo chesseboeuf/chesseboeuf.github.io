@@ -638,6 +638,7 @@ function updateRect(){ // Cette fonction s activte au chargement de la page et a
 
         // applications
 		wrapper[i].style.display = "block";
+		Rect[i].style.display = "block";
 		wrapper[i].classList.add('displayed');
 		Rect[i].classList.add('displayed');
 		wrapper[i].style.left = xx.toString()+'%';
@@ -1505,16 +1506,25 @@ document.querySelector("#file").addEventListener('change', function() {
 		for (i=0; i< Rect.length; i++){
 
 			let monRect= Rect[i];
+			let monWrapper= wrapper[i];
 			Rect[i].className = '';
-    	    let myclass = classState.eleves[i].class;
-			let size = Object.keys(myclass).length;
+			wrapper[i].className='';
+    	    let myRectClass = classState.eleves[i].rectClass;
+			let myWrapperClass = classState.eleves[i].wrapperClass;
+			let r_size = Object.keys(myRectClass).length;
+			let w_size = Object.keys(myWrapperClass).length;
 
-			for (j=0; j < size; j++){
 
-				Rect[i].classList.add(myclass[j]);
-
+			// Classes
+	    	for (j=0; j < r_size; j++){
+				Rect[i].classList.add(myRectClass[j]);
 			}
 
+			for (j=0; j < w_size; j++){
+				wrapper[i].classList.add(myWrapperClass[j]);
+			}
+
+			// Visibilité
 			if(Rect[i].classList.contains('displayed')){
 				Rect[i].style.display = "block";
 				wrapper[i].style.display="block";
@@ -1523,6 +1533,7 @@ document.querySelector("#file").addEventListener('change', function() {
 				wrapper[i].style.display="none";
 			}
 		
+			// Position
 			wrapper[i].style.left = classState.eleves[i].left;
 			wrapper[i].style.top = classState.eleves[i].top;
 			wrapper[i].style.width = classState.eleves[i].width;
@@ -1530,13 +1541,20 @@ document.querySelector("#file").addEventListener('change', function() {
 			wrapper[i].style.zIndex = classState.eleves[i].altitude;
 
 
+
+			// Angle
 			let monAngle = classState.eleves[i].angle;
 			$('#'+monRect.id).css('transform','rotate(' +  monAngle.toString()  +'deg)');
 			cellAngle[i]=monAngle;
+			if (monAngle%90 != 0  ){
+				$('#'+monWrapper.id).draggable( "option", "grid", false );
+			}
 
+			// Couleur
 			$('#'+monRect.id).css('background-color',classState.eleves[i].backgroundColor);
 
-			// on ne s'intéresse pas à ceux qui étaient selectionnés
+			// On ne s'intéresse pas à ceux qui étaient selectionnés
+			wrapper[i].classList.remove('ui-selected');
 			Rect[i].classList.remove('ui-selected');
 			$('#'+monRect.id).css('background-image','');
 
@@ -1591,7 +1609,7 @@ document.querySelector("#file").addEventListener('change', function() {
 
 
 /////////////////////////////////////////////////////////////////////////////////////
-///////////////////  Export data Downloadable JSON File ////////////////////////////
+//////////////////////  Export data to downloadable JSON file ///////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 
 function exportToJsonFile(jsonData) {
@@ -1618,7 +1636,8 @@ document.getElementById('export_button').addEventListener('click', function() {
 		let monRect= Rect[i];
 		let monWrapper = wrapper[i];
 		let monAngle = cellAngle[i];
-		let mesclass = Object.values(monRect.classList);
+		let mesclass_rect = Object.values(monRect.classList);
+		let mesclass_wrapper = Object.values(monWrapper.classList);
 
 
 
@@ -1626,14 +1645,15 @@ document.getElementById('export_button').addEventListener('click', function() {
 			$('#'+ monRect.id).css('background-color' , 'rgb(247,247,247)');
 		}
 
-		eleves_data[i] = {class : mesclass,
-			             left : monWrapper.style.left,
-						 top : monWrapper.style.top,
-						 width : monWrapper.style.width,
-						 height : monWrapper.style.height,
-						 angle : monAngle,
-						 backgroundColor :  $('#'+ monRect.id).css('background-color'),
-						 altitude : monWrapper.style.zIndex};
+		eleves_data[i] = {wrapperClass : mesclass_wrapper,
+			              rectClass : mesclass_rect,
+			              left : monWrapper.style.left,
+						  top : monWrapper.style.top,
+						  width : monWrapper.style.width,
+						  height : monWrapper.style.height,
+						  angle : monAngle,
+						  backgroundColor :  $('#'+ monRect.id).css('background-color'),
+						  altitude : monWrapper.style.zIndex};
 
 
 		if(monRect.classList.contains('ui-selected') && !monRect.classList.contains('colorified')){
