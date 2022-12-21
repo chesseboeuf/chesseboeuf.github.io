@@ -425,9 +425,58 @@ $('.rectangle').mousedown(function(){
 
 		}
 
-		
-// 
 	}
+
+
+
+		// Les elements selectionnes non incline retourne sur la grille
+		let theId =  $(this).attr('id')
+		let stringIndex = theId.slice(4); // en enleve les 7 premiers caractères, c a dire 'wrapper'.
+		let index = parseInt(stringIndex);
+		let monAngle = cellAngle[index]; 
+		let mySelectedCell = $('#wrapper'+stringIndex);
+
+
+		if (monAngle%90 != 0  ){
+			// nothing
+		}else{
+
+			if(eleve_view){ // Si on est en vision ELEVE
+
+				//repositionnement sur la grille
+				let tttop = Math.round(mySelectedCell.position().top/gridSize) * gridSize;
+				tttop = 100 * tttop/$('#nurserie').height();
+				let llleft = Math.round(mySelectedCell.position().left/gridSize) * gridSize;
+				llleft = 100 * llleft/$('#nurserie').width();
+
+				mySelectedCell.css('left' , llleft.toString() +'%' );
+				mySelectedCell.css('top' , tttop.toString() +'%' );
+
+			}else{// Si on est en vision PROF
+
+				// Symmetrie
+				let lll =  $('#nurserie').width() -  mySelectedCell.position().left  -   mySelectedCell.width()    ;
+				let ttt =   $('#nurserie').height() -  mySelectedCell.position().top  -   mySelectedCell.height()  ;
+				//repositionnement sur la grille
+				let tttop = Math.round(ttt/gridSize) * gridSize;
+				let llleft = Math.round(lll/gridSize) * gridSize;
+				tttop = 100 * tttop/$('#nurserie').height();
+				llleft = 100 * llleft/$('#nurserie').width();
+
+				mySelectedCell.css("left", llleft+'%');
+				mySelectedCell.css("top", tttop+'%');
+
+			}	
+
+		}
+
+
+
+
+
+
+
+
 });
 
 
