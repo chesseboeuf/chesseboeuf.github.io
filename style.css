@@ -774,6 +774,28 @@ h1{
     text-align: right;
 }
 
+
+
+.accordéon_handle{
+    display: flex;
+    align-items:center;
+    cursor:help;
+}
+
+.help-icon{
+    margin-left:2px;
+    padding-bottom:20px;
+    width: 40px;
+}
+
+.accordéon{
+    width: 100%;
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 1s ease-in-out;   
+}
+
+
 /*************************** RESPONSIVE DE LA PAGE APPLICATIONS *******************************/
 /*********************************************************************************************/
 

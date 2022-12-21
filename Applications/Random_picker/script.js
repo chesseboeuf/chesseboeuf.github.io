@@ -337,6 +337,7 @@ $("#nurserie").selectable({
 			   ui.unselecting.style.backgroundColor='rgb(247,247,247)';
 			}
 		 ui.unselecting.parentNode.classList.remove('ui-selected');
+
  
 	},
 
@@ -423,6 +424,8 @@ $('.rectangle').mousedown(function(){
 			}
 
 		}
+
+		
 // 
 	}
 });

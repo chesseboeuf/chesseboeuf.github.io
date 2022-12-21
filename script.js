@@ -1073,3 +1073,34 @@ window.addEventListener("resize", function() {
 
 
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// PAGE APPLICATIONS ///////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+let hex_ia_test = false;
+
+$('#hex_ia_accordéon_handle').click( function(){
+
+	if(!hex_ia_test){
+		$('#hex_ia_accordéon').css('max-height', '1000px');
+		hex_ia_test=true;
+	}else{
+		$('#hex_ia_accordéon').css('max-height', '0px');	
+		hex_ia_test=false;
+	}	
+});
+
+
+let random_picker_held_test = false;
+
+$('#random_picker_help_accordéon_handle').click( function(){
+
+	if(!random_picker_held_test){
+		$('#random_picker_help_accordéon').css('max-height', '1000px');
+		random_picker_held_test=true;
+	}else{
+		$('#random_picker_help_accordéon').css('max-height', '0px');	
+		random_picker_held_test=false;
+	}	
+});
