@@ -354,7 +354,7 @@ h1{
 .les_chapitres_viewbox{
     position:relative;
     min-width: 45%;
-    height: 70vh; 
+    height: 68vh; 
     padding-top: 1%;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -482,16 +482,28 @@ h1{
     margin-right: auto;
 }
 
+#college h2{
+    margin-left: 3%;
+    text-align: left;
+    margin-top: 1vh;
+    font-size: 20pt;
+    margin-right: 8%;
+    font-style: italic;
+}
+
+
+
 
 #college .les_niveaux{
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 3vh; 
-    margin-top: 3vh;
+    margin-bottom: 2vh; 
+    margin-top: 1vh;
     font-size: 1.2em;
     font-weight: bold;
 }
+
 
 
 #college .les_niveaux ul{
@@ -596,16 +608,28 @@ h1{
 
 #lycee{
     display:none;
+    width:95%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+
+#lycee h2{
+    position : relative;
+    margin-left: 3%;
+    text-align: left;
+    margin-top: 1vh;
+    font-size: 20pt;
+    font-style: italic;
+}
 
 #lycee .les_niveaux{
     background: #bec1e6;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 3vh; 
-    margin-top: 3vh;
+    margin-bottom: 2vh; 
+    margin-top: 1vh;
     font-size: 1.2em;
     font-weight: bold;
 }
@@ -843,6 +867,15 @@ h1{
     width:95%;
     margin-left: auto;
     margin-right: auto;
+}
+
+#enigmes h2{
+    position : relative;
+    margin-left: 3%;
+    text-align: left;
+    margin-top: 1vh;
+    font-size: 20pt;
+    font-style: italic;
 }
 
 /***************************************************************************************************/
