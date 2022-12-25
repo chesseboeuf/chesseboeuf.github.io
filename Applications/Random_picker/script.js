@@ -47,8 +47,8 @@ let rect_index;
 var cpt=0;
 let indexDeepCopy=-2;
 var pivert = document.getElementById('woodpecker');
-var audio1 = new Audio('mixkit-message-pop-alert-2354 (mp3cut.net).mp3');
-var audio2 = new Audio('sonic_ring.mp3');
+var audio1 = new Audio('Audio/pop-alert-2354.mp3');
+var audio2 = new Audio('Audio/sonic_ring.mp3');
 audio2.volume = 0.01;
 
 
@@ -1370,7 +1370,7 @@ $(document).ready(function() {
 			left: 0
 		},
 
-		handle: $(document.createElement('img')).attr('src', 'my_handle.png').css('transform','scale(0.5) translateX(50px)'),
+		handle: $(document.createElement('img')).attr('src', 'Images/my_handle.png').css('transform','scale(0.5) translateX(50px)'),
 
 		handleOffset :  {
 			top: 0, 

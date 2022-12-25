@@ -7,6 +7,13 @@ var windowWidth = $(window).width();
 var windowHeight = $(window).height();
 var windowFormat = windowWidth / windowHeight;
 
+$( document ).ready(function() {
+	// Apparition fondu de la section accueil au chargement du site
+	$('#accueil').fadeIn(500,function(){});
+});
+
+
+
 $( window ).on( "load", function() { 
 
 	

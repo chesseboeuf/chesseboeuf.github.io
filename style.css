@@ -57,6 +57,11 @@ main{
 }
 
 
+
+h1{
+    font-style: italic;
+}
+
 /***************************************************************************************************/
 /*************************************** BOX (ALL PAGES) ********************************************/
 /***************************************************************************************************/
@@ -234,7 +239,7 @@ footer{
 /***************************************************************************************************/
 
 #accueil{
-    display:block;
+    display:none;
     width:95%;
     margin-left: auto;
     margin-right: auto;
@@ -483,7 +488,7 @@ h1{
 }
 
 #college h2{
-    margin-left: 3%;
+    margin-left: 2%;
     text-align: left;
     margin-top: 1vh;
     font-size: 20pt;
@@ -565,6 +570,12 @@ h1{
     padding-left:1%;
     padding-right:1%;
 }
+
+#sixieme_infos ul{
+    display: flex;
+    justify-content:space-evenly;
+}
+
 #cinquieme_infos{
     margin-left:100%;
     padding-left:1%;
@@ -616,7 +627,7 @@ h1{
 
 #lycee h2{
     position : relative;
-    margin-left: 3%;
+    margin-left: 2%;
     text-align: left;
     margin-top: 1vh;
     font-size: 20pt;
